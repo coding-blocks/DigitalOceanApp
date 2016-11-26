@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -20,8 +22,10 @@ import in.tosc.doandroidlib.objects.Droplet;
 
 public class DetailDropletActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
-    private SwitchCompat switchIPv6, switchPrivateNet, switchBackup;
     private TextView name, memory, size, region, osName;
+    private Button resize, snapshot;
+    private EditText snapshotName;
+    private SwitchCompat switchIPv6, switchPrivateNet, switchBackup;
     private Droplet droplet;
 
     @Override
@@ -38,11 +42,17 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         region = (TextView) findViewById(R.id.droplet_region);
         osName = (TextView) findViewById(R.id.droplet_os);
 
-        setData();
+        resize = (Button) findViewById(R.id.resize_droplet);
+        snapshot = (Button) findViewById(R.id.take_droplet_snapshot);
+
+        snapshotName = (EditText) findViewById(R.id.edittext_snapshot_name);
 
         switchIPv6 = (SwitchCompat) findViewById(R.id.switch_ipv6);
         switchPrivateNet = (SwitchCompat) findViewById(R.id.switch_private_network);
         switchBackup = (SwitchCompat) findViewById(R.id.switch_backup);
+
+        setData();
+        setSwitches();
 
         switchIPv6.setOnCheckedChangeListener(this);
         switchPrivateNet.setOnCheckedChangeListener(this);
@@ -105,9 +115,19 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
 
     private void setData() {
         name.setText(droplet.getName());
-        memory.setText(droplet.getMemorySizeInMb());
-        size.setText(droplet.getDiskSize());
+        memory.setText(String.format(getResources().getString(R.string.droplet_memory), String.valueOf(droplet.getMemorySizeInMb())));
+        size.setText(String.format(getResources().getString(R.string.droplet_disk_size), String.valueOf(droplet.getDiskSize())));
         region.setText(droplet.getRegion().getName());
         osName.setText(droplet.getImage().getName());
+    }
+
+    private void setSwitches() {
+        boolean isIPv6Enabled = droplet.getEnableIpv6() == null ? false : droplet.getEnableIpv6();
+        boolean isPrivateNetworkEnabled = droplet.getEnablePrivateNetworking() == null ? false : droplet.getEnablePrivateNetworking();
+        boolean isBackupEnabled = droplet.getEnableBackup() == null ? false : droplet.getEnableBackup();
+
+        switchIPv6.setChecked(isIPv6Enabled);
+        switchPrivateNet.setChecked(isPrivateNetworkEnabled);
+        switchBackup.setChecked(isBackupEnabled);
     }
 }
