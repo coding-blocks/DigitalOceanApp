@@ -31,7 +31,7 @@
     <include layout="@layout/content_droplet"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_marginTop="138dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"/>
 
     <android.support.design.widget.FloatingActionButton
