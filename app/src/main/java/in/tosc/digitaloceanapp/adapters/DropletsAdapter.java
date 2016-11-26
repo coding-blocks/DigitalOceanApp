@@ -19,12 +19,12 @@ import in.tosc.doandroidlib.objects.Droplet;
 
 public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHolder> implements View.OnClickListener {
 
-    private List<Droplet> dropletList;
+    public List<Droplet> dropletList;
     private Context context;
     private int position;
 
-    public DropletsAdapter(List<Droplet> dropletList, Context context){
-        this.dropletList = dropletList;
+    public DropletsAdapter(List<Droplet> droplets, Context context){
+        dropletList = droplets;
         this.context = context;
     }
 
@@ -44,14 +44,15 @@ public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHo
         }
         holder.region.setText(droplet.getRegion().getName());
         holder.ipAddress.setText(droplet.getNetworks().getVersion4Networks().get(0).getIpAddress());
-        holder.dropletSize.setText(droplet.getDiskSize());
-        holder.dropletRAM.setText(droplet.getMemorySizeInMb());
+        //TODO add missing params
+//        holder.dropletSize.setText(droplet.getDiskSize());
+//        holder.dropletRAM.setText(droplet.getMemorySizeInMb());
         holder.dropletName.setText(droplet.getName());
     }
 
     @Override
     public int getItemCount() {
-        if (dropletList == null)
+        if(dropletList == null)
             return 0;
         return dropletList.size();
     }
