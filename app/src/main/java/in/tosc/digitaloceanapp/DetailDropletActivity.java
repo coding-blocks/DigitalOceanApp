@@ -1,5 +1,6 @@
 package in.tosc.digitaloceanapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,11 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
+
+import in.tosc.doandroidlib.objects.Droplet;
 
 /**
  * Created by Jonsnow21 on 26/11/16.
@@ -15,11 +21,24 @@ import android.widget.CompoundButton;
 public class DetailDropletActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     private SwitchCompat switchIPv6, switchPrivateNet, switchBackup;
+    private TextView name, memory, size, region, osName;
+    private Droplet droplet;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_droplet);
+
+        Gson gson = new Gson();
+        droplet = gson.fromJson(getIntent().getStringExtra("DROPLET"),Droplet.class);
+
+        name = (TextView) findViewById(R.id.droplet_name);
+        memory = (TextView) findViewById(R.id.droplet_memory);
+        size = (TextView) findViewById(R.id.droplet_size);
+        region = (TextView) findViewById(R.id.droplet_region);
+        osName = (TextView) findViewById(R.id.droplet_os);
+
+        setData();
 
         switchIPv6 = (SwitchCompat) findViewById(R.id.switch_ipv6);
         switchPrivateNet = (SwitchCompat) findViewById(R.id.switch_private_network);
@@ -82,5 +101,13 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
             default:
                 break;
         }
+    }
+
+    private void setData() {
+        name.setText(droplet.getName());
+        memory.setText(droplet.getMemorySizeInMb());
+        size.setText(droplet.getDiskSize());
+        region.setText(droplet.getRegion().getName());
+        osName.setText(droplet.getImage().getName());
     }
 }
