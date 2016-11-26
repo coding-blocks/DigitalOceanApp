@@ -29,6 +29,21 @@ public class MainActivity extends AppCompatActivity {
 
         DigitalOceanClient doClient = DigitalOcean.getDOClient();
 
+
+
+        doClient.getDroplets(1, 10).enqueue(new Callback<List<Droplet>>() {
+            @Override
+            public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
+                Log.d(TAG, "onResponse: droplet 0 = " + response.raw().toString());
+                Log.d(TAG, "onResponse: droplet 0 = " + response.body().get(0).getName());
+            }
+
+            @Override
+            public void onFailure(Call<List<Droplet>> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t);
+            }
+        });
+
         doClient.getAccount().enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
@@ -37,18 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-
-            }
-        });
-
-        doClient.getDroplets(1, 10).enqueue(new Callback<List<Droplet>>() {
-            @Override
-            public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
-                Log.d(TAG, "onResponse: droplet 0 = " + response.body().get(0).getName());
-            }
-
-            @Override
-            public void onFailure(Call<List<Droplet>> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t);
 
             }
         });

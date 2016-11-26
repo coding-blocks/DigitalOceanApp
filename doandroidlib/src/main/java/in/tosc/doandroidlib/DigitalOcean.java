@@ -2,9 +2,16 @@ package in.tosc.doandroidlib;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.IOException;
+import java.util.List;
 
 import in.tosc.doandroidlib.api.DigitalOceanClient;
+import in.tosc.doandroidlib.objects.Droplet;
+import in.tosc.doandroidlib.serializer.DropletListDeserializer;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -40,10 +47,13 @@ public class DigitalOcean {
                 })
                 .build();
 
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(new TypeToken<List<Droplet>>(){}.getType(), new DropletListDeserializer())
+                .create();
 
         r = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient)
                 .build();
     }
