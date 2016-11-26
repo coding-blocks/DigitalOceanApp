@@ -11,6 +11,7 @@ import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Account;
 import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.objects.Image;
+import in.tosc.doandroidlib.objects.Size;
 import in.tosc.doandroidlib.serializer.ListDeserializer;
 import in.tosc.doandroidlib.serializer.ObjectDeserializer;
 import okhttp3.Interceptor;
@@ -52,6 +53,7 @@ public class DigitalOcean {
                 .registerTypeAdapter(Account.class, new ObjectDeserializer<Account>("account"))
                 .registerTypeAdapter(new TypeToken<List<Droplet>>(){}.getType(), new ListDeserializer<Droplet>("droplets"))
                 .registerTypeAdapter(new TypeToken<List<Image>>(){}.getType(), new ListDeserializer<Image>("images"))
+                .registerTypeAdapter(new TypeToken<List<Size>>(){}.getType(), new ListDeserializer<Size>("sizes"))
                 .create();
 
         r = new Retrofit.Builder()
