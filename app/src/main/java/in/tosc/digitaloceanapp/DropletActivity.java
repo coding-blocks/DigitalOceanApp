@@ -1,11 +1,12 @@
 package in.tosc.digitaloceanapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,6 +44,7 @@ public class DropletActivity extends AppCompatActivity
 
     List<Droplet> droplets;
     DropletsAdapter dropletsAdapter;
+    SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView dropletRecyclerView;
 
     @Override
@@ -54,32 +56,26 @@ public class DropletActivity extends AppCompatActivity
         setContentView(R.layout.activity_droplet);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
         dropletRecyclerView = (RecyclerView) findViewById(R.id.dropletsRv);
         dropletRecyclerView.setLayoutManager(new LinearLayoutManager(DropletActivity.this, LinearLayoutManager.VERTICAL, false));
         dropletRecyclerView.setAdapter(dropletsAdapter);
         DigitalOceanClient doClient = DigitalOcean.getDOClient();
-        doClient.getDroplets(1,10).enqueue(new Callback<List<Droplet>>() {
-            @Override
-            public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
-                droplets = response.body();
-                dropletsAdapter = new DropletsAdapter(droplets,DropletActivity.this);
-                dropletRecyclerView.setAdapter(dropletsAdapter);
-                dropletsAdapter.notifyDataSetChanged();
-                Log.e("Droplets fetched", String.valueOf(response.body().size()));
-            }
+        refreshData();
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onFailure(Call<List<Droplet>> call, Throwable t) {
-                droplets = null;
-                Log.e("Failed to get Droplets",t.getMessage());
+            public void onRefresh() {
+                refreshData();
             }
         });
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(DropletActivity.this,DropletCreateActivity.class);
+                startActivity(intent);
             }
         });
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -104,6 +100,27 @@ public class DropletActivity extends AppCompatActivity
         });
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void refreshData() {
+        DigitalOceanClient doClient = DigitalOcean.getDOClient();
+        doClient.getDroplets(1,10).enqueue(new Callback<List<Droplet>>() {
+            @Override
+            public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
+                droplets = response.body();
+                dropletsAdapter = new DropletsAdapter(droplets,DropletActivity.this);
+                dropletRecyclerView.setAdapter(dropletsAdapter);
+                dropletsAdapter.notifyDataSetChanged();
+                Log.e("Droplets fetched", String.valueOf(response.body().size()));
+                swipeRefreshLayout.setRefreshing(false);
+            }
+
+            @Override
+            public void onFailure(Call<List<Droplet>> call, Throwable t) {
+                droplets = null;
+                Log.e("Failed to get Droplets",t.getMessage());
+            }
+        });
     }
 
     public String md5(String s) {
