@@ -30,4 +30,10 @@
     <string name="switch_ipv6">IPv6</string>
     <string name="switch_private_network">Private Network</string>
     <string name="switch_backup">Backup</string>
+
+    <string name="title_activity_droplet_create">DropletCreateActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
 </resources>
