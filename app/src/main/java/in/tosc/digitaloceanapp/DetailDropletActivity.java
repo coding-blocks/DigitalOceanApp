@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -22,7 +24,7 @@ import in.tosc.doandroidlib.objects.Droplet;
 
 public class DetailDropletActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
-    private TextView name, memory, size, region, osName;
+    private TextView name, memory, size, region, osName, ipAddress;
     private Button resize, snapshot;
     private EditText snapshotName;
     private SwitchCompat switchIPv6, switchPrivateNet, switchBackup;
@@ -37,6 +39,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         droplet = gson.fromJson(getIntent().getStringExtra("DROPLET"),Droplet.class);
 
         name = (TextView) findViewById(R.id.droplet_name);
+        ipAddress = (TextView) findViewById(R.id.ipAddress);
         memory = (TextView) findViewById(R.id.droplet_memory);
         size = (TextView) findViewById(R.id.droplet_size);
         region = (TextView) findViewById(R.id.droplet_region);
@@ -46,6 +49,9 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         snapshot = (Button) findViewById(R.id.take_droplet_snapshot);
 
         snapshotName = (EditText) findViewById(R.id.edittext_snapshot_name);
+
+//        InputMethodManager mgr  = (InputMethodManager)getSystemService(DropletActivity.INPUT_METHOD_SERVICE);;
+//        mgr.hideSoftInputFromWindow(snapshotName.getWindowToken(), 0);
 
         switchIPv6 = (SwitchCompat) findViewById(R.id.switch_ipv6);
         switchPrivateNet = (SwitchCompat) findViewById(R.id.switch_private_network);
@@ -115,6 +121,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
 
     private void setData() {
         name.setText(droplet.getName());
+        ipAddress.setText(droplet.getNetworks().getVersion4Networks().get(0).getIpAddress());
         memory.setText(String.format(getResources().getString(R.string.droplet_memory), String.valueOf(droplet.getMemorySizeInMb())));
         size.setText(String.format(getResources().getString(R.string.droplet_disk_size), String.valueOf(droplet.getDiskSize())));
         region.setText(droplet.getRegion().getName());

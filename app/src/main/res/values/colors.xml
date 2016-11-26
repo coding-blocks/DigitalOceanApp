@@ -6,7 +6,6 @@
     <color name="white">#ffffff</color>
     <color name="colorSnapshot">#0052FF</color>
     <color name="colorResize">#15CD72</color>
-
-    <color name="black_overlay">#66000000</color>
-    >>>>>>> 1dd171ded9c430e9e9c3c7bc60a1cbac9b740541
+    <color name="colorDeatil">#676767</color>
+>>>>>>> 1dd171ded9c430e9e9c3c7bc60a1cbac9b740541
 </resources>
