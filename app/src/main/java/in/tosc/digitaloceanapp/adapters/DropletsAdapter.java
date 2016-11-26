@@ -1,6 +1,7 @@
 package in.tosc.digitaloceanapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
+import in.tosc.digitaloceanapp.DetailDropletActivity;
 import in.tosc.digitaloceanapp.R;
 import in.tosc.doandroidlib.objects.Droplet;
 
@@ -59,7 +63,10 @@ public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHo
 
     @Override
     public void onClick(View v) {
-
+        Intent intent = new Intent(context, DetailDropletActivity.class);
+        Gson gson = new Gson();
+        intent.putExtra("DROPLET", gson.toJson(dropletList.get(position), Droplet.class));
+        context.startActivity(intent);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
