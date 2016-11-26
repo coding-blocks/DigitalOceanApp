@@ -9,6 +9,7 @@ import java.util.List;
 
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Account;
+import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.objects.Image;
 import in.tosc.doandroidlib.objects.Size;
@@ -51,6 +52,7 @@ public class DigitalOcean {
 
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Account.class, new ObjectDeserializer<Account>("account"))
+                .registerTypeAdapter(Action.class, new ObjectDeserializer<Action>("action"))
                 .registerTypeAdapter(new TypeToken<List<Droplet>>(){}.getType(), new ListDeserializer<Droplet>("droplets"))
                 .registerTypeAdapter(new TypeToken<List<Image>>(){}.getType(), new ListDeserializer<Image>("images"))
                 .registerTypeAdapter(new TypeToken<List<Size>>(){}.getType(), new ListDeserializer<Size>("sizes"))
