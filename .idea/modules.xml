@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/DigitalOceanApp.iml" filepath="$PROJECT_DIR$/DigitalOceanApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/digitaloceanlib/digitaloceanlib.iml" filepath="$PROJECT_DIR$/digitaloceanlib/digitaloceanlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doandroidlib/doandroidlib.iml" filepath="$PROJECT_DIR$/doandroidlib/doandroidlib.iml" />
     </modules>
   </component>
 </project>
