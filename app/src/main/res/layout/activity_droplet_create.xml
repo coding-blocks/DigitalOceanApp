@@ -8,6 +8,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
         android:id="@+id/fragmentHolder" ></FrameLayout>
 
         <LinearLayout
@@ -20,18 +21,16 @@
 
             <Button
                 android:id="@+id/buttonPrev"
-                style="?metaButtonBarButtonStyle"
+                android:theme="@style/snapshot"
                 android:layout_width="0dp"
-                android:layout_margin="2dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/back" />
 
             <Button
                 android:id="@+id/buttonNext"
-                style="?metaButtonBarButtonStyle"
+                android:theme="@style/snapshot"
                 android:layout_width="0dp"
-                android:layout_margin="2dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/next" />
