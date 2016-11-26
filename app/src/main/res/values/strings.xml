@@ -8,4 +8,13 @@
     <string name="edit_droplet_name">Edit Droplet Name</string>
     <string name="delete_droplet">Delete Droplet</string>
     <string name="switch_off_droplet">Switch Off Droplet</string>
+
+    <string name="title_activity_droplet">DropletActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="ip_address">IP Address</string>
+
 </resources>
