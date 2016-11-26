@@ -26,6 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="android.studio@android.com"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="12dp"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
 
 </LinearLayout>
