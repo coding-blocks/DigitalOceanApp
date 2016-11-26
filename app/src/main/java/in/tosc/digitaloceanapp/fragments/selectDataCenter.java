@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import in.tosc.digitaloceanapp.DropletActivity;
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.DataCenterAdapter;
 
@@ -39,7 +38,6 @@ public class selectDataCenter extends Fragment {
         DataCenterAdapter dataCenterAdapter = new DataCenterAdapter(countries , getActivity());
         recyclerView.setAdapter(dataCenterAdapter);
         dataCenterAdapter.notifyDataSetChanged();
-
         return view;
     }
 
