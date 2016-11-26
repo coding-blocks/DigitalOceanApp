@@ -48,9 +48,8 @@ public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHo
         }
         holder.region.setText(droplet.getRegion().getName());
         holder.ipAddress.setText(droplet.getNetworks().getVersion4Networks().get(0).getIpAddress());
-        //TODO add missing params
-//        holder.dropletSize.setText(droplet.getDiskSize());
-//        holder.dropletRAM.setText(droplet.getMemorySizeInMb());
+        holder.dropletSize.setText(droplet.getDiskSize().toString());
+        holder.dropletRAM.setText(droplet.getMemorySizeInMb().toString());
         holder.dropletName.setText(droplet.getName());
     }
 
