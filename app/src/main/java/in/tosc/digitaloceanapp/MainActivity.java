@@ -1,5 +1,6 @@
 package in.tosc.digitaloceanapp;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,12 +19,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DigitalOcean apiClient = new DigitalOceanClient(getString(R.string.do_test_token));
-        try {
-            Log.d(TAG, "onCreate: " + apiClient.getAccountInfo().getEmail());
-        } catch (DigitalOceanException | RequestUnsuccessfulException e) {
-            e.printStackTrace();
-        }
+        final DigitalOcean apiClient = new DigitalOceanClient(getString(R.string.do_test_token));
+
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Void... params) {
+
+                try {
+                    Log.d(TAG, "onCreate: " + apiClient.getAccountInfo().getEmail());
+                } catch (DigitalOceanException | RequestUnsuccessfulException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        }.execute();
+
+
 
     }
 }
