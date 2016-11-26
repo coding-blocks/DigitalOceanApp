@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
+import in.tosc.digitaloceanapp.utils.FontsOverride;
 
 /**
  * Created by the-dagger on 11/26/2016.
@@ -27,6 +28,9 @@ public class DropletActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FontsOverride.applyFontForToolbarTitle(this, FontsOverride.FONT_PROXIMA_NOVA);
+
         setContentView(R.layout.activity_droplet);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
