@@ -11,11 +11,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
+import in.tosc.doandroidlib.DigitalOcean;
+import in.tosc.doandroidlib.api.DigitalOceanClient;
+import in.tosc.doandroidlib.objects.Account;
+import in.tosc.doandroidlib.objects.Droplet;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by the-dagger on 11/26/2016.
@@ -24,13 +40,29 @@ import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
 public class DropletActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    List<Droplet> droplets;
+    String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_droplet);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DropletsAdapter dropletsAdapter = new DropletsAdapter(null,this);
+        DigitalOceanClient doClient = DigitalOcean.getDOClient();
+        doClient.getDroplets(1,10).enqueue(new Callback<List<Droplet>>() {
+            @Override
+            public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
+                droplets = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<List<Droplet>> call, Throwable t) {
+                droplets = null;
+                Log.e("Failed to get Droplets",t.getMessage());
+            }
+        });
+        DropletsAdapter dropletsAdapter = new DropletsAdapter(droplets,this);
         RecyclerView dropletRecyclerView = (RecyclerView) findViewById(R.id.dropletsRv);
         dropletRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         dropletRecyclerView.setAdapter(dropletsAdapter);
@@ -42,15 +74,50 @@ public class DropletActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        doClient.getAccount().enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                email = response.body().getEmail();
+                Log.e("Email",email);
+            }
 
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {
+                Log.e("Failed to get email",t.getLocalizedMessage());
+            }
+        });
+        View hView =  this.findViewById(android.R.id.content).inflate(this,R.layout.nav_header_droplet,null);
+        TextView name = (TextView) hView.findViewById(R.id.accountName);
+        TextView emailTview = (TextView) hView.findViewById(R.id.accountEmail);
+        emailTview.setText(email);
+        ImageView profileImage = (ImageView) hView.findViewById(R.id.accountPic);
+        Picasso.with(this).load("https://www.gravatar.com/avatar/"+md5(email)).into(profileImage);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public String md5(String s) {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i=0; i<messageDigest.length; i++)
+                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     @Override
