@@ -20,12 +20,12 @@ import in.tosc.doandroidlib.objects.Droplet;
 public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHolder> implements View.OnClickListener {
 
     private List<Droplet> dropletList;
-    private Context contex;
+    private Context context;
     private int position;
 
     public DropletsAdapter(List<Droplet> dropletList, Context context){
         this.dropletList = dropletList;
-        this.contex = context;
+        this.context = context;
     }
 
     @Override

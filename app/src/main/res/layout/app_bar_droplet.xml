@@ -16,9 +16,15 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
-            android:layout_height="120dp"
+            android:layout_height="160dp"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:weightSum="1">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_digitalocean" />
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
