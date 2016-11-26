@@ -18,8 +18,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -43,6 +41,8 @@ public class DropletActivity extends AppCompatActivity
 
     List<Droplet> droplets;
     String email;
+    DropletsAdapter dropletsAdapter;
+    RecyclerView dropletRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +53,18 @@ public class DropletActivity extends AppCompatActivity
         setContentView(R.layout.activity_droplet);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        dropletRecyclerView = (RecyclerView) findViewById(R.id.dropletsRv);
+        dropletRecyclerView.setLayoutManager(new LinearLayoutManager(DropletActivity.this, LinearLayoutManager.VERTICAL, false));
+        dropletRecyclerView.setAdapter(dropletsAdapter);
         DigitalOceanClient doClient = DigitalOcean.getDOClient();
         doClient.getDroplets(1,10).enqueue(new Callback<List<Droplet>>() {
             @Override
             public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
                 droplets = response.body();
+                dropletsAdapter = new DropletsAdapter(droplets,DropletActivity.this);
+                dropletRecyclerView.setAdapter(dropletsAdapter);
+                dropletsAdapter.notifyDataSetChanged();
+                Log.e("Droplets fetched", String.valueOf(response.body().size()));
             }
 
             @Override
@@ -66,10 +73,6 @@ public class DropletActivity extends AppCompatActivity
                 Log.e("Failed to get Droplets",t.getMessage());
             }
         });
-        DropletsAdapter dropletsAdapter = new DropletsAdapter(droplets,this);
-        RecyclerView dropletRecyclerView = (RecyclerView) findViewById(R.id.dropletsRv);
-        dropletRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        dropletRecyclerView.setAdapter(dropletsAdapter);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +90,7 @@ public class DropletActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 email = response.body().getEmail();
-                Log.e("Email",email);
+//                Log.e("Email",email);
             }
 
             @Override
@@ -95,12 +98,12 @@ public class DropletActivity extends AppCompatActivity
                 Log.e("Failed to get email",t.getLocalizedMessage());
             }
         });
-        View hView =  this.findViewById(android.R.id.content).inflate(this,R.layout.nav_header_droplet,null);
+        View hView =  findViewById(android.R.id.content).inflate(this,R.layout.nav_header_droplet,null);
         TextView name = (TextView) hView.findViewById(R.id.accountName);
         TextView emailTview = (TextView) hView.findViewById(R.id.accountEmail);
-        emailTview.setText(email);
+//        emailTview.setText(email);
         ImageView profileImage = (ImageView) hView.findViewById(R.id.accountPic);
-        Picasso.with(this).load("https://www.gravatar.com/avatar/"+md5(email)).into(profileImage);
+//        Picasso.with(this).load("https://www.gravatar.com/avatar/"+md5(email)).into(profileImage);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
