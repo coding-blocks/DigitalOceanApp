@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -40,7 +42,6 @@ public class DropletActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     List<Droplet> droplets;
-    String email;
     DropletsAdapter dropletsAdapter;
     RecyclerView dropletRecyclerView;
 
@@ -81,7 +82,7 @@ public class DropletActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -89,8 +90,11 @@ public class DropletActivity extends AppCompatActivity
         doClient.getAccount().enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
-                email = response.body().getEmail();
-//                Log.e("Email",email);
+                String email = response.body().getEmail();
+                ((TextView) drawer.findViewById(R.id.accountEmail)).setText(email);
+                ImageView profilePic = ((ImageView) drawer.findViewById(R.id.accountPic));
+                Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/"+md5(email)).into(profilePic);
+
             }
 
             @Override
@@ -98,12 +102,6 @@ public class DropletActivity extends AppCompatActivity
                 Log.e("Failed to get email",t.getLocalizedMessage());
             }
         });
-        View hView =  findViewById(android.R.id.content).inflate(this,R.layout.nav_header_droplet,null);
-        TextView name = (TextView) hView.findViewById(R.id.accountName);
-        TextView emailTview = (TextView) hView.findViewById(R.id.accountEmail);
-//        emailTview.setText(email);
-        ImageView profileImage = (ImageView) hView.findViewById(R.id.accountPic);
-//        Picasso.with(this).load("https://www.gravatar.com/avatar/"+md5(email)).into(profileImage);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
