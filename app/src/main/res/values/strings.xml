@@ -30,4 +30,14 @@
     <string name="switch_ipv6">IPv6</string>
     <string name="switch_private_network">Private Network</string>
     <string name="switch_backup">Backup</string>
+
+    <string name="ipv6_enabled">IPv6 enabled</string>
+    <string name="ipv6_disabled">IPv6 disabled</string>
+    <string name="backup_enabled">Backup enabled</string>
+    <string name="backup_diabled">Backup disabled</string>
+    <string name="private_network_enabled">Private network enabled</string>
+    <string name="private_network_siabled">Private network disabled</string>
+    <string name="network_error">Network error! Please check your internet connection</string>
+    <string name="ipv6_cannot_be_disabled">IPv6 cannot be disabled</string>
+    <string name="private_network_cannot_be_disabled">Private network cannot be disabled</string>
 </resources>

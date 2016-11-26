@@ -1,8 +1,8 @@
 package in.tosc.digitaloceanapp;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.view.Menu;
@@ -13,10 +13,18 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import in.tosc.doandroidlib.DigitalOcean;
+import in.tosc.doandroidlib.api.DigitalOceanClient;
+import in.tosc.doandroidlib.common.ActionType;
+import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Jonsnow21 on 26/11/16.
@@ -24,11 +32,13 @@ import in.tosc.doandroidlib.objects.Droplet;
 
 public class DetailDropletActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
+    private CoordinatorLayout coordinatorLayout;
     private TextView name, memory, size, region, osName, ipAddress;
     private Button resize, snapshot;
     private EditText snapshotName;
     private SwitchCompat switchIPv6, switchPrivateNet, switchBackup;
     private Droplet droplet;
+    private DigitalOceanClient doaClient;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +47,10 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
 
         Gson gson = new Gson();
         droplet = gson.fromJson(getIntent().getStringExtra("DROPLET"),Droplet.class);
+
+        doaClient = DigitalOcean.getDOClient();
+
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
 
         name = (TextView) findViewById(R.id.droplet_name);
         ipAddress = (TextView) findViewById(R.id.ipAddress);
@@ -88,29 +102,82 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
     }
 
     @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+    public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
         switch (buttonView.getId()) {
             case R.id.switch_ipv6:
-                if (!isChecked){
+                if (isChecked){
+                    doaClient.performAction(droplet.getId(), ActionType.ENABLE_IPV6).enqueue(new Callback<Action>() {
+                        @Override
+                        public void onResponse(Call<Action> call, Response<Action> response) {
+                            if (response.isSuccessful()) {
+                                Snackbar.make(coordinatorLayout, getString(R.string.ipv6_enabled), Snackbar.LENGTH_SHORT).show();
+                                switchIPv6.setEnabled(false);
+                            }
+                        }
 
+                        @Override
+                        public void onFailure(Call<Action> call, Throwable t) {
+                            Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
+                            switchIPv6.setChecked(!isChecked);
+                        }
+                    });
                 } else{
-
+                    Snackbar.make(coordinatorLayout, getString(R.string.ipv6_cannot_be_disabled), Snackbar.LENGTH_SHORT).show();
                 }
                 break;
 
             case R.id.switch_private_network:
-                if (!isChecked) {
+                if (isChecked) {
+                    doaClient.performAction(droplet.getId(), ActionType.ENABLE_PRIVATE_NETWORKING).enqueue(new Callback<Action>() {
+                        @Override
+                        public void onResponse(Call<Action> call, Response<Action> response) {
+                            if (response.isSuccessful()) {
+                                Snackbar.make(coordinatorLayout, getString(R.string.private_network_enabled), Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
 
+                        @Override
+                        public void onFailure(Call<Action> call, Throwable t) {
+                            Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
+                            switchPrivateNet.setChecked(!isChecked);
+                        }
+                    });
                 } else {
-
+                    Snackbar.make(coordinatorLayout, getString(R.string.private_network_cannot_be_disabled), Snackbar.LENGTH_SHORT);
                 }
                 break;
 
             case R.id.switch_backup:
-                if (!isChecked) {
+                if (isChecked) {
+                    doaClient.performAction(droplet.getId(), ActionType.ENABLE_BACKUPS).enqueue(new Callback<Action>() {
+                        @Override
+                        public void onResponse(Call<Action> call, Response<Action> response) {
+                            if (response.isSuccessful()) {
+                                Snackbar.make(coordinatorLayout, getString(R.string.backup_enabled), Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
 
+                        @Override
+                        public void onFailure(Call<Action> call, Throwable t) {
+                            Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
+                            switchPrivateNet.setChecked(!isChecked);
+                        }
+                    });
                 } else {
+                    doaClient.performAction(droplet.getId(), ActionType.DISABLE_BACKUPS).enqueue(new Callback<Action>() {
+                        @Override
+                        public void onResponse(Call<Action> call, Response<Action> response) {
+                            if (response.isSuccessful()) {
+                                Snackbar.make(coordinatorLayout, getString(R.string.backup_diabled), Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
 
+                        @Override
+                        public void onFailure(Call<Action> call, Throwable t) {
+                            Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
+                            switchPrivateNet.setChecked(!isChecked);
+                        }
+                    });
                 }
                 break;
 
