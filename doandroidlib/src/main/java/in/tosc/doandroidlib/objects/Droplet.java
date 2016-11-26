@@ -21,13 +21,15 @@
 
 package in.tosc.doandroidlib.objects;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import in.tosc.doandroidlib.common.DropletStatus;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.util.Date;
 import java.util.List;
+
+import in.tosc.doandroidlib.common.DropletStatus;
 
 /**
  * Represents Droplet attributes of DigitalOcean. Revised as per v2 API data structure.
@@ -38,56 +40,78 @@ public class Droplet extends RateLimitBase {
 
   private static final long serialVersionUID = 1110964622197874436L;
 
+  @Expose
   private Integer id;
 
+  @Expose
   private String name;
-  
+
+  @Expose
   private List<String> names;
 
   @SerializedName("memory")
+  @Expose
   private Integer memorySizeInMb;
 
   @SerializedName("vcpus")
+  @Expose
   private Integer virutalCpuCount;
 
   @SerializedName("disk")
+  @Expose
   private Integer diskSize;
 
+  @Expose
   private Region region;
 
+  @Expose
   private Image image;
 
+  @Expose
   @SerializedName("size_slug")
   private String size;
 
+  @Expose
   private boolean locked;
 
+  @Expose
   private DropletStatus status;
 
+  @Expose
   private Networks networks;
 
+  @Expose
   private Kernel kernel;
 
+  @Expose
   @SerializedName("created_at")
   private Date createdDate;
 
+  @Expose
   private List<String> features;
 
+  @Expose
   private Boolean enableBackup;
 
+  @Expose
   private Boolean enableIpv6;
 
+  @Expose
   private Boolean enablePrivateNetworking;
 
+  @Expose
   @SerializedName("backup_ids")
   private List<Integer> backupIds;
 
+  @Expose
   @SerializedName("snapshot_ids")
   private List<Integer> snapshotIds;
 
+  @Expose
   @SerializedName("ssh_keys")
   private List<Key> keys;
 
+  @Expose
   @SerializedName("user_data")
   private String userData;
 
