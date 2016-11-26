@@ -46,4 +46,4 @@ captures/
 *.iml
 .idea/workspace.xml
 *.jks
-.idea/*
+/.idea

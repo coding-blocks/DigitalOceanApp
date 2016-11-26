@@ -24,6 +24,8 @@ public final class FontsOverride {
 
     public static final String TAG = "FONT";
 
+    public static final String FONT_PROXIMA_NOVA = "ProximaNova.ttf";
+
     public static void applyFontForToolbarTitle(Activity act, String fontName){
 
         ActionBar ab = act.getActionBar();
