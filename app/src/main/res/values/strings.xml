@@ -4,4 +4,8 @@
     <!-- //FIXME: @championswimmer
     This is my own token, with read access, now for testing-->
     <string name="do_test_token">c52c7aa0c741fc3d2c1bec435e2da2ff93bb9eb3fa87fe223c9e85fe17c2b98b</string>
+
+    <string name="edit_droplet_name">Edit Droplet Name</string>
+    <string name="delete_droplet">Delete Droplet</string>
+    <string name="switch_off_droplet">Switch Off Droplet</string>
 </resources>
