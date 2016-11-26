@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/edit_name"
+        android:title="@string/edit_droplet_name"
+        android:icon="@drawable/ic_mode_edit_white_36dp"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/switch_off"
+        android:title="@string/switch_off_droplet"
+        android:icon="@drawable/ic_power_settings_new_white_36dp"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/delete_droplet"
+        android:title="@string/delete_droplet"
+        android:icon="@drawable/ic_delete_white_36dp"
+        app:showAsAction="always"/>
+
+</menu>
