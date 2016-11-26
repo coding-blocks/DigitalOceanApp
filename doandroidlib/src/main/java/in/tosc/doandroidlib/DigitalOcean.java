@@ -1,7 +1,5 @@
 package in.tosc.doandroidlib;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -12,7 +10,8 @@ import java.util.List;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Account;
 import in.tosc.doandroidlib.objects.Droplet;
-import in.tosc.doandroidlib.serializer.DropletListDeserializer;
+import in.tosc.doandroidlib.objects.Image;
+import in.tosc.doandroidlib.serializer.ListDeserializer;
 import in.tosc.doandroidlib.serializer.ObjectDeserializer;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -51,7 +50,8 @@ public class DigitalOcean {
 
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Account.class, new ObjectDeserializer<Account>("account"))
-                .registerTypeAdapter(new TypeToken<List<Droplet>>(){}.getType(), new DropletListDeserializer())
+                .registerTypeAdapter(new TypeToken<List<Droplet>>(){}.getType(), new ListDeserializer<Droplet>("droplets"))
+                .registerTypeAdapter(new TypeToken<List<Image>>(){}.getType(), new ListDeserializer<Image>("images"))
                 .create();
 
         r = new Retrofit.Builder()

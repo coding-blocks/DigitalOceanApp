@@ -4,6 +4,7 @@ import java.util.List;
 
 import in.tosc.doandroidlib.objects.Account;
 import in.tosc.doandroidlib.objects.Droplet;
+import in.tosc.doandroidlib.objects.Images;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -18,6 +19,16 @@ public interface DigitalOceanClient {
     Call<Account> getAccount();
 
     @GET("droplets")
-    Call<List<Droplet>> getDroplets(@Query("page") int pageNo, @Query("per_page") int dropsPerPage);
+    Call<List<Droplet>> getDroplets(
+            @Query("page") int pageNo,
+            @Query("per_page") int dropsPerPage
+    );
+
+    @GET("images")
+    Call<List<Images>> getImages(
+            @Query("page") int pageNo,
+            @Query("per_page") int dropsPerPage,
+            @Query("type") String type
+    );
 
 }
