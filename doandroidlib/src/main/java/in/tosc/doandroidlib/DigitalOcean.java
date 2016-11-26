@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 import in.tosc.doandroidlib.api.DigitalOceanClient;
+import in.tosc.doandroidlib.api.DigitalOceanStatisticsClient;
 import in.tosc.doandroidlib.objects.Account;
 import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
@@ -31,8 +32,10 @@ public class DigitalOcean {
     public static final String TAG = "DO";
 
     public static final String BASE_URL = "https://api.digitalocean.com/v2/";
+    public static final String BASE_URL_V1 = "https://cloud.digitalocean.com/api/v1/";
+
     static String authToken = "";
-    static Retrofit r;
+    static Retrofit r, r2;
 
     public static void init (String token) {
         DigitalOcean.authToken = token;
@@ -50,6 +53,7 @@ public class DigitalOcean {
                 })
                 .build();
 
+
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Account.class, new ObjectDeserializer<Account>("account"))
                 .registerTypeAdapter(Action.class, new ObjectDeserializer<Action>("action"))
@@ -63,10 +67,19 @@ public class DigitalOcean {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient)
                 .build();
+        r2 = new Retrofit.Builder()
+                .baseUrl(BASE_URL_V1)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient)
+                .build();
     }
 
     public static DigitalOceanClient getDOClient () {
         return r.create(DigitalOceanClient.class);
+    }
+
+    public static DigitalOceanStatisticsClient getDOStatsClient () {
+        return r2.create(DigitalOceanStatisticsClient.class);
     }
 
 
