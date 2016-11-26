@@ -18,4 +18,14 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="resize" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="colorButtonNormal">@color/colorResize</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="snapshot" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="colorButtonNormal">@color/colorSnapshot</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>

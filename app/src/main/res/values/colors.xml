@@ -3,4 +3,8 @@
     <color name="colorPrimary">#0069ff</color>
     <color name="colorPrimaryDark">#012ba1</color>
     <color name="colorAccent">#15CD72</color>
+    <color name="white">#ffffff</color>
+    <color name="colorSnapshot">#0052FF</color>
+    <color name="colorResize">#15CD72</color>
+>>>>>>> 1dd171ded9c430e9e9c3c7bc60a1cbac9b740541
 </resources>
