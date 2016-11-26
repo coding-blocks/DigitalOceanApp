@@ -18,8 +18,8 @@
     <string name="ip_address">IP Address</string>
 
     <string name="droplet_name">Droplet Name</string>
-    <string name="droplet_memory">Memory</string>
-    <string name="droplet_disk_size">Disk Size</string>
+    <string name="droplet_memory">%1$sMB</string>
+    <string name="droplet_disk_size">%1$sGB</string>
     <string name="droplet_region">Region</string>
     <string name="droplet_os">Ubuntu</string>
     <string name="resize_droplet">Resize</string>
