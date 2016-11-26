@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import in.tosc.digitaloceanapp.utils.FontsOverride;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "DO";
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FontsOverride.applyFontForToolbarTitle(this, "ProximaNova.ttf");
 
     }
 }
