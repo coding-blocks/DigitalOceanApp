@@ -8,4 +8,18 @@
     <string name="edit_droplet_name">Edit Droplet Name</string>
     <string name="delete_droplet">Delete Droplet</string>
     <string name="switch_off_droplet">Switch Off Droplet</string>
+
+    <string name="droplet_name">Droplet Name</string>
+    <string name="droplet_memory">Memory</string>
+    <string name="droplet_disk_size">Disk Size</string>
+    <string name="droplet_region">Region</string>
+    <string name="droplet_os">Ubuntu</string>
+    <string name="resize_droplet">Resize</string>
+
+    <string name="hint_snapshot_name">Snapshot Name</string>
+    <string name="take_snapshot">Snapshot</string>
+
+    <string name="switch_ipv6">IPv6</string>
+    <string name="switch_private_network">Private Network</string>
+    <string name="switch_backup">Backup</string>
 </resources>
