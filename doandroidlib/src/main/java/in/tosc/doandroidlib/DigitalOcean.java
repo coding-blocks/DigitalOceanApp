@@ -10,8 +10,10 @@ import java.io.IOException;
 import java.util.List;
 
 import in.tosc.doandroidlib.api.DigitalOceanClient;
+import in.tosc.doandroidlib.objects.Account;
 import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.serializer.DropletListDeserializer;
+import in.tosc.doandroidlib.serializer.ObjectDeserializer;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -48,6 +50,7 @@ public class DigitalOcean {
                 .build();
 
         Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Account.class, new ObjectDeserializer<Account>("account"))
                 .registerTypeAdapter(new TypeToken<List<Droplet>>(){}.getType(), new DropletListDeserializer())
                 .create();
 
