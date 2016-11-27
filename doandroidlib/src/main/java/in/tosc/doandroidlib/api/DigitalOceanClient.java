@@ -45,6 +45,18 @@ public interface DigitalOceanClient {
     @POST("droplets/{id}/actions")
     Call<Action> performAction(
             @Path("id") Integer dropletId,
-            @Field("type") ActionType actionType
+            @Field("type") ActionType actionType,
+            @Field("name") String name              // for rename or snapshot
             );
+
+
+    @FormUrlEncoded
+    @POST("droplets")
+    Call<String> createDroplet(
+            @Field("name") String name,
+            @Field("region") String region,
+            @Field("size") String size,
+            @Field("image") String image
+    );
+
 }

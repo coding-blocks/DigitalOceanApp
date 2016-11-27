@@ -17,7 +17,7 @@ public class DOApp extends Application {
 //        FontsOverride.setDefaultFont(this, "MONOSPACE", "MyFontAsset2.ttf");
 //        FontsOverride.setDefaultFont(this, "SERIF", "fonts/ProximaNova.ttf");
         FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/" + FontsOverride.FONT_PROXIMA_NOVA);
-        DigitalOcean.init(getString(R.string.do_test_token));
+        DigitalOcean.init(getString(R.string.do_client_id), getString(R.string.do_callback_url));
 
     }
 }

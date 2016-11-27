@@ -1,5 +1,8 @@
 package in.tosc.doandroidlib;
 
+import android.app.Activity;
+import android.content.Intent;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -7,7 +10,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.util.List;
 
+import in.tosc.doandroidlib.api.DOLoginActivity;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
+import in.tosc.doandroidlib.api.DigitalOceanStatisticsClient;
 import in.tosc.doandroidlib.objects.Account;
 import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
@@ -29,12 +34,41 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DigitalOcean {
 
     public static final String TAG = "DO";
+    public static final int LOGIN_ACT_INTENT_CODE = 3245;
+
+    public static final int LOGIN_SUCCESS = 901;
+    public static final int LOGIN_FAIL = 902;
 
     public static final String BASE_URL = "https://api.digitalocean.com/v2/";
-    static String authToken = "";
-    static Retrofit r;
+    public static final String BASE_URL_V1 = "https://cloud.digitalocean.com/api/v1/";
 
-    public static void init (String token) {
+    public static String getClientId() {
+        return clientId;
+    }
+
+    static String clientId;
+
+    public static String getCallbackUrl() {
+        return callbackUrl;
+    }
+
+    static String callbackUrl;
+    static String authToken = "";
+    static Retrofit r, r2;
+
+    public static void init (String clientId, String callbackUrl) {
+        DigitalOcean.clientId = clientId;
+        DigitalOcean.callbackUrl = callbackUrl;
+    }
+
+    public static void doLogin(Activity act) {
+        Intent loginIntent = new Intent(act, DOLoginActivity.class);
+        act.startActivityForResult(loginIntent, 3245);
+    }
+
+
+
+    public static void onLoggedIn (String token) {
         DigitalOcean.authToken = token;
 
         OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -50,6 +84,7 @@ public class DigitalOcean {
                 })
                 .build();
 
+
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Account.class, new ObjectDeserializer<Account>("account"))
                 .registerTypeAdapter(Action.class, new ObjectDeserializer<Action>("action"))
@@ -63,10 +98,19 @@ public class DigitalOcean {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient)
                 .build();
+        r2 = new Retrofit.Builder()
+                .baseUrl(BASE_URL_V1)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient)
+                .build();
     }
 
     public static DigitalOceanClient getDOClient () {
         return r.create(DigitalOceanClient.class);
+    }
+
+    public static DigitalOceanStatisticsClient getDOStatsClient () {
+        return r2.create(DigitalOceanStatisticsClient.class);
     }
 
 
