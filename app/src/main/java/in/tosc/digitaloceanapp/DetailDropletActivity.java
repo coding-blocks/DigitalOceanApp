@@ -5,6 +5,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 
 import in.tosc.doandroidlib.DigitalOcean;
@@ -87,11 +89,12 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.delete_droplet) {
+
             // TODO: 26/11/16 perform delete
             return true;
         } else if (id == R.id.switch_off) {
 
-            doaClient.performAction(droplet.getId(), ActionType.REBOOT).enqueue(new Callback<Action>() {
+            doaClient.performAction(droplet.getId(), ActionType.REBOOT, null).enqueue(new Callback<Action>() {
                 @Override
                 public void onResponse(Call<Action> call, Response<Action> response) {
                     Log.d("OFF", response.code() + "");
@@ -104,8 +107,26 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
             });
             return true;
         } else if (id == R.id.edit_name) {
-            // TODO: 26/11/16 perform droplet edit name
-            //doaClient.performAction(droplet.getId(), ActionType.RENAME);
+            new MaterialDialog.Builder(this)
+                    .title(R.string.rename_droplet)
+                    .content("")
+                    .inputType(InputType.TYPE_CLASS_TEXT)
+                    .input(R.string.droplet_name, R.string.empty, new MaterialDialog.InputCallback() {
+                        @Override
+                        public void onInput(MaterialDialog dialog, CharSequence input) {
+                            doaClient.performAction(droplet.getId(), ActionType.RENAME, input.toString()).enqueue(new Callback<Action>() {
+                                @Override
+                                public void onResponse(Call<Action> call, Response<Action> response) {
+                                    Log.d("RENAME", response.code() + "");
+                                }
+
+                                @Override
+                                public void onFailure(Call<Action> call, Throwable t) {
+
+                                }
+                            });
+                        }
+                    }).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -116,10 +137,10 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         switch (buttonView.getId()) {
             case R.id.switch_ipv6:
                 if (isChecked){
-                    doaClient.performAction(droplet.getId(), ActionType.ENABLE_IPV6).enqueue(new Callback<Action>() {
+                    doaClient.performAction(droplet.getId(), ActionType.ENABLE_IPV6, null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
-                            if (response.isSuccessful()) {
+                            if (response.code() == 200) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.ipv6_enabled), Snackbar.LENGTH_SHORT).show();
                             } else {
                                 Log.d("IPv6", response.code() + "");
@@ -138,10 +159,10 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
 
             case R.id.switch_private_network:
                 if (isChecked) {
-                    doaClient.performAction(droplet.getId(), ActionType.ENABLE_PRIVATE_NETWORKING).enqueue(new Callback<Action>() {
+                    doaClient.performAction(droplet.getId(), ActionType.ENABLE_PRIVATE_NETWORKING, null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
-                            if (response.isSuccessful()) {
+                            if (response.code() == 200) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.private_network_enabled), Snackbar.LENGTH_SHORT).show();
                             } else {
                                 Log.d("SPN", response.code() + "");
@@ -160,10 +181,10 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
 
             case R.id.switch_backup:
                 if (isChecked) {
-                    doaClient.performAction(droplet.getId(), ActionType.ENABLE_BACKUPS).enqueue(new Callback<Action>() {
+                    doaClient.performAction(droplet.getId(), ActionType.ENABLE_BACKUPS, null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
-                            if (response.isSuccessful()) {
+                            if (response.code() == 200) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.backup_enabled), Snackbar.LENGTH_SHORT).show();
                             } else {
                                 Log.d("SBE", response.code() + "");
@@ -176,10 +197,10 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         }
                     });
                 } else {
-                    doaClient.performAction(droplet.getId(), ActionType.DISABLE_BACKUPS).enqueue(new Callback<Action>() {
+                    doaClient.performAction(droplet.getId(), ActionType.DISABLE_BACKUPS, null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
-                            if (response.isSuccessful()) {
+                            if (response.code() == 200) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.backup_diabled), Snackbar.LENGTH_SHORT).show();
                             } else {
                                 Log.d("SBD", response.code() + "");

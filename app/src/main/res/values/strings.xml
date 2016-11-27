@@ -9,6 +9,8 @@
     <string name="do_client_secret">1a92c568c2a55390f12f89534e945f322e0cd9d5a1c392aa4b678d429d1d736c</string>
     <string name="do_callback_url">http://championswimmer.in/callbackdo</string>
 
+    <string name="empty"> </string>
+
     <string name="edit_droplet_name">Edit Droplet Name</string>
     <string name="delete_droplet">Delete Droplet</string>
     <string name="switch_off_droplet">Switch Off Droplet</string>
@@ -56,6 +58,8 @@
     <string name="memory">%1$sMB/ %2$sCPU</string>
     <string name="disk_space">%1$sGB SSD disk</string>
     <string name="transfer">%1$sGB transfer</string>
+
+    <string name="rename_droplet">Rename Droplet</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
