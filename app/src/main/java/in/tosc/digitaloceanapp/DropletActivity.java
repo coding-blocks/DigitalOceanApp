@@ -1,7 +1,9 @@
 package in.tosc.digitaloceanapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -181,14 +183,19 @@ public class DropletActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        String url;
         if (id == R.id.nav_profile) {
+            url = "https://cloud.digitalocean.com/settings/profile";
+            openCustomTab(url);
             // Handle the camera action
         } else if (id == R.id.nav_billing) {
-
+            url = "https://cloud.digitalocean.com/settings/billing";
+            openCustomTab(url);
         } else if (id == R.id.nav_logout) {
 
         } else if (id == R.id.nav_manage) {
-
+            url = "https://cloud.digitalocean.com/settings";
+            openCustomTab(url);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_about) {
@@ -198,5 +205,11 @@ public class DropletActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void openCustomTab(String url) {
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 }
