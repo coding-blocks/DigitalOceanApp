@@ -40,8 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_white_24dp"
-        android:backgroundTint="@color/colorAccent"
-         />
+        app:srcCompat="@drawable/ic_droplet"
+        android:scaleType="fitXY"/>
 
 </android.support.design.widget.CoordinatorLayout>
