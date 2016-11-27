@@ -186,16 +186,22 @@ public class DropletActivity extends AppCompatActivity
         String url;
         if (id == R.id.nav_profile) {
             url = "https://cloud.digitalocean.com/settings/profile";
-            openCustomTab(url);
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
             // Handle the camera action
         } else if (id == R.id.nav_billing) {
             url = "https://cloud.digitalocean.com/settings/billing";
-            openCustomTab(url);
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         } else if (id == R.id.nav_logout) {
 
         } else if (id == R.id.nav_manage) {
             url = "https://cloud.digitalocean.com/settings";
-            openCustomTab(url);
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_about) {
