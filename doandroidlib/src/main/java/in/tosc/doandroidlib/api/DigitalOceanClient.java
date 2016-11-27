@@ -10,6 +10,7 @@ import in.tosc.doandroidlib.objects.Image;
 import in.tosc.doandroidlib.objects.Size;
 import retrofit2.Call;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -40,6 +41,7 @@ public interface DigitalOceanClient {
     @GET("sizes")
     Call<List<Size>> getSizes();
 
+    @FormUrlEncoded
     @POST("droplets/{id}/actions")
     Call<Action> performAction(
             @Path("id") Integer dropletId,
