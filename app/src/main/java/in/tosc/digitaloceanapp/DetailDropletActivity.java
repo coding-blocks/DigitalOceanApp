@@ -5,6 +5,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,9 +65,6 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
 
         snapshotName = (EditText) findViewById(R.id.edittext_snapshot_name);
 
-//        InputMethodManager mgr  = (InputMethodManager)getSystemService(DropletActivity.INPUT_METHOD_SERVICE);;
-//        mgr.hideSoftInputFromWindow(snapshotName.getWindowToken(), 0);
-
         switchIPv6 = (SwitchCompat) findViewById(R.id.switch_ipv6);
         switchPrivateNet = (SwitchCompat) findViewById(R.id.switch_private_network);
         switchBackup = (SwitchCompat) findViewById(R.id.switch_backup);
@@ -92,10 +90,22 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
             // TODO: 26/11/16 perform delete
             return true;
         } else if (id == R.id.switch_off) {
-            // TODO: 26/11/16 perform droplet power toggle
+
+            doaClient.performAction(droplet.getId(), ActionType.REBOOT).enqueue(new Callback<Action>() {
+                @Override
+                public void onResponse(Call<Action> call, Response<Action> response) {
+                    Log.d("OFF", response.code() + "");
+                }
+
+                @Override
+                public void onFailure(Call<Action> call, Throwable t) {
+
+                }
+            });
             return true;
         } else if (id == R.id.edit_name) {
             // TODO: 26/11/16 perform droplet edit name
+            //doaClient.performAction(droplet.getId(), ActionType.RENAME);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -111,14 +121,14 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.isSuccessful()) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.ipv6_enabled), Snackbar.LENGTH_SHORT).show();
-                                switchIPv6.setEnabled(false);
+                            } else {
+                                Log.d("IPv6", response.code() + "");
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
                             Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
-                            switchIPv6.setChecked(!isChecked);
                         }
                     });
                 } else{
@@ -133,13 +143,14 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.isSuccessful()) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.private_network_enabled), Snackbar.LENGTH_SHORT).show();
+                            } else {
+                                Log.d("SPN", response.code() + "");
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
                             Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
-                            switchPrivateNet.setChecked(!isChecked);
                         }
                     });
                 } else {
@@ -154,13 +165,14 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.isSuccessful()) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.backup_enabled), Snackbar.LENGTH_SHORT).show();
+                            } else {
+                                Log.d("SBE", response.code() + "");
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
                             Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
-                            switchPrivateNet.setChecked(!isChecked);
                         }
                     });
                 } else {
@@ -169,13 +181,14 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.isSuccessful()) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.backup_diabled), Snackbar.LENGTH_SHORT).show();
+                            } else {
+                                Log.d("SBD", response.code() + "");
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
                             Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
-                            switchPrivateNet.setChecked(!isChecked);
                         }
                     });
                 }

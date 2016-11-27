@@ -47,6 +47,12 @@
     <string name="next">Next</string>
     <string name="back">Back</string>
 
+    <string name="monthly_price">$ %1$s/mo</string>
+    <string name="hourly_price">$ %1$s/hour</string>
+    <string name="memory">%1$sMB/ %2$sCPU</string>
+    <string name="disk_space">%1$sGB SSD disk</string>
+    <string name="transfer">%1$sGB transfer</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
