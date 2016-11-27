@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_margin="4dp">
 
     <LinearLayout
         android:orientation="vertical"
@@ -14,35 +14,46 @@
             android:id="@+id/monthly_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/monthly_price" />
+            android:text="@string/monthly_price"
+            android:textSize="20sp"
+            android:padding="4dp"/>
 
         <TextView
             android:id="@+id/hourly_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hourly_price" />
+            android:text="@string/hourly_price"
+            android:textSize="16sp"
+            android:padding="4dp"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:padding="4dp"
             android:background="@android:color/darker_gray"/>
 
         <TextView
             android:id="@+id/memory_space"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/memory"/>
+            android:text="@string/memory"
+            android:textSize="16sp"
+            android:padding="4dp"/>
 
         <TextView
             android:id="@+id/disk_space"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/disk_space"/>
+            android:text="@string/disk_space"
+            android:textSize="16sp"
+            android:padding="4dp"/>
 
         <TextView
             android:id="@+id/transfer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/transfer"/>
+            android:text="@string/transfer"
+            android:textSize="16sp"
+            android:padding="4dp"/>
     </LinearLayout>
 </android.support.v7.widget.CardView>
