@@ -1,10 +1,11 @@
 package in.tosc.digitaloceanapp;
 
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBar;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
+import android.widget.Button;
+
+import in.tosc.digitaloceanapp.fragments.SelectImageFragment;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -12,27 +13,20 @@ import android.view.MenuItem;
  */
 public class DropletCreateActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_droplet_create);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        Button next = (Button) findViewById(R.id.buttonNext);
+        Button prev = (Button) findViewById(R.id.buttonPrev);
     }
-
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            // This ID represents the Home or Up button.
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    protected void onResume() {
+        super.onResume();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        SelectImageFragment selectImageFragment = new SelectImageFragment();
+        fragmentTransaction.add(R.id.fragmentHolder,selectImageFragment,"CREATE_DROPLET");
+        fragmentTransaction.commit();
     }
-
 }
