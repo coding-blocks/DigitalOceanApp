@@ -1,9 +1,13 @@
 <resources>
-    <string name="app_name">DigitalOceanApp</string>
+    <string name="app_name">DigitalOcean</string>
 
     <!-- //FIXME: @championswimmer
     This is my own token, with read access, now for testing-->
     <string name="do_test_token">5d16bdb68f365472f815159495577e5c2f01590afbd641fdfedc61144eb04ccc</string>
+
+    <string name="do_client_id">3238aae5b35c99c31f6882b3c18f4c23b40c98b96f2b5c7ffae14dfadaf3166f</string>
+    <string name="do_client_secret">1a92c568c2a55390f12f89534e945f322e0cd9d5a1c392aa4b678d429d1d736c</string>
+    <string name="do_callback_url">http://championswimmer.in/callbackdo</string>
 
     <string name="edit_droplet_name">Edit Droplet Name</string>
     <string name="delete_droplet">Delete Droplet</string>
