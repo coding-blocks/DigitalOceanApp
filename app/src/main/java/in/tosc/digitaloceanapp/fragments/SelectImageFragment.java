@@ -15,7 +15,6 @@ import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.ImageAdapter;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
-import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.objects.Image;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,10 +22,6 @@ import retrofit2.Response;
 
 public class SelectImageFragment extends Fragment {
 
-    public Droplet createdDroplet;
-
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
     List<Image> imageList;
     ImageAdapter imageAdapter;
     RecyclerView imageRecyclerView;
@@ -43,7 +38,6 @@ public class SelectImageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image, container, false);
-        createdDroplet = new Droplet();
         DigitalOceanClient doClient = DigitalOcean.getDOClient();
         imageRecyclerView = (RecyclerView) view.findViewById(R.id.imageRecyclerVIew);
         imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
