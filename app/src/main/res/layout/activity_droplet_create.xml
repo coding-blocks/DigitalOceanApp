@@ -23,6 +23,7 @@
                 android:id="@+id/buttonPrev"
                 android:theme="@style/snapshot"
                 android:layout_width="0dp"
+                android:onClick="previous"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/back" />
@@ -31,6 +32,7 @@
                 android:id="@+id/buttonNext"
                 android:theme="@style/snapshot"
                 android:layout_width="0dp"
+                android:onClick="next"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/next" />
