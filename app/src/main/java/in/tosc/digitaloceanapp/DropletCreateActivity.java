@@ -18,8 +18,12 @@ import in.tosc.doandroidlib.objects.Droplet;
  */
 public class DropletCreateActivity extends AppCompatActivity {
 
-    Droplet droplet;
+    static Droplet droplet;
     int count = 1;
+
+    public static Droplet getDroplet(){
+        return droplet;
+    }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
