@@ -23,11 +23,9 @@ import com.squareup.picasso.Picasso;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
-import in.tosc.digitaloceanapp.models.ServerSize;
 import in.tosc.digitaloceanapp.utils.FontsOverride;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
@@ -183,17 +181,17 @@ public class DropletActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_profile) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_billing) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_logout) {
 
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_about) {
 
         }
 
