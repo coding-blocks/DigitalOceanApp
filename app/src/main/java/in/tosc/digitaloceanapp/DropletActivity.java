@@ -23,9 +23,11 @@ import com.squareup.picasso.Picasso;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
+import in.tosc.digitaloceanapp.models.ServerSize;
 import in.tosc.digitaloceanapp.utils.FontsOverride;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
@@ -101,6 +103,7 @@ public class DropletActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
 
     private void refreshData() {
         DigitalOceanClient doClient = DigitalOcean.getDOClient();
