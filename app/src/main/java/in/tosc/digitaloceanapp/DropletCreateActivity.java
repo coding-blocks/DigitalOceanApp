@@ -31,17 +31,17 @@ public class DropletCreateActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (count){
-            case 4 :
-                fragmentTransaction.remove(fragmentManager.findFragmentByTag("ADDITIONAL_DETAILS")).commit();
-                break;
+//            case 4 :
+//                fragmentManager.popBackStack("additionalDetailsFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//                break;
             case 3 :
-                fragmentTransaction.remove(fragmentManager.findFragmentByTag("DATA_CENTER")).commit();
+                fragmentManager.popBackStack("selectSizeFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             case 2 :
-                fragmentTransaction.remove(fragmentManager.findFragmentByTag("SELECT_SIZE")).commit();
+                fragmentManager.popBackStack("selectDataCenter" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             case 1 :
-                this.finish();
+                fragmentManager.popBackStack("selectDataCenter" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             default:
                 count = 1;
@@ -54,24 +54,28 @@ public class DropletCreateActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch(count){
+
             case 2 :
                 selectDataCenter selectDataCenter = new selectDataCenter();
-                fragmentTransaction.add(R.id.fragmentHolder,selectDataCenter,"DATA_CENTER");
+                fragmentTransaction.replace(R.id.fragmentHolder,selectDataCenter,"DATA_CENTER");
+                fragmentTransaction.addToBackStack("selectDataCenter");
                 fragmentTransaction.commit();
                 break;
             case 3 :
                 SelectSizeFragment selectSizeFragment = new SelectSizeFragment();
-                fragmentTransaction.add(R.id.fragmentHolder,selectSizeFragment,"SELECT_SIZE");
+                fragmentTransaction.replace(R.id.fragmentHolder,selectSizeFragment,"SELECT_SIZE");
+                fragmentTransaction.addToBackStack("selectSizeFragment");
                 fragmentTransaction.commit();
                 break;
-            case 4 :
-                AdditionalDetailsFragment additionalDetailsFragment = new AdditionalDetailsFragment();
-                fragmentTransaction.add(R.id.fragmentHolder,additionalDetailsFragment,"ADDITIONAL_DETAILS");
-                fragmentTransaction.commit();
-                break;
-            case 5:
-                createDroplet(droplet);
-                break;
+//            case 4 :
+//                AdditionalDetailsFragment additionalDetailsFragment = new AdditionalDetailsFragment();
+//                fragmentTransaction.replace(R.id.fragmentHolder,additionalDetailsFragment,"ADDITIONAL_DETAILS");
+//                fragmentTransaction.addToBackStack("additionalDetailsFragment");
+//                fragmentTransaction.commit();
+//                break;
+//            case 5:
+//                createDroplet(droplet);
+//                break;
             default:
                 this.finish();
                 count = 1;
@@ -89,19 +93,22 @@ public class DropletCreateActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         SelectImageFragment selectImageFragment = new SelectImageFragment();
-        fragmentTransaction.add(R.id.fragmentHolder,selectImageFragment,"CREATE_DROPLET");
+        fragmentTransaction.replace(R.id.fragmentHolder,selectImageFragment,"CREATE_DROPLET");
+        fragmentTransaction.addToBackStack("additionalDetailsFragment");
         fragmentTransaction.commit();
 
     }
 
     public void previous(View view) {
         count--;
+//        Log.d("count dec" , String.valueOf(count));
         removeFragment(count);
         Log.e("Increased count", String.valueOf(count));
     }
 
     public void next(View view) {
         count++;
+//        Log.d("count" , String.valueOf(count));
         addFragment(count);
         Log.e("Decreased count", String.valueOf(count));
     }
