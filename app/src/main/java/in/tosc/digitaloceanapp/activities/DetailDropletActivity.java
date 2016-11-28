@@ -1,4 +1,4 @@
-package in.tosc.digitaloceanapp;
+package in.tosc.digitaloceanapp.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 
+import in.tosc.digitaloceanapp.R;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.common.ActionType;

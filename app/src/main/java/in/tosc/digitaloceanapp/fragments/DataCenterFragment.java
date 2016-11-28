@@ -4,7 +4,6 @@ package in.tosc.digitaloceanapp.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +18,10 @@ import in.tosc.digitaloceanapp.models.Datacenter;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class selectDataCenter extends Fragment {
+public class DataCenterFragment extends Fragment {
 
 
-    public selectDataCenter() {
+    public DataCenterFragment() {
         // Required empty public constructor
     }
 

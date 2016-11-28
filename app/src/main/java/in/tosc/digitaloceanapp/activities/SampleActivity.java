@@ -1,4 +1,4 @@
-package in.tosc.digitaloceanapp;
+package in.tosc.digitaloceanapp.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,23 +6,18 @@ import android.util.Log;
 
 import java.util.List;
 
+import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.utils.FontsOverride;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.api.DigitalOceanStatisticsClient;
-import in.tosc.doandroidlib.common.ActionStatus;
-import in.tosc.doandroidlib.common.ActionType;
-import in.tosc.doandroidlib.common.PeriodType;
-import in.tosc.doandroidlib.common.StatisticsType;
 import in.tosc.doandroidlib.objects.Account;
-import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
-import in.tosc.doandroidlib.objects.Statistics;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class SampleActivity extends AppCompatActivity {
 
     public static final String TAG = "DO";
 

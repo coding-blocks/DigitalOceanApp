@@ -3,6 +3,7 @@ package in.tosc.digitaloceanapp.adapters;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import in.tosc.digitaloceanapp.DropletCreateActivity;
+import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
 import in.tosc.digitaloceanapp.R;
 import in.tosc.doandroidlib.objects.Image;
 
@@ -39,9 +40,28 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.imageName.setText(imageList.get(position).getName());
-        this.position = position;
+        this.position = holder.getAdapterPosition();
         holder.imageDistribution.setText(imageList.get(position).getDistribution());
-        //TODO : Add images for each image name
+        switch (imageList.get(position).getDistribution()){
+            case "CoreOS":
+                holder.imageImage.setBackground(ContextCompat.getDrawable(context,R.drawable.coreos));
+                break;
+            case "FreeBSD":
+                holder.imageImage.setBackground(ContextCompat.getDrawable(context,R.drawable.freebsd));
+                break;
+            case "Fedora":
+                holder.imageImage.setBackground(ContextCompat.getDrawable(context,R.drawable.fedora));
+                break;
+            case "Debian":
+                holder.imageImage.setBackground(ContextCompat.getDrawable(context,R.drawable.debian));
+                break;
+            case "CentOS":
+                holder.imageImage.setBackground(ContextCompat.getDrawable(context,R.drawable.centos));
+                break;
+            case "Ubuntu":
+                holder.imageImage.setBackground(ContextCompat.getDrawable(context,R.drawable.ubuntu));
+                break;
+        }
     }
 
     @Override
