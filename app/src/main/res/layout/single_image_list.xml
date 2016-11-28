@@ -1,12 +1,21 @@
+<android.support.v7.widget.CardView android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="4dp"
+    android:elevation="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    tools:background="@drawable/selector"
     android:layout_height="wrap_content"
+    android:layout_margin="4dp"
     android:orientation="vertical">
     <ImageView
         android:id="@+id/imageImage"
-        android:layout_width="160dp"
-        android:layout_height="140dp"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/imageDistribution"
@@ -22,3 +31,4 @@
         android:gravity="center"
         android:text="x86" />
 </LinearLayout>
+</android.support.v7.widget.CardView>

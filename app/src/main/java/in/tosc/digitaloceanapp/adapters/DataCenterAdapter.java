@@ -40,7 +40,7 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
     public void onBindViewHolder(DataCenterViewHolder holder, int position) {
         this.postion = holder.getAdapterPosition();
         String thisCountry = countriesList.get(position).getCity();
-        String url = countriesList.get(position).getUrl();
+        int url = countriesList.get(position).getId();
 
         holder.countryName.setText(thisCountry);
         Picasso.with(context).load(url).resize(425,220).into(holder.img);

@@ -1,4 +1,4 @@
-package in.tosc.digitaloceanapp;
+package in.tosc.digitaloceanapp.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -6,10 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import in.tosc.digitaloceanapp.fragments.AdditionalDetailsFragment;
+import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.fragments.SelectImageFragment;
 import in.tosc.digitaloceanapp.fragments.SelectSizeFragment;
-import in.tosc.digitaloceanapp.fragments.selectDataCenter;
+import in.tosc.digitaloceanapp.fragments.DataCenterFragment;
 import in.tosc.doandroidlib.objects.Droplet;
 
 /**
@@ -42,10 +42,10 @@ public class DropletCreateActivity extends AppCompatActivity {
                 fragmentManager.popBackStack("selectSizeFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             case 2 :
-                fragmentManager.popBackStack("selectDataCenter" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fragmentManager.popBackStack("DataCenterFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             case 1 :
-                fragmentManager.popBackStack("selectDataCenter" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fragmentManager.popBackStack("DataCenterFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             default:
                 count = 1;
@@ -60,9 +60,9 @@ public class DropletCreateActivity extends AppCompatActivity {
         switch(count){
 
             case 2 :
-                selectDataCenter selectDataCenter = new selectDataCenter();
+                DataCenterFragment selectDataCenter = new DataCenterFragment();
                 fragmentTransaction.replace(R.id.fragmentHolder,selectDataCenter,"DATA_CENTER");
-                fragmentTransaction.addToBackStack("selectDataCenter");
+                fragmentTransaction.addToBackStack("DataCenterFragment");
                 fragmentTransaction.commit();
                 break;
             case 3 :

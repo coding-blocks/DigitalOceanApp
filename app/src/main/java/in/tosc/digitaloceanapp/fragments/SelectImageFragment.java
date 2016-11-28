@@ -40,7 +40,7 @@ public class SelectImageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_image, container, false);
         DigitalOceanClient doClient = DigitalOcean.getDOClient();
         imageRecyclerView = (RecyclerView) view.findViewById(R.id.imageRecyclerVIew);
-        imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
         imageRecyclerView.setAdapter(imageAdapter);
                 doClient.getImages(1,100,"distribution").enqueue(new Callback<List<Image>>() {
                     @Override

@@ -1,4 +1,4 @@
-package in.tosc.digitaloceanapp;
+package in.tosc.digitaloceanapp.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -27,6 +27,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
 import in.tosc.digitaloceanapp.utils.FontsOverride;
 import in.tosc.doandroidlib.DigitalOcean;
