@@ -55,7 +55,6 @@ public class DropletActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         FontsOverride.applyFontForToolbarTitle(this, FontsOverride.FONT_PROXIMA_NOVA);
-
         setContentView(R.layout.activity_droplet);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,7 +62,7 @@ public class DropletActivity extends AppCompatActivity
         dropletRecyclerView = (RecyclerView) findViewById(R.id.dropletsRv);
         dropletRecyclerView.setLayoutManager(new LinearLayoutManager(DropletActivity.this, LinearLayoutManager.VERTICAL, false));
         dropletRecyclerView.setAdapter(dropletsAdapter);
-        DigitalOceanClient doClient = DigitalOcean.getDOClient();
+        DigitalOceanClient doClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
         refreshData();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -107,7 +106,7 @@ public class DropletActivity extends AppCompatActivity
 
 
     private void refreshData() {
-        DigitalOceanClient doClient = DigitalOcean.getDOClient();
+        DigitalOceanClient doClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
         doClient.getDroplets(1,10).enqueue(new Callback<List<Droplet>>() {
             @Override
             public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {

@@ -28,8 +28,8 @@ public class SampleActivity extends AppCompatActivity {
 
         FontsOverride.applyFontForToolbarTitle(this, "ProximaNova.ttf");
 
-        DigitalOceanClient doClient = DigitalOcean.getDOClient();
-        final DigitalOceanStatisticsClient statClient = DigitalOcean.getDOStatsClient();
+        DigitalOceanClient doClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
+        final DigitalOceanStatisticsClient statClient = DigitalOcean.getDOStatsClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
 
 
 

@@ -49,7 +49,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         Gson gson = new Gson();
         droplet = gson.fromJson(getIntent().getStringExtra("DROPLET"),Droplet.class);
 
-        doaClient = DigitalOcean.getDOClient();
+        doaClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
 

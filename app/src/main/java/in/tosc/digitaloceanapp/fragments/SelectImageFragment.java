@@ -20,6 +20,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class SelectImageFragment extends Fragment {
 
     List<Image> imageList;
@@ -38,7 +40,7 @@ public class SelectImageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image, container, false);
-        DigitalOceanClient doClient = DigitalOcean.getDOClient();
+        DigitalOceanClient doClient = DigitalOcean.getDOClient(getContext().getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
         imageRecyclerView = (RecyclerView) view.findViewById(R.id.imageRecyclerVIew);
         imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
         imageRecyclerView.setAdapter(imageAdapter);
