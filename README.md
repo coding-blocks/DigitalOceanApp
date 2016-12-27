@@ -9,6 +9,6 @@ Once signed in, you can see your droplets, and their status.
 It has features such as - 
  - powering off / rebooting your droplet
  - turning backups on/off
- - taking snapshop of droplet
+ - taking snapshot of droplet
  - resizing droplet
  - creating a droplet
