@@ -12,3 +12,7 @@ It has features such as -
  - taking snapshot of droplet
  - resizing droplet
  - creating a droplet
+
+ ## Preview
+
+ ![preview](docs/preview.gif)
