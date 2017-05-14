@@ -20,7 +20,7 @@ import retrofit2.http.Query;
  * Created by championswimmer on 26/11/16.
  */
 
-public interface DigitalOceanClient {
+public interface    DigitalOceanClient {
 
     @GET("account")
     Call<Account> getAccount();
