@@ -100,7 +100,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                     doaClient.performAction(droplet.getId(),ActionType.DESTROY,null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
-                            Log.d("DESTROY",response.code()+"");
+                            Log.d("DESTROY",String.valueOf(response.code()));
                         }
 
                         @Override
