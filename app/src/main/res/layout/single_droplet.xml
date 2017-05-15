@@ -2,10 +2,10 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="180dp"
-    android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
     android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp">
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,16 +17,16 @@
             android:id="@+id/dropletStatusImageView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_droplet"
-            android:scaleType="center"
             android:layout_gravity="center"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:src="@drawable/ic_droplet" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
             android:layout_margin="2dp"
+            android:layout_weight="2"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -34,35 +34,35 @@
                 android:id="@+id/dropletName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/droplet_specs"
                 android:textColor="#0069ff"
-                android:text="Ubuntu-512mb-blr1-01"
                 android:textSize="22sp"
                 android:textStyle="bold"/>
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:orientation="horizontal"
                android:layout_marginTop="5dp"
+               android:orientation="horizontal"
                >
             <TextView
                 android:id="@+id/dropletRAM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="512 MB"
+                android:text="@string/droplet_RAM"
                 android:textSize="16sp"
                 />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" / "
+                    android:text="@string/forward_slash"
                     android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/dropletHDD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20 GB Disk"
+                android:text="@string/droplet_HDD"
                 android:textSize="16sp"/>
 
            </LinearLayout>
@@ -72,8 +72,8 @@
                 android:id="@+id/dropletRegion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bangalore"
                 android:layout_marginTop="5dp"
+                android:text="@string/droplet_region"
                 android:textSize="16sp"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=": "
+                    android:text="@string/colon"
                     android:textSize="16sp"
                     />
 
@@ -97,7 +97,7 @@
                 android:id="@+id/ipAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="192.168.1.1"
+                android:text="@string/static_ip_address"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
             </LinearLayout>

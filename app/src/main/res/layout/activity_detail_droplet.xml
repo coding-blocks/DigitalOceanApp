@@ -19,8 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp">
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,18 +34,18 @@
                     android:id="@+id/droplet_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ubuntu-512mb-blr1-01"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="#0069ff"
                     android:layout_marginBottom="5dp"
-                    android:paddingTop="8dp"/>
+                    android:paddingTop="8dp"
+                    android:text="@string/static_droplet_name"
+                    android:textColor="#0069ff"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:layout_marginBottom="4dp"
+                    android:layout_marginTop="2dp"
                     >
                     <TextView
                         android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=": "
+                        android:text="@string/colon"
                         android:textSize="18sp"
                         />
 
@@ -64,7 +64,7 @@
                         android:id="@+id/ipAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="192.168.1.1"
+                        android:text="@string/static_ip_address"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
                 </LinearLayout>
@@ -80,25 +80,25 @@
                     android:id="@+id/droplet_memory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="512 MB"
-                    android:textSize="18sp"
-                    android:textColor="@color/colorDeatil" />
+                    android:text="@string/droplet_RAM"
+                    android:textColor="@color/colorDeatil"
+                    android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" / "
-                        android:textSize="18sp"
-                        android:textColor="@color/colorDeatil" />
+                        android:text="@string/forward_slash"
+                        android:textColor="@color/colorDeatil"
+                        android:textSize="18sp" />
 
 
                 <TextView
                     android:id="@+id/droplet_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20 GB Disk"
-                    android:textSize="18sp"
+                    android:text="@string/droplet_HDD"
                     android:textColor="@color/colorDeatil"
+                    android:textSize="18sp"
                     />
 
 
@@ -108,28 +108,28 @@
                     android:id="@+id/droplet_region"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bangalore"
-                    android:textSize="18sp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/static_droplet_region"
                     android:textColor="@color/colorDeatil"
-                    android:paddingBottom="4dp"/>
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/droplet_os"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/droplet_os"
-                    android:textSize="18sp"
-                    android:textColor="@color/colorDeatil"
-                    android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/droplet_os"
+                    android:textColor="@color/colorDeatil"
+                    android:textSize="18sp"
                     />
 
                 <Button
                     android:id="@+id/resize_droplet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/resize_droplet"
                     android:layout_gravity="bottom|end"
+                    android:text="@string/resize_droplet"
                     android:theme="@style/resize"/>
             </LinearLayout>
 
@@ -140,13 +140,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp">
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp">
 
             <LinearLayout
-                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
                 android:orientation="vertical"
                 android:padding="8dp">
 
@@ -161,8 +161,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_snapshot_name"
-                        android:textColorHint="@android:color/black"
                         android:padding="8dp"
+                        android:textColorHint="@android:color/black"
                         />
 
                 </android.support.design.widget.TextInputLayout>
@@ -182,8 +182,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp">
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -194,22 +194,22 @@
                     android:id="@+id/switch_ipv6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/switch_ipv6"
-                    android:padding="18dp"/>
+                    android:padding="18dp"
+                    android:text="@string/switch_ipv6" />
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/switch_private_network"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/switch_private_network"
-                    android:padding="18dp"/>
+                    android:padding="18dp"
+                    android:text="@string/switch_private_network" />
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/switch_backup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/switch_backup"
-                    android:padding="18dp"/>
+                    android:padding="18dp"
+                    android:text="@string/switch_backup" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

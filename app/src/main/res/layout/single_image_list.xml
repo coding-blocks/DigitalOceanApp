@@ -1,16 +1,16 @@
-<android.support.v7.widget.CardView android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    android:elevation="4dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:elevation="4dp">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    tools:background="@drawable/selector"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    android:orientation="vertical">
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    tools:background="@drawable/selector">
     <ImageView
         android:id="@+id/imageImage"
         android:layout_width="wrap_content"
@@ -22,13 +22,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="TEST" />
+        android:text="@string/image_distribution" />
 
     <TextView
         android:id="@+id/imageName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="x86" />
+        android:text="@string/x86_arch" />
 </LinearLayout>
 </android.support.v7.widget.CardView>
