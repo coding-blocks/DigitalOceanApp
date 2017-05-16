@@ -87,8 +87,34 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.delete_droplet) {
-
             // TODO: 26/11/16 perform delete
+            new MaterialDialog.Builder(this)
+                    .title(R.string.delete_droplet)
+                    .content("Are you sure you would like to permanently delete "+String.valueOf(droplet.getName())+" ?")
+                    .positiveText("Confirm").onPositive(new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    doaClient.performAction(droplet.getId(),ActionType.DESTROY,null).enqueue(new Callback<Action>() {
+                        @Override
+                        public void onResponse(Call<Action> call, Response<Action> response) {
+                            Log.d("DESTROY",String.valueOf(response.code()));
+                        }
+
+                        @Override
+                        public void onFailure(Call<Action> call, Throwable t) {
+
+                        }
+                    });
+                }
+            })
+                    .negativeText("Cancel").onNegative(new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    dialog.dismiss();
+                }
+            })
+                    .show();
+
             return true;
         } else if (id == R.id.switch_off) {
 
