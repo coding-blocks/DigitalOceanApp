@@ -16,8 +16,8 @@
         android:id="@+id/accountPic"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:paddingTop="10dp"
         android:paddingLeft="2dp"
+        android:paddingTop="10dp"
         app:srcCompat="@android:drawable/sym_def_app_icon"
         />
 
@@ -25,9 +25,9 @@
         android:id="@+id/accountEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="android.studio@android.com"
         android:layout_marginTop="12dp"
-        android:textStyle="bold"
-        android:textSize="16sp"/>
+        android:text="@string/static_email_account"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -1,19 +1,14 @@
 package in.tosc.doandroidlib.api;
 
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -24,7 +19,7 @@ import in.tosc.doandroidlib.R;
 
 public class DOLoginActivity extends AppCompatActivity {
 
-    public static final String TAG = "DOLOG";
+    public static final String TAG = DOLoginActivity.class.getSimpleName();
 
     public static final String OAUTH_LOGIN_URL = "https://cloud.digitalocean.com/v1/oauth/authorize";
 
