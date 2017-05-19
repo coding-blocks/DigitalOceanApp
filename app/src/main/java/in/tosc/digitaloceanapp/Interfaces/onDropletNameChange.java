@@ -11,5 +11,6 @@ import in.tosc.doandroidlib.objects.Droplet;
 
 public interface onDropletNameChange {
     void onSuccess(List<Droplet> modifiedData);
+
     void onError(String message);
 }

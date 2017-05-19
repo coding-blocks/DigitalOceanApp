@@ -52,6 +52,7 @@ public class DropletActivity extends AppCompatActivity
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView dropletRecyclerView;
     static DigitalOceanClient doClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +65,9 @@ public class DropletActivity extends AppCompatActivity
         dropletRecyclerView = (RecyclerView) findViewById(R.id.dropletsRv);
         dropletRecyclerView.setLayoutManager(new LinearLayoutManager(DropletActivity.this, LinearLayoutManager.VERTICAL, false));
         droplets = new ArrayList<>();
-        dropletsAdapter = new DropletsAdapter(droplets,DropletActivity.this);
+        dropletsAdapter = new DropletsAdapter(droplets, DropletActivity.this);
         dropletRecyclerView.setAdapter(dropletsAdapter);
-        doClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
+        doClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken", null));
         refreshData();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -81,7 +82,7 @@ public class DropletActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DropletActivity.this,DropletCreateActivity.class);
+                Intent intent = new Intent(DropletActivity.this, DropletCreateActivity.class);
                 startActivity(intent);
             }
         });
@@ -96,13 +97,13 @@ public class DropletActivity extends AppCompatActivity
                 String email = response.body().getEmail();
                 ((TextView) drawer.findViewById(R.id.accountEmail)).setText(email);
                 ImageView profilePic = ((ImageView) drawer.findViewById(R.id.accountPic));
-                Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/"+md5(email)).into(profilePic);
+                Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/" + md5(email)).into(profilePic);
 
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-                Log.e("Failed to get email",t.getLocalizedMessage());
+                Log.e("Failed to get email", t.getLocalizedMessage());
             }
         });
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -112,7 +113,7 @@ public class DropletActivity extends AppCompatActivity
 
     public static void refreshData() {
 
-        doClient.getDroplets(1,10).enqueue(new Callback<List<Droplet>>() {
+        doClient.getDroplets(1, 10).enqueue(new Callback<List<Droplet>>() {
             @Override
             public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
                 droplets.clear();
@@ -120,17 +121,18 @@ public class DropletActivity extends AppCompatActivity
                 dropletsAdapter.notifyDataSetChanged();
                 Log.e("Droplets fetched", String.valueOf(response.body().size()));
             }
+
             @Override
             public void onFailure(Call<List<Droplet>> call, Throwable t) {
                 droplets = null;
-                Log.e("Failed to get Droplets",t.getMessage());
+                Log.e("Failed to get Droplets", t.getMessage());
             }
         });
     }
 
     public static void refreshModifiedData(final onDropletNameChange onDropletNameChange) {
 
-        doClient.getDroplets(1,10).enqueue(new Callback<List<Droplet>>() {
+        doClient.getDroplets(1, 10).enqueue(new Callback<List<Droplet>>() {
             @Override
             public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
                 droplets.clear();
@@ -139,10 +141,11 @@ public class DropletActivity extends AppCompatActivity
                 Log.e("Droplets fetched", String.valueOf(response.body().size()));
                 onDropletNameChange.onSuccess(droplets);
             }
+
             @Override
             public void onFailure(Call<List<Droplet>> call, Throwable t) {
                 droplets = null;
-                Log.e("Failed to get Droplets",t.getMessage());
+                Log.e("Failed to get Droplets", t.getMessage());
                 onDropletNameChange.onError(t.getMessage());
             }
         });
@@ -157,7 +160,7 @@ public class DropletActivity extends AppCompatActivity
 
             // Create Hex String
             StringBuffer hexString = new StringBuffer();
-            for (int i=0; i<messageDigest.length; i++)
+            for (int i = 0; i < messageDigest.length; i++)
                 hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
             return hexString.toString();
 
