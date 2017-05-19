@@ -26,6 +26,7 @@ public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHo
     public List<Droplet> dropletList;
     private Context context;
     private int position;
+    public static final String DROPLET_CLICKED_POSITION = "position";
 
     public DropletsAdapter(List<Droplet> droplets, Context context){
         dropletList = droplets;
@@ -65,6 +66,7 @@ public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHo
         Intent intent = new Intent(context, DetailDropletActivity.class);
         Gson gson = new Gson();
         intent.putExtra("DROPLET", gson.toJson(dropletList.get(position), Droplet.class));
+        intent.putExtra(DROPLET_CLICKED_POSITION,position);
         context.startActivity(intent);
     }
 
