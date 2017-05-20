@@ -17,7 +17,11 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 
+import java.util.List;
+
 import in.tosc.digitaloceanapp.R;
+import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
+import in.tosc.digitaloceanapp.Interfaces.onDropletNameChange;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.common.ActionType;
@@ -31,7 +35,7 @@ import retrofit2.Response;
  * Created by Jonsnow21 on 26/11/16.
  */
 
-public class DetailDropletActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
+public class DetailDropletActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     private CoordinatorLayout coordinatorLayout;
     private TextView name, memory, size, region, osName, ipAddress;
@@ -40,16 +44,22 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
     private SwitchCompat switchIPv6, switchPrivateNet, switchBackup;
     private Droplet droplet;
     private DigitalOceanClient doaClient;
+    private int position;
+    public static final String TAG = "DetailDropletActivity";
+    Gson gson;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_droplet);
 
-        Gson gson = new Gson();
-        droplet = gson.fromJson(getIntent().getStringExtra("DROPLET"),Droplet.class);
+        gson = new Gson();
+        droplet = gson.fromJson(getIntent().getStringExtra("DROPLET"), Droplet.class);
+        position = getIntent().getIntExtra(DropletsAdapter.DROPLET_CLICKED_POSITION, 0);
 
-        doaClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
+
+        doaClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken", null));
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
 
@@ -69,7 +79,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         switchPrivateNet = (SwitchCompat) findViewById(R.id.switch_private_network);
         switchBackup = (SwitchCompat) findViewById(R.id.switch_backup);
 
-        setData();
+        setData(droplet);
         setSwitches();
 
         switchIPv6.setOnCheckedChangeListener(this);
@@ -116,6 +126,19 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                                 @Override
                                 public void onResponse(Call<Action> call, Response<Action> response) {
                                     Log.d("RENAME", response.code() + "");
+                                    onDropletNameChange onDropletNameChange = new onDropletNameChange() {
+                                        @Override
+                                        public void onSuccess(List<Droplet> modifiedData) {
+                                            Droplet thisDroplet = modifiedData.get(position);
+                                            setData(thisDroplet);
+                                        }
+                                        @Override
+                                        public void onError(String message) {
+                                            Log.e(TAG, "onError: " + message);
+                                        }
+                                    };
+                                    DropletActivity.refreshModifiedData(onDropletNameChange);
+                                    Log.d("TAG", "onResponse: changed");
                                 }
 
                                 @Override
@@ -134,7 +157,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
     public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
         switch (buttonView.getId()) {
             case R.id.switch_ipv6:
-                if (isChecked){
+                if (isChecked) {
                     doaClient.performAction(droplet.getId(), ActionType.ENABLE_IPV6, null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
@@ -150,7 +173,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                             Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
                         }
                     });
-                } else{
+                } else {
                     Snackbar.make(coordinatorLayout, getString(R.string.ipv6_cannot_be_disabled), Snackbar.LENGTH_SHORT).show();
                 }
                 break;
@@ -218,7 +241,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         }
     }
 
-    private void setData() {
+    private void setData(Droplet droplet) {
         name.setText(droplet.getName());
         ipAddress.setText(droplet.getNetworks().getVersion4Networks().get(0).getIpAddress());
         memory.setText(String.format(getResources().getString(R.string.droplet_memory), String.valueOf(droplet.getMemorySizeInMb())));
@@ -236,4 +259,5 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         switchPrivateNet.setChecked(isPrivateNetworkEnabled);
         switchBackup.setChecked(isBackupEnabled);
     }
+
 }

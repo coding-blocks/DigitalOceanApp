@@ -25,11 +25,13 @@ import com.squareup.picasso.Picasso;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
 import in.tosc.digitaloceanapp.utils.FontsOverride;
+import in.tosc.digitaloceanapp.Interfaces.onDropletNameChange;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Account;
@@ -45,10 +47,11 @@ import retrofit2.Response;
 public class DropletActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    List<Droplet> droplets;
-    DropletsAdapter dropletsAdapter;
+    static List<Droplet> droplets;
+    static DropletsAdapter dropletsAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView dropletRecyclerView;
+    static DigitalOceanClient doClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +64,17 @@ public class DropletActivity extends AppCompatActivity
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
         dropletRecyclerView = (RecyclerView) findViewById(R.id.dropletsRv);
         dropletRecyclerView.setLayoutManager(new LinearLayoutManager(DropletActivity.this, LinearLayoutManager.VERTICAL, false));
+        droplets = new ArrayList<>();
+        dropletsAdapter = new DropletsAdapter(droplets, DropletActivity.this);
         dropletRecyclerView.setAdapter(dropletsAdapter);
-        DigitalOceanClient doClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
+        doClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken", null));
         refreshData();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshData();
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
 
@@ -76,7 +82,7 @@ public class DropletActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DropletActivity.this,DropletCreateActivity.class);
+                Intent intent = new Intent(DropletActivity.this, DropletCreateActivity.class);
                 startActivity(intent);
             }
         });
@@ -91,13 +97,13 @@ public class DropletActivity extends AppCompatActivity
                 String email = response.body().getEmail();
                 ((TextView) drawer.findViewById(R.id.accountEmail)).setText(email);
                 ImageView profilePic = ((ImageView) drawer.findViewById(R.id.accountPic));
-                Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/"+md5(email)).into(profilePic);
+                Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/" + md5(email)).into(profilePic);
 
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-                Log.e("Failed to get email",t.getLocalizedMessage());
+                Log.e("Failed to get email", t.getLocalizedMessage());
             }
         });
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -105,23 +111,42 @@ public class DropletActivity extends AppCompatActivity
     }
 
 
-    private void refreshData() {
-        DigitalOceanClient doClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
-        doClient.getDroplets(1,10).enqueue(new Callback<List<Droplet>>() {
+    public static void refreshData() {
+
+        doClient.getDroplets(1, 10).enqueue(new Callback<List<Droplet>>() {
             @Override
             public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
-                droplets = response.body();
-                dropletsAdapter = new DropletsAdapter(droplets,DropletActivity.this);
-                dropletRecyclerView.setAdapter(dropletsAdapter);
+                droplets.clear();
+                droplets.addAll(response.body());
                 dropletsAdapter.notifyDataSetChanged();
                 Log.e("Droplets fetched", String.valueOf(response.body().size()));
-                swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onFailure(Call<List<Droplet>> call, Throwable t) {
                 droplets = null;
-                Log.e("Failed to get Droplets",t.getMessage());
+                Log.e("Failed to get Droplets", t.getMessage());
+            }
+        });
+    }
+
+    public static void refreshModifiedData(final onDropletNameChange onDropletNameChange) {
+
+        doClient.getDroplets(1, 10).enqueue(new Callback<List<Droplet>>() {
+            @Override
+            public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
+                droplets.clear();
+                droplets.addAll(response.body());
+                dropletsAdapter.notifyDataSetChanged();
+                Log.e("Droplets fetched", String.valueOf(response.body().size()));
+                onDropletNameChange.onSuccess(droplets);
+            }
+
+            @Override
+            public void onFailure(Call<List<Droplet>> call, Throwable t) {
+                droplets = null;
+                Log.e("Failed to get Droplets", t.getMessage());
+                onDropletNameChange.onError(t.getMessage());
             }
         });
     }
@@ -135,7 +160,7 @@ public class DropletActivity extends AppCompatActivity
 
             // Create Hex String
             StringBuffer hexString = new StringBuffer();
-            for (int i=0; i<messageDigest.length; i++)
+            for (int i = 0; i < messageDigest.length; i++)
                 hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
             return hexString.toString();
 
