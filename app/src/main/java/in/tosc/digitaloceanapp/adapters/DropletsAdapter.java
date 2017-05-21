@@ -13,8 +13,8 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-import in.tosc.digitaloceanapp.activities.DetailDropletActivity;
 import in.tosc.digitaloceanapp.R;
+import in.tosc.digitaloceanapp.activities.DetailDropletActivity;
 import in.tosc.doandroidlib.objects.Droplet;
 
 /**
