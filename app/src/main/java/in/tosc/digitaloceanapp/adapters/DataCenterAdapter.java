@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -56,11 +57,14 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
 
         TextView countryName;
         ImageView img;
+        LinearLayout countryLayout;
 
         public DataCenterViewHolder(View itemView) {
             super(itemView);
             countryName = (TextView) itemView.findViewById(R.id.countryName);
             img = (ImageView) itemView.findViewById(R.id.country_url);
+
+
         }
     }
 }
