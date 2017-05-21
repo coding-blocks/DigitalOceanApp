@@ -72,7 +72,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
 
 
-
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageImage;
         TextView imageName;
