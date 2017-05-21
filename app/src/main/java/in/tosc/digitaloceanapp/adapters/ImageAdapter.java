@@ -74,6 +74,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     public void onClick(View v) {
         v.setBackground(context.getDrawable(R.drawable.selector));
         DropletCreateActivity.getDroplet().setImage(imageList.get(this.position));
+        Log.d("Touched", "Chhua Chhua");
 
         Log.e("OnClick",imageList.get(this.position).getDistribution());
     }
