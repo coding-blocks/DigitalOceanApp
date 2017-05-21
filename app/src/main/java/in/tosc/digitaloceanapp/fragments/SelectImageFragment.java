@@ -75,7 +75,6 @@ public class SelectImageFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 view.setBackground(getContext().getDrawable(R.drawable.selector));
                 DropletCreateActivity.getDroplet().setImage(imageList.get(position));
-                Log.d("Touched", "Chhua Chhua");
 
                 Log.e("OnClick",imageList.get(position).getDistribution());
             }
