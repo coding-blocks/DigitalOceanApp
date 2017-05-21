@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,20 +15,20 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
 import in.tosc.digitaloceanapp.R;
+import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
 import in.tosc.doandroidlib.objects.Image;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> implements View.OnClickListener {
+public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>  {
 
     private final List<Image> imageList;
     private int position;
     private Context context;
-
     public ImageAdapter(List<Image> items, Context context)
     {
         imageList = items;
         this.context = context;
+
     }
 
     @Override
@@ -69,24 +70,35 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         return imageList.size();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
-    public void onClick(View v) {
-        v.setBackground(context.getDrawable(R.drawable.selector));
-        DropletCreateActivity.getDroplet().setImage(imageList.get(this.position));
-        Log.e("OnClick",imageList.get(this.position).getDistribution());
-    }
+
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageImage;
         TextView imageName;
         TextView imageDistribution;
+        CardView imageCard;
 
         ViewHolder(View view) {
             super(view);
             imageImage = (ImageView) view.findViewById(R.id.imageImage);
             imageName = (TextView) view.findViewById(R.id.imageName);
             imageDistribution = (TextView) view.findViewById(R.id.imageDistribution);
+            imageCard= (CardView) view.findViewById(R.id.imagecard);
+            imageCard.setOnClickListener(new View.OnClickListener(){
+
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public void onClick(View view) {
+                    int position=getLayoutPosition();
+                    view.setBackground(context.getDrawable(R.drawable.selector));
+                    DropletCreateActivity.getDroplet().setImage(imageList.get(position));
+                    Log.e("OnClick",imageList.get(position).getDistribution());
+                }
+            });
         }
+
+
+
     }
 }
