@@ -9,6 +9,7 @@ import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.objects.Image;
 import in.tosc.doandroidlib.objects.Size;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -40,6 +41,10 @@ public interface    DigitalOceanClient {
 
     @GET("sizes")
     Call<List<Size>> getSizes();
+
+    @DELETE("droplets/{id}")
+    Call<String> deleteDroplet(
+            @Path("id") Integer dropletId);
 
     @FormUrlEncoded
     @POST("droplets/{id}/actions")

@@ -77,4 +77,7 @@
     <string name="static_email_account">android.studio@android.com</string>
     <string name="login">Login</string>
     <string name="signup">Sign-Up</string>
+    <string name="agree">Confirm</string>
+    <string name="disagree">Cancel</string>
+    <string name="deleted">Droplet deleted</string>
 </resources>

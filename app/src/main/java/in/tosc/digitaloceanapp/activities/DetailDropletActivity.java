@@ -1,6 +1,8 @@
 package in.tosc.digitaloceanapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +15,9 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 
@@ -98,8 +102,36 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         int id = item.getItemId();
         if (id == R.id.delete_droplet) {
 
-            // TODO: 26/11/16 perform delete
+            new MaterialDialog.Builder(this)
+                    .title(R.string.delete_droplet)
+                    .content(String.valueOf(droplet.getName())+ " ?")
+                    .positiveText(R.string.agree).onPositive(new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    doaClient.deleteDroplet(droplet.getId()).enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            Log.d(TAG, "onResponse: " + response.toString());
+                            Toast.makeText(DetailDropletActivity.this, R.string.deleted, Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(DetailDropletActivity.this, DropletActivity.class);
+                            startActivity(intent);
+                        }
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+
+                        }
+                    });
+                }
+            })
+                    .negativeText(R.string.disagree).onNegative(new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    dialog.dismiss();
+                }
+            }).show();
+
             return true;
+
         } else if (id == R.id.switch_off) {
 
             doaClient.performAction(droplet.getId(), ActionType.REBOOT, null).enqueue(new Callback<Action>() {
@@ -140,7 +172,6 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                                     DropletActivity.refreshModifiedData(onDropletNameChange);
                                     Log.d("TAG", "onResponse: changed");
                                 }
-
                                 @Override
                                 public void onFailure(Call<Action> call, Throwable t) {
 
