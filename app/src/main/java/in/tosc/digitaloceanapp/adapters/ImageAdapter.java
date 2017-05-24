@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import in.tosc.digitaloceanapp.Interfaces.onItemSelectNewDroplet;
+
 
 import java.util.List;
 
@@ -24,10 +26,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     private final List<Image> imageList;
     private int position;
     private Context context;
-    public ImageAdapter(List<Image> items, Context context)
+    onItemSelectNewDroplet onImageSelect;
+    public ImageAdapter(List<Image> items, Context context, onItemSelectNewDroplet onImageSelect)
     {
+
         imageList = items;
         this.context = context;
+        this.onImageSelect = onImageSelect;
 
     }
 
@@ -79,6 +84,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         TextView imageDistribution;
         CardView imageCard;
 
+
+
         ViewHolder(View view) {
             super(view);
             imageImage = (ImageView) view.findViewById(R.id.imageImage);
@@ -94,11 +101,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                     view.setBackground(context.getDrawable(R.drawable.selector));
                     DropletCreateActivity.getDroplet().setImage(imageList.get(position));
                     Log.e("OnClick",imageList.get(position).getDistribution());
+                    onImageSelect.onImageSelect(imageList.get(position));
                 }
             });
         }
-
-
-
     }
+
 }

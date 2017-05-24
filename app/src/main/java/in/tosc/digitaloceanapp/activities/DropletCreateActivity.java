@@ -7,19 +7,28 @@ import android.util.Log;
 import android.view.View;
 
 import in.tosc.digitaloceanapp.R;
+import in.tosc.digitaloceanapp.adapters.ImageAdapter;
 import in.tosc.digitaloceanapp.fragments.SelectImageFragment;
 import in.tosc.digitaloceanapp.fragments.SelectSizeFragment;
 import in.tosc.digitaloceanapp.fragments.DataCenterFragment;
+import in.tosc.digitaloceanapp.models.Datacenter;
 import in.tosc.doandroidlib.objects.Droplet;
+import in.tosc.doandroidlib.objects.Image;
+import in.tosc.digitaloceanapp.Interfaces.onItemSelectNewDroplet;
+import in.tosc.doandroidlib.objects.NewDropletRequestBody;
+import in.tosc.doandroidlib.objects.Region;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class DropletCreateActivity extends AppCompatActivity {
+public class DropletCreateActivity extends AppCompatActivity implements onItemSelectNewDroplet {
 
+    private static final String TAG = "DropletCreateActivity";
     static Droplet droplet;
     int count = 1;
+    NewDropletRequestBody requestBody;
+
 
     public static Droplet getDroplet(){
         return droplet;
@@ -102,18 +111,32 @@ public class DropletCreateActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
-
+    public void checkFunction(){
+        Log.i(TAG, "checkFunction: executed");
+    }
     public void previous(View view) {
         count--;
 //        Log.d("count dec" , String.valueOf(count));
         removeFragment(count);
         Log.e("Increased count", String.valueOf(count));
     }
-
     public void next(View view) {
         count++;
 //        Log.d("count" , String.valueOf(count));
         addFragment(count);
         Log.e("Decreased count", String.valueOf(count));
+    }
+
+    //Interface implementation to get selected region
+    @Override
+    public void onDataCenterSelect(Region region) {
+        Log.i(TAG, "onDataCenterSelect: " + region.getName());
+    }
+
+
+    //Interface implemention to get selected image
+    @Override
+    public void onImageSelect(Image image) {
+        Log.i(TAG, "onImageSelect: " + image.getDistribution());
     }
 }

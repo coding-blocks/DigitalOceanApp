@@ -1,20 +1,28 @@
 package in.tosc.digitaloceanapp.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import in.tosc.digitaloceanapp.Interfaces.onItemSelectNewDroplet;
+
 
 import com.squareup.picasso.Picasso;
+
+import org.apache.commons.lang3.ClassUtils;
 
 import java.util.ArrayList;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.models.Datacenter;
+import in.tosc.doandroidlib.objects.Region;
+import in.tosc.doandroidlib.objects.Regions;
 
 /**
  * Created by rishabhkhanna on 27/11/16.
@@ -22,13 +30,16 @@ import in.tosc.digitaloceanapp.models.Datacenter;
 
 public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.DataCenterViewHolder> {
 
-    private ArrayList<Datacenter.center> countriesList;
+    private Regions regions;
     private Context context;
     private int postion;
-
-    public DataCenterAdapter(ArrayList<Datacenter.center> countries , Context context) {
-        countriesList = countries;
+    onItemSelectNewDroplet NewDropletSelect;
+    private static final String TAG = "DataCenterAdapter";
+    public DataCenterAdapter(Regions regions , Context context, onItemSelectNewDroplet newDropletSelect) {
+        this.regions = regions;
         this.context = context;
+        this.NewDropletSelect = newDropletSelect;
+
     }
 
     @Override
@@ -40,31 +51,36 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
     @Override
     public void onBindViewHolder(DataCenterViewHolder holder, int position) {
         this.postion = holder.getAdapterPosition();
-        String thisCountry = countriesList.get(position).getCity();
-        int url = countriesList.get(position).getId();
-
+        String thisCountry = regions.getRegions().get(position).getName();
         holder.countryName.setText(thisCountry);
-        Picasso.with(context).load(url).resize(425,220).into(holder.img);
-
     }
 
     @Override
     public int getItemCount() {
-        return countriesList.size();
+        return regions.getRegions().size();
     }
 
     class DataCenterViewHolder extends  RecyclerView.ViewHolder{
 
         TextView countryName;
         ImageView img;
-        LinearLayout countryLayout;
+        CardView card;
 
         public DataCenterViewHolder(View itemView) {
             super(itemView);
             countryName = (TextView) itemView.findViewById(R.id.countryName);
             img = (ImageView) itemView.findViewById(R.id.country_url);
-
-
+            card = (CardView) itemView.findViewById(R.id.country_cardview);
+            card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getLayoutPosition();
+                    Log.i(TAG, "onClick: " + regions.getRegions().get(position).getName());
+                    NewDropletSelect.onDataCenterSelect(regions.getRegions().get(position));
+                }
+            });
         }
     }
+
+
 }
