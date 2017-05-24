@@ -53,6 +53,38 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
         this.postion = holder.getAdapterPosition();
         String thisCountry = regions.getRegions().get(position).getName();
         holder.countryName.setText(thisCountry);
+        if(thisCountry.contains("New York"))
+        {
+            holder.img.setImageResource(R.drawable.murrica);
+        }
+        else if(thisCountry.contains("San Francisco"))
+        {
+            holder.img.setImageResource(R.drawable.murrica);
+        }
+        else if(thisCountry.contains("Amsterdam"))
+        {
+            holder.img.setImageResource(R.drawable.amsterdam);
+        }
+        else if(thisCountry.contains("Singapore"))
+        {
+            holder.img.setImageResource(R.drawable.singapore);
+        }
+        else if(thisCountry.contains("London"))
+        {
+            holder.img.setImageResource(R.drawable.london);
+        }
+        else if(thisCountry.contains("Frankfurt"))
+        {
+            holder.img.setImageResource(R.drawable.frankfurt);
+        }
+        else if (thisCountry.contains("Bangalore"))
+        {
+            holder.img.setImageResource(R.drawable.india);
+        }
+        else if(thisCountry.contains("Toronto"))
+        {
+            holder.img.setImageResource(R.drawable.canada);
+        }
     }
 
     @Override
