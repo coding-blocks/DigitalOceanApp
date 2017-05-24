@@ -22,17 +22,16 @@ import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
 import in.tosc.doandroidlib.objects.Image;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>  {
-
+  
+    public static final String TAG = "ImageAdapter";
     private final List<Image> imageList;
     private int position;
     private Context context;
     onItemSelectNewDroplet onImageSelect;
-    public static final String TAG = "ImageAdapter";
 
     public ImageAdapter(List<Image> items, Context context, onItemSelectNewDroplet onImageSelect)
 
     {
-
         imageList = items;
         this.context = context;
         this.onImageSelect = onImageSelect;
@@ -98,8 +97,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 }
             });
         }
-        }
 
+        }
 
     public void selectImage(int position,ViewHolder holder){
         int selectorImage = 0;
