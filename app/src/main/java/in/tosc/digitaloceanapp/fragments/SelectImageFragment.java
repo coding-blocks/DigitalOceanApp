@@ -24,7 +24,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SelectImageFragment extends Fragment {
 
-    List<Image> imageList;
+    public static List<Image> imageList;
     ImageAdapter imageAdapter;
     RecyclerView imageRecyclerView;
 
@@ -52,7 +52,6 @@ public class SelectImageFragment extends Fragment {
                         imageRecyclerView.setAdapter(imageAdapter);
                         Log.e("Droplets fetched", String.valueOf(imageList.size()));
                     }
-
                     @Override
                     public void onFailure(Call<List<Image>> call, Throwable t) {
                         Log.e("Failed getting images",t.getLocalizedMessage());

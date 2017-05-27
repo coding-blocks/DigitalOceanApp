@@ -54,9 +54,9 @@ public class DigitalOcean {
 
     static String callbackUrl;
     static String authToken = "";
-    static Retrofit r, r2;
+    static Retrofit r, r2, r3;
 
-    public static void init (String clientId, String callbackUrl) {
+    public static void init(String clientId, String callbackUrl) {
         DigitalOcean.clientId = clientId;
         DigitalOcean.callbackUrl = callbackUrl;
     }
@@ -67,8 +67,7 @@ public class DigitalOcean {
     }
 
 
-
-    public static void onLoggedIn (String token) {
+    public static void onLoggedIn(String token) {
         DigitalOcean.authToken = token;
 
         OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -88,9 +87,12 @@ public class DigitalOcean {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Account.class, new ObjectDeserializer<Account>("account"))
                 .registerTypeAdapter(Action.class, new ObjectDeserializer<Action>("action"))
-                .registerTypeAdapter(new TypeToken<List<Droplet>>(){}.getType(), new ListDeserializer<Droplet>("droplets"))
-                .registerTypeAdapter(new TypeToken<List<Image>>(){}.getType(), new ListDeserializer<Image>("images"))
-                .registerTypeAdapter(new TypeToken<List<Size>>(){}.getType(), new ListDeserializer<Size>("sizes"))
+                .registerTypeAdapter(new TypeToken<List<Droplet>>() {
+                }.getType(), new ListDeserializer<Droplet>("droplets"))
+                .registerTypeAdapter(new TypeToken<List<Image>>() {
+                }.getType(), new ListDeserializer<Image>("images"))
+                .registerTypeAdapter(new TypeToken<List<Size>>() {
+                }.getType(), new ListDeserializer<Size>("sizes"))
                 .create();
 
         r = new Retrofit.Builder()
@@ -105,9 +107,9 @@ public class DigitalOcean {
                 .build();
     }
 
-    public static DigitalOceanClient getDOClient (final String authToken) {
+    public static DigitalOceanClient getDOClient(final String authToken) {
 
-        if(r == null){
+        if (r == null) {
             OkHttpClient httpClient = new OkHttpClient.Builder()
                     .addInterceptor(new Interceptor() {
                         @Override
@@ -125,9 +127,12 @@ public class DigitalOcean {
             Gson gson = new GsonBuilder()
                     .registerTypeAdapter(Account.class, new ObjectDeserializer<Account>("account"))
                     .registerTypeAdapter(Action.class, new ObjectDeserializer<Action>("action"))
-                    .registerTypeAdapter(new TypeToken<List<Droplet>>(){}.getType(), new ListDeserializer<Droplet>("droplets"))
-                    .registerTypeAdapter(new TypeToken<List<Image>>(){}.getType(), new ListDeserializer<Image>("images"))
-                    .registerTypeAdapter(new TypeToken<List<Size>>(){}.getType(), new ListDeserializer<Size>("sizes"))
+                    .registerTypeAdapter(new TypeToken<List<Droplet>>() {
+                    }.getType(), new ListDeserializer<Droplet>("droplets"))
+                    .registerTypeAdapter(new TypeToken<List<Image>>() {
+                    }.getType(), new ListDeserializer<Image>("images"))
+                    .registerTypeAdapter(new TypeToken<List<Size>>() {
+                    }.getType(), new ListDeserializer<Size>("sizes"))
                     .create();
 
             r = new Retrofit.Builder()
@@ -139,8 +144,8 @@ public class DigitalOcean {
         return r.create(DigitalOceanClient.class);
     }
 
-    public static DigitalOceanStatisticsClient getDOStatsClient (final String authToken) {
-        if(r2 == null){
+    public static DigitalOceanStatisticsClient getDOStatsClient(final String authToken) {
+        if (r2 == null) {
             OkHttpClient httpClient = new OkHttpClient.Builder()
                     .addInterceptor(new Interceptor() {
                         @Override
@@ -164,7 +169,26 @@ public class DigitalOcean {
         return r2.create(DigitalOceanStatisticsClient.class);
     }
 
-
-
-
+    public static Droplet createDOdroplet(final String authToken) {
+        if (r3 == null) {
+            OkHttpClient httpClient = new OkHttpClient.Builder()
+                    .addInterceptor(new Interceptor() {
+                        @Override
+                        public Response intercept(Chain chain) throws IOException {
+                            Request request = chain.request().newBuilder()
+                                    .addHeader("Content-Type", "application/json")
+                                    .addHeader("Authorization", "Bearer " + authToken)
+                                    .build();
+                            return chain.proceed(request);
+                        }
+                    })
+                    .build();
+            r3 = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(httpClient)
+                    .build();
+        }
+        return r3.create(Droplet.class);
+    }
 }

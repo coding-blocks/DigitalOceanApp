@@ -34,9 +34,10 @@ public class DataCenterFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_select_data_center, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.datacenter_recycler);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        DataCenterAdapter dataCenterAdapter = new DataCenterAdapter(countries , getActivity());
+        DataCenterAdapter dataCenterAdapter = new DataCenterAdapter(countries , getActivity(),SelectImageFragment.imageList);
         recyclerView.setAdapter(dataCenterAdapter);
         dataCenterAdapter.notifyDataSetChanged();
+
         return view;
     }
 
