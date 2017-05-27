@@ -1,17 +1,46 @@
  <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" android:layout_weight="1"
-    tools:context="in.tosc.digitaloceanapp.fragments.NameFragment">
+    android:layout_height="match_parent" >
 
-     <EditText
+     <LinearLayout
+         android:layout_weight="1"
          android:layout_marginStart="8dp"
-         android:id="@+id/droplet_name"
-         android:layout_marginEnd="8dp"
-         android:paddingBottom="16dp"
+         android:gravity="center_vertical"
          android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_gravity="center_vertical"
-         android:hint="@string/name_of_droplet" />
+         android:layout_height="match_parent"
+         android:orientation="vertical"
+         android:layout_marginEnd="8dp"
+         android:layout_marginLeft="8dp">
 
+         <EditText
+             android:id="@+id/droplet_name"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center_vertical"
+             android:layout_marginTop="16dp"
+             android:hint="@string/name_of_droplet"
+             android:paddingBottom="8dp" />
+
+         <android.support.v7.widget.SwitchCompat
+             android:id="@+id/switch_ipv6"
+             android:layout_marginTop="16dp"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:padding="18dp"
+             android:text="@string/switch_ipv6" />
+
+         <android.support.v7.widget.SwitchCompat
+             android:id="@+id/switch_private_network"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:padding="18dp"
+             android:text="@string/switch_private_network" />
+         <android.support.v7.widget.SwitchCompat
+             android:id="@+id/switch_backup"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:padding="18dp"
+             android:text="@string/switch_backup" />
+    </LinearLayout>
  </FrameLayout>

@@ -7,12 +7,9 @@ import in.tosc.doandroidlib.objects.Account;
 import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.objects.Image;
-import in.tosc.doandroidlib.objects.NewDropletRequestBody;
-import in.tosc.doandroidlib.objects.Region;
 import in.tosc.doandroidlib.objects.Regions;
 import in.tosc.doandroidlib.objects.Size;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -24,7 +21,7 @@ import retrofit2.http.Query;
  * Created by championswimmer on 26/11/16.
  */
 
-public interface    DigitalOceanClient {
+public interface DigitalOceanClient {
 
     @GET("account")
     Call<Account> getAccount();

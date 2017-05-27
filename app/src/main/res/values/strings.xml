@@ -77,4 +77,5 @@
     <string name="static_email_account">android.studio@android.com</string>
     <string name="login">Login</string>
     <string name="signup">Sign-Up</string>
+    <string name="name_of_droplet">Name of Droplet</string>
 </resources>

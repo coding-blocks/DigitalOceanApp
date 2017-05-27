@@ -1,4 +1,4 @@
-package in.tosc.doandroidlib.objects;
+package in.tosc.digitaloceanapp.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,6 +7,7 @@ import java.util.List;
 import in.tosc.doandroidlib.objects.Image;
 import in.tosc.doandroidlib.objects.Key;
 import in.tosc.doandroidlib.objects.Region;
+import in.tosc.doandroidlib.objects.Size;
 import in.tosc.doandroidlib.objects.Tag;
 import in.tosc.doandroidlib.objects.Volume;
 
@@ -15,6 +16,22 @@ import in.tosc.doandroidlib.objects.Volume;
  */
 
 public class NewDropletRequestBody {
+
+    public NewDropletRequestBody(String name, Region region, Image image, Size size) {
+
+        this.image = image;
+        this.size = size;
+        this.name = name;
+        this.region = region;
+        this.keys = null;
+        this.backups = true;
+        this.ipv6 = true;
+        this.userData = null;
+        this.private_networking = false;
+        this.volumes = null;
+        this.tags = null;
+    }
+
     private Integer id;
 
     private String name;
@@ -26,7 +43,6 @@ public class NewDropletRequestBody {
     private Size size;
 
     @SerializedName("ssh_keys")
-
     private List<Key> keys;
 
     private boolean backups;
@@ -128,5 +144,13 @@ public class NewDropletRequestBody {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
     }
 }

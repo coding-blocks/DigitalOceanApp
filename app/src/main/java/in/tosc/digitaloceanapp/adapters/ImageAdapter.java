@@ -28,9 +28,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     private int position;
     private Context context;
     onItemSelectNewDroplet onImageSelect;
+    private int selectedposition=-1;
+    ViewHolder prevholder=null;
+
 
     public ImageAdapter(List<Image> items, Context context, onItemSelectNewDroplet onImageSelect)
-
     {
         imageList = items;
         this.context = context;
@@ -50,7 +52,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         holder.imageName.setText(imageList.get(position).getName());
         this.position = holder.getAdapterPosition();
         holder.imageDistribution.setText(imageList.get(position).getDistribution());
-        deselectImage(position,holder);
+
+            deselectImage(position, holder);
+
 
         holder.imageCard.setOnClickListener(new View.OnClickListener(){
 
@@ -61,7 +65,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                     deselectImage(position, holder);
                 }else{
                     selectImage(position,holder);
+                    if(selectedposition!=-1) {
+                        deselectImage(selectedposition, prevholder);
+                    }
                 }
+                selectedposition=position;
+                prevholder=holder;
             }
         });
     }
