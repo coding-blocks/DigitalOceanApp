@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import in.tosc.digitaloceanapp.Interfaces.onItemSelectNewDroplet;
+
 
 import java.util.List;
 
@@ -20,18 +22,20 @@ import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
 import in.tosc.doandroidlib.objects.Image;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>  {
-
+  
+    public static final String TAG = "ImageAdapter";
     private final List<Image> imageList;
     private int position;
     private Context context;
     private int selectedposition=-1;
     ViewHolder prevholder=null;
-    public static final String TAG = "ImageAdapter";
+
+
+
     public ImageAdapter(List<Image> items, Context context)
     {
         imageList = items;
         this.context = context;
-
     }
 
     @Override
@@ -46,7 +50,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         holder.imageName.setText(imageList.get(position).getName());
         this.position = holder.getAdapterPosition();
         holder.imageDistribution.setText(imageList.get(position).getDistribution());
-
             deselectImage(position, holder);
 
 
@@ -79,14 +82,28 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         TextView imageDistribution;
         CardView imageCard;
 
+
+
         ViewHolder(View view) {
             super(view);
             imageImage = (ImageView) view.findViewById(R.id.imageImage);
             imageName = (TextView) view.findViewById(R.id.imageName);
             imageDistribution = (TextView) view.findViewById(R.id.imageDistribution);
             imageCard= (CardView) view.findViewById(R.id.imagecard);
+            imageCard.setOnClickListener(new View.OnClickListener(){
+
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public void onClick(View view) {
+                    int position=getLayoutPosition();
+                    view.setBackground(context.getDrawable(R.drawable.selector));
+                    DropletCreateActivity.getDroplet().setImage(imageList.get(position));
+                    Log.e("OnClick",imageList.get(position).getDistribution());
+                }
+            });
         }
-    }
+
+        }
 
     public void selectImage(int position,ViewHolder holder){
         int selectorImage = 0;
@@ -140,4 +157,5 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         }
         holder.imageImage.setTag(false);
     }
+
 }

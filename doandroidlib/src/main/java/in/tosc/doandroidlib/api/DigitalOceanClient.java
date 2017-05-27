@@ -7,6 +7,7 @@ import in.tosc.doandroidlib.objects.Account;
 import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.objects.Image;
+import in.tosc.doandroidlib.objects.Regions;
 import in.tosc.doandroidlib.objects.Size;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -20,7 +21,7 @@ import retrofit2.http.Query;
  * Created by championswimmer on 26/11/16.
  */
 
-public interface    DigitalOceanClient {
+public interface DigitalOceanClient {
 
     @GET("account")
     Call<Account> getAccount();
@@ -49,14 +50,9 @@ public interface    DigitalOceanClient {
             @Field("name") String name              // for rename or snapshot
             );
 
+    //For getting regions
+    @GET("regions")
+    Call<Regions> getRegions();
 
-    @FormUrlEncoded
-    @POST("droplets")
-    Call<String> createDroplet(
-            @Field("name") String name,
-            @Field("region") String region,
-            @Field("size") String size,
-            @Field("image") String image
-    );
 
 }
