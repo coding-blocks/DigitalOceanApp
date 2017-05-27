@@ -56,7 +56,7 @@ public class DataCenterFragment extends Fragment{
             @Override
             public void onResponse(Call<Regions> call, Response<Regions> response) {
                 regions = response.body();
-                dataCenterAdapter = new DataCenterAdapter(regions,getContext(),(onItemSelectNewDroplet) getActivity());
+                dataCenterAdapter = new DataCenterAdapter(regions,getContext());
                 recyclerView.setAdapter(dataCenterAdapter);
                 dataCenterAdapter.notifyDataSetChanged();
                 Log.i(TAG, "onResponse: Regions loaded successfully!");
@@ -69,6 +69,12 @@ public class DataCenterFragment extends Fragment{
             }
         });
         return view;
+    }
+
+    //Accessor function to get selected Region
+    public Region getRegion()
+    {
+        return dataCenterAdapter.getSelectedRegion();
     }
 
 

@@ -22,12 +22,13 @@ import in.tosc.doandroidlib.objects.Region;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class DropletCreateActivity extends AppCompatActivity implements onItemSelectNewDroplet {
+public class DropletCreateActivity extends AppCompatActivity {
 
     private static final String TAG = "DropletCreateActivity";
     static Droplet droplet;
     int count = 1;
-    AdditionalDetailsFragment additionalDetailsFragment = new AdditionalDetailsFragment();
+    AdditionalDetailsFragment additionalDetailsFragment;
+    DataCenterFragment selectDataCenter;
     NewDropletRequestBody requestBody;
 
 
@@ -39,6 +40,9 @@ public class DropletCreateActivity extends AppCompatActivity implements onItemSe
         super.onCreate(savedInstanceState);
         droplet = new Droplet();
         setContentView(R.layout.activity_droplet_create);
+        additionalDetailsFragment = new AdditionalDetailsFragment();
+        selectDataCenter = new DataCenterFragment();
+
     }
 
     private void removeFragment(int count) {
@@ -70,7 +74,7 @@ public class DropletCreateActivity extends AppCompatActivity implements onItemSe
         switch(count){
 
             case 2 :
-                DataCenterFragment selectDataCenter = new DataCenterFragment();
+
                 fragmentTransaction.replace(R.id.fragmentHolder,selectDataCenter,"DATA_CENTER");
                 fragmentTransaction.addToBackStack("DataCenterFragment");
                 fragmentTransaction.commit();
@@ -122,16 +126,4 @@ public class DropletCreateActivity extends AppCompatActivity implements onItemSe
         Log.e("Increased count", String.valueOf(count));
     }
 
-    //Interface implementation to get selected region
-    @Override
-    public void onDataCenterSelect(Region region) {
-        Log.i(TAG, "onDataCenterSelect: " + region.getName());
-    }
-
-
-    //Interface implementation to get selected image
-    @Override
-    public void onImageSelect(Image image) {
-        Log.i(TAG, "onImageSelect: " + image.getDistribution());
-    }
 }
