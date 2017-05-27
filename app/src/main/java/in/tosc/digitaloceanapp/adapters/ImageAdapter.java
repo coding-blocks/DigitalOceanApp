@@ -27,17 +27,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     private final List<Image> imageList;
     private int position;
     private Context context;
-    onItemSelectNewDroplet onImageSelect;
     private int selectedposition=-1;
     ViewHolder prevholder=null;
 
 
-    public ImageAdapter(List<Image> items, Context context, onItemSelectNewDroplet onImageSelect)
+
+    public ImageAdapter(List<Image> items, Context context)
     {
         imageList = items;
         this.context = context;
-        this.onImageSelect = onImageSelect;
-
     }
 
     @Override
@@ -101,7 +99,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                     view.setBackground(context.getDrawable(R.drawable.selector));
                     DropletCreateActivity.getDroplet().setImage(imageList.get(position));
                     Log.e("OnClick",imageList.get(position).getDistribution());
-                    onImageSelect.onImageSelect(imageList.get(position));
                 }
             });
         }
