@@ -54,7 +54,7 @@ public class DigitalOcean {
 
     static String callbackUrl;
     static String authToken = "";
-    static Retrofit r, r2, r3;
+    static Retrofit r, r2;
 
     public static void init(String clientId, String callbackUrl) {
         DigitalOcean.clientId = clientId;
@@ -169,26 +169,4 @@ public class DigitalOcean {
         return r2.create(DigitalOceanStatisticsClient.class);
     }
 
-    public static Droplet createDOdroplet(final String authToken) {
-        if (r3 == null) {
-            OkHttpClient httpClient = new OkHttpClient.Builder()
-                    .addInterceptor(new Interceptor() {
-                        @Override
-                        public Response intercept(Chain chain) throws IOException {
-                            Request request = chain.request().newBuilder()
-                                    .addHeader("Content-Type", "application/json")
-                                    .addHeader("Authorization", "Bearer " + authToken)
-                                    .build();
-                            return chain.proceed(request);
-                        }
-                    })
-                    .build();
-            r3 = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(httpClient)
-                    .build();
-        }
-        return r3.create(Droplet.class);
-    }
 }
