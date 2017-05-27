@@ -6,15 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-
 import in.tosc.digitaloceanapp.R;
-import in.tosc.digitaloceanapp.models.Datacenter;
+import in.tosc.doandroidlib.objects.Regions;
 
 /**
  * Created by rishabhkhanna on 27/11/16.
@@ -22,12 +17,13 @@ import in.tosc.digitaloceanapp.models.Datacenter;
 
 public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.DataCenterViewHolder> {
 
-    private ArrayList<Datacenter.center> countriesList;
+    private Regions regions;
     private Context context;
     private int postion;
 
-    public DataCenterAdapter(ArrayList<Datacenter.center> countries , Context context) {
-        countriesList = countries;
+
+    public DataCenterAdapter(Regions regions, Context context) {
+        this.regions = regions;
         this.context = context;
     }
 
@@ -40,31 +36,57 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
     @Override
     public void onBindViewHolder(DataCenterViewHolder holder, int position) {
         this.postion = holder.getAdapterPosition();
-        String thisCountry = countriesList.get(position).getCity();
-        int url = countriesList.get(position).getId();
-
-        holder.countryName.setText(thisCountry);
-        Picasso.with(context).load(url).resize(425,220).into(holder.img);
+        String thisRegion = regions.getRegions().get(position).getName();
+        holder.countryName.setText(thisRegion);
+        if(thisRegion.contains("New York"))
+        {
+            holder.img.setImageResource(R.drawable.murrica);
+        }
+        else if(thisRegion.contains("San Francisco"))
+        {
+            holder.img.setImageResource(R.drawable.murrica);
+        }
+        else if(thisRegion.contains("Amsterdam"))
+        {
+            holder.img.setImageResource(R.drawable.amsterdam);
+        }
+        else if(thisRegion.contains("Singapore"))
+        {
+            holder.img.setImageResource(R.drawable.singapore);
+        }
+        else if(thisRegion.contains("London"))
+        {
+            holder.img.setImageResource(R.drawable.london);
+        }
+        else if(thisRegion.contains("Frankfurt"))
+        {
+            holder.img.setImageResource(R.drawable.frankfurt);
+        }
+        else if (thisRegion.contains("Bangalore"))
+        {
+            holder.img.setImageResource(R.drawable.india);
+        }
+        else if(thisRegion.contains("Toronto"))
+        {
+            holder.img.setImageResource(R.drawable.canada);
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return countriesList.size();
+        return regions.getRegions().size();
     }
 
     class DataCenterViewHolder extends  RecyclerView.ViewHolder{
 
         TextView countryName;
         ImageView img;
-        LinearLayout countryLayout;
 
         public DataCenterViewHolder(View itemView) {
             super(itemView);
             countryName = (TextView) itemView.findViewById(R.id.countryName);
             img = (ImageView) itemView.findViewById(R.id.country_url);
-
-
         }
     }
 }

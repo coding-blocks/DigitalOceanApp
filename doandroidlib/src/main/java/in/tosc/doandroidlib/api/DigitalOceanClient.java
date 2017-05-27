@@ -7,8 +7,10 @@ import in.tosc.doandroidlib.objects.Account;
 import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.objects.Image;
+import in.tosc.doandroidlib.objects.Regions;
 import in.tosc.doandroidlib.objects.Size;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -48,6 +50,10 @@ public interface    DigitalOceanClient {
             @Field("type") ActionType actionType,
             @Field("name") String name              // for rename or snapshot
             );
+
+    //For getting regions
+    @GET("regions")
+    Call<Regions> getRegions();
 
 
     @FormUrlEncoded
