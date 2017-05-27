@@ -23,8 +23,7 @@ public class NewDropletRequestBody {
 
     private Image image;
 
-    @SerializedName("size_slug")
-    private String size;
+    private Size size;
 
     @SerializedName("ssh_keys")
 
