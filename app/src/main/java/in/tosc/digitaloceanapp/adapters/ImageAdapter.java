@@ -46,7 +46,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         holder.imageName.setText(imageList.get(position).getName());
         this.position = holder.getAdapterPosition();
         holder.imageDistribution.setText(imageList.get(position).getDistribution());
-
+        if(selectedposition!=-1&&position==selectedposition){
+            selectImage(position,holder);
+        }
+        else
             deselectImage(position, holder);
 
 
