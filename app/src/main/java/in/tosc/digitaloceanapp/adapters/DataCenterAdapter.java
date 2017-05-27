@@ -3,25 +3,14 @@ package in.tosc.digitaloceanapp.adapters;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import in.tosc.digitaloceanapp.Interfaces.onItemSelectNewDroplet;
 
-
-import com.squareup.picasso.Picasso;
-
-import org.apache.commons.lang3.ClassUtils;
-
-import java.util.ArrayList;
 
 import in.tosc.digitaloceanapp.R;
-import in.tosc.digitaloceanapp.models.Datacenter;
-import in.tosc.doandroidlib.objects.Image;
 import in.tosc.doandroidlib.objects.Region;
 import in.tosc.doandroidlib.objects.Regions;
 
@@ -45,7 +34,7 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
 
     @Override
     public DataCenterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_coutry , parent , false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_country, parent , false);
         return new DataCenterViewHolder(itemView);
     }
 

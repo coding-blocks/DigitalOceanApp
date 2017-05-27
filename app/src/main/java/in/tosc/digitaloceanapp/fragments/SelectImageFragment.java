@@ -56,7 +56,7 @@ public class SelectImageFragment extends Fragment  {
                     @Override
                     public void onResponse(Call<List<Image>> call, Response<List<Image>> response) {
                         imageList = response.body();
-                        imageAdapter = new ImageAdapter(imageList,getContext(),(onItemSelectNewDroplet)getActivity());
+                        imageAdapter = new ImageAdapter(imageList,getContext());
                         imageRecyclerView.setAdapter(imageAdapter);
                         Log.e("Droplets fetched", String.valueOf(imageList.size()));
                     }
