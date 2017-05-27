@@ -5,21 +5,31 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import in.tosc.digitaloceanapp.R;
+import in.tosc.digitaloceanapp.fragments.AdditionalDetailsFragment;
 import in.tosc.digitaloceanapp.fragments.SelectImageFragment;
 import in.tosc.digitaloceanapp.fragments.SelectSizeFragment;
 import in.tosc.digitaloceanapp.fragments.DataCenterFragment;
 import in.tosc.doandroidlib.objects.Droplet;
+import in.tosc.doandroidlib.objects.Image;
+import in.tosc.digitaloceanapp.Interfaces.onItemSelectNewDroplet;
+import in.tosc.digitaloceanapp.models.NewDropletRequestBody;
+import in.tosc.doandroidlib.objects.Region;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class DropletCreateActivity extends AppCompatActivity {
+public class DropletCreateActivity extends AppCompatActivity implements onItemSelectNewDroplet {
 
+    private static final String TAG = "DropletCreateActivity";
     static Droplet droplet;
     int count = 1;
+    AdditionalDetailsFragment additionalDetailsFragment = new AdditionalDetailsFragment();
+    NewDropletRequestBody requestBody;
+
 
     public static Droplet getDroplet(){
         return droplet;
@@ -39,10 +49,10 @@ public class DropletCreateActivity extends AppCompatActivity {
 //                fragmentManager.popBackStack("additionalDetailsFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
 //                break;
             case 3 :
-                fragmentManager.popBackStack("selectSizeFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fragmentManager.popBackStack("additionalDetailsFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             case 2 :
-                fragmentManager.popBackStack("DataCenterFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fragmentManager.popBackStack("selectSizeFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             case 1 :
                 fragmentManager.popBackStack("DataCenterFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -71,15 +81,12 @@ public class DropletCreateActivity extends AppCompatActivity {
                 fragmentTransaction.addToBackStack("selectSizeFragment");
                 fragmentTransaction.commit();
                 break;
-//            case 4 :
-//                AdditionalDetailsFragment additionalDetailsFragment = new AdditionalDetailsFragment();
-//                fragmentTransaction.replace(R.id.fragmentHolder,additionalDetailsFragment,"ADDITIONAL_DETAILS");
-//                fragmentTransaction.addToBackStack("additionalDetailsFragment");
-//                fragmentTransaction.commit();
-//                break;
-//            case 5:
-//                createDroplet(droplet);
-//                break;
+            case 4 :
+                //AdditionalDetailsFragment additionalDetailsFragment = new AdditionalDetailsFragment();
+                fragmentTransaction.replace(R.id.fragmentHolder,additionalDetailsFragment,"ADDITIONAL_DETAILS");
+                fragmentTransaction.addToBackStack("additionalDetailsFragment");
+                fragmentTransaction.commit();
+                break;
             default:
                 this.finish();
                 count = 1;
@@ -98,7 +105,6 @@ public class DropletCreateActivity extends AppCompatActivity {
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         SelectImageFragment selectImageFragment = new SelectImageFragment();
         fragmentTransaction.replace(R.id.fragmentHolder,selectImageFragment,"CREATE_DROPLET");
-        fragmentTransaction.addToBackStack("additionalDetailsFragment");
         fragmentTransaction.commit();
 
     }
@@ -107,13 +113,25 @@ public class DropletCreateActivity extends AppCompatActivity {
         count--;
 //        Log.d("count dec" , String.valueOf(count));
         removeFragment(count);
-        Log.e("Increased count", String.valueOf(count));
+        Log.e("Decreased count", String.valueOf(count));
     }
-
     public void next(View view) {
         count++;
 //        Log.d("count" , String.valueOf(count));
         addFragment(count);
-        Log.e("Decreased count", String.valueOf(count));
+        Log.e("Increased count", String.valueOf(count));
+    }
+
+    //Interface implementation to get selected region
+    @Override
+    public void onDataCenterSelect(Region region) {
+        Log.i(TAG, "onDataCenterSelect: " + region.getName());
+    }
+
+
+    //Interface implementation to get selected image
+    @Override
+    public void onImageSelect(Image image) {
+        Log.i(TAG, "onImageSelect: " + image.getDistribution());
     }
 }
