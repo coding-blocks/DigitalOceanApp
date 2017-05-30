@@ -6,37 +6,46 @@
 
 
     <FrameLayout
+        android:id="@+id/fragmentHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:id="@+id/fragmentHolder" ></FrameLayout>
+        android:layout_marginBottom="48dp"></FrameLayout>
 
-        <LinearLayout
-            android:id="@+id/createDropletLLayout"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/createDropletLLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="4dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonPrev"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_gravity="bottom|center_horizontal"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:onClick="previous"
+            android:text="@string/back"
+            android:theme="@style/snapshot" />
 
-            <Button
-                android:id="@+id/buttonPrev"
-                android:theme="@style/snapshot"
-                android:layout_width="0dp"
-                android:onClick="previous"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/back" />
+        <Button
+            android:id="@+id/buttonNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="next"
+            android:text="@string/next"
+            android:theme="@style/snapshot" />
 
-            <Button
-                android:id="@+id/buttonNext"
-                android:theme="@style/snapshot"
-                android:layout_width="0dp"
-                android:onClick="next"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/next" />
+        <Button
+        android:id="@+id/btnCreateDroplet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Create Droplet"
+        android:theme="@style/resize"
+        android:visibility="gone"/>
 
-        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>
