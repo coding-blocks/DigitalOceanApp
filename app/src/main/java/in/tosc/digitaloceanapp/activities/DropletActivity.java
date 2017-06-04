@@ -223,7 +223,9 @@ public class DropletActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             getSharedPreferences("DO", MODE_PRIVATE).edit().clear().commit();
             Intent i=new Intent(this,SplashActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
+            finish();
 
 
         } else if (id == R.id.nav_manage) {
