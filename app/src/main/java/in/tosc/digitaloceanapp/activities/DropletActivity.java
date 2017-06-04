@@ -221,6 +221,10 @@ public class DropletActivity extends AppCompatActivity
             i.setData(Uri.parse(url));
             startActivity(i);
         } else if (id == R.id.nav_logout) {
+            getSharedPreferences("DO", MODE_PRIVATE).edit().clear().commit();
+            Intent i=new Intent(this,SplashActivity.class);
+            startActivity(i);
+
 
         } else if (id == R.id.nav_manage) {
             url = "https://cloud.digitalocean.com/settings";

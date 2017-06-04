@@ -58,11 +58,18 @@ public interface    DigitalOceanClient {
 
     @FormUrlEncoded
     @POST("droplets")
-    Call<String> createDroplet(
+    Call<Droplet> createDroplet(
             @Field("name") String name,
             @Field("region") String region,
             @Field("size") String size,
-            @Field("image") String image
+            @Field("image") String image,
+            @Field("backups") Boolean backups,
+            @Field("ipv6") Boolean ipv6,
+            @Field("private_networking") Boolean private_networking
+
     );
+
+
+
 
 }

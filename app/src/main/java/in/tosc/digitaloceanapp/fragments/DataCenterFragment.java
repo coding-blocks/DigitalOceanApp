@@ -42,6 +42,7 @@ public class DataCenterFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_select_data_center, container, false);
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.datacenter_recycler);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
         DigitalOceanClient doClient = DigitalOcean.getDOClient(getContext().getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
         recyclerView.setAdapter(dataCenterAdapter);
         doClient.getRegions().enqueue(new Callback<Regions>() {
@@ -58,6 +59,7 @@ public class DataCenterFragment extends Fragment {
                 Log.i(TAG, "onFailure:  " + t.getLocalizedMessage());
             }
         });
+
         return view;
     }
 
