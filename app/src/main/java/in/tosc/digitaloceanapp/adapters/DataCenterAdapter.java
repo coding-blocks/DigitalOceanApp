@@ -12,23 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
-import in.tosc.digitaloceanapp.R;
-import in.tosc.doandroidlib.objects.Regions;
-
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
-import in.tosc.digitaloceanapp.models.Datacenter;
-import in.tosc.doandroidlib.objects.Image;
-import in.tosc.doandroidlib.objects.Region;
-import retrofit2.http.HEAD;
-
-import static in.tosc.digitaloceanapp.fragments.SelectImageFragment.imageList;
+import in.tosc.doandroidlib.objects.Regions;
 
 
 /**
@@ -37,11 +23,10 @@ import static in.tosc.digitaloceanapp.fragments.SelectImageFragment.imageList;
 
 public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.DataCenterViewHolder> {
 
+    public static final String TAG = "DataCenterAdapter";
     private Regions regions;
     private Context context;
     private int postion;
-    public static final String TAG = "DataCenterAdapter";
-
 
 
     public DataCenterAdapter(Regions regions, Context context) {
@@ -51,7 +36,7 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
 
     @Override
     public DataCenterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_coutry , parent , false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_coutry, parent, false);
         return new DataCenterViewHolder(itemView);
     }
 
@@ -60,36 +45,21 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
         this.postion = holder.getAdapterPosition();
         String thisRegion = regions.getRegions().get(position).getName();
         holder.countryName.setText(thisRegion);
-        if(thisRegion.contains("New York"))
-        {
+        if (thisRegion.contains("New York")) {
             holder.img.setImageResource(R.drawable.murrica);
-        }
-        else if(thisRegion.contains("San Francisco"))
-        {
+        } else if (thisRegion.contains("San Francisco")) {
             holder.img.setImageResource(R.drawable.murrica);
-        }
-        else if(thisRegion.contains("Amsterdam"))
-        {
+        } else if (thisRegion.contains("Amsterdam")) {
             holder.img.setImageResource(R.drawable.amsterdam);
-        }
-        else if(thisRegion.contains("Singapore"))
-        {
+        } else if (thisRegion.contains("Singapore")) {
             holder.img.setImageResource(R.drawable.singapore);
-        }
-        else if(thisRegion.contains("London"))
-        {
+        } else if (thisRegion.contains("London")) {
             holder.img.setImageResource(R.drawable.london);
-        }
-        else if(thisRegion.contains("Frankfurt"))
-        {
+        } else if (thisRegion.contains("Frankfurt")) {
             holder.img.setImageResource(R.drawable.frankfurt);
-        }
-        else if (thisRegion.contains("Bangalore"))
-        {
+        } else if (thisRegion.contains("Bangalore")) {
             holder.img.setImageResource(R.drawable.india);
-        }
-        else if(thisRegion.contains("Toronto"))
-        {
+        } else if (thisRegion.contains("Toronto")) {
             holder.img.setImageResource(R.drawable.canada);
         }
 
@@ -98,12 +68,12 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
         holder.countryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!(Boolean)holder.countryCV.getTag()){
+                if (!(Boolean) holder.countryCV.getTag()) {
                     DropletCreateActivity.getDroplet().setRegion(regions.getRegions().get(position));
-                    v.setBackgroundColor(Color.argb(60,0,90,230));
-                    holder.countryCV.setBackgroundColor(Color.argb(60,0,90,230));
+                    v.setBackgroundColor(Color.argb(60, 0, 90, 230));
+                    holder.countryCV.setBackgroundColor(Color.argb(60, 0, 90, 230));
                     holder.countryCV.setTag(true);
-                }else{
+                } else {
                     v.setBackgroundColor(Color.WHITE);
                     holder.countryCV.setBackgroundColor(Color.WHITE);
                     holder.countryCV.setTag(false);
@@ -120,7 +90,7 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
         return regions.getRegions().size();
     }
 
-    class DataCenterViewHolder extends  RecyclerView.ViewHolder{
+    class DataCenterViewHolder extends RecyclerView.ViewHolder {
 
         TextView countryName;
         ImageView img;
