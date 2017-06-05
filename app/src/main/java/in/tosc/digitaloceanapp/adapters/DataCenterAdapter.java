@@ -21,7 +21,6 @@ import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
 import in.tosc.digitaloceanapp.models.Datacenter;
 import in.tosc.doandroidlib.objects.Image;
-import in.tosc.doandroidlib.objects.Region;
 
 /**
  * Created by rishabhkhanna on 27/11/16.
@@ -32,6 +31,8 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
     private ArrayList<Datacenter.center> countriesList;
     private Context context;
     private int postion;
+    private DataCenterViewHolder previousHolder = null;
+    private static int selectedRegion = -1;
     public static final String TAG = "DataCenterAdapter";
 
     public DataCenterAdapter(ArrayList<Datacenter.center> countries, Context context, List<Image> imageList) {
@@ -41,7 +42,7 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
 
     @Override
     public DataCenterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_coutry , parent , false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_coutry, parent, false);
         return new DataCenterViewHolder(itemView);
     }
 
@@ -50,36 +51,62 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
         this.postion = holder.getAdapterPosition();
         String thisCountry = countriesList.get(position).getCity();
         int url = countriesList.get(position).getId();
-
         holder.countryName.setText(thisCountry);
-        Picasso.with(context).load(url).resize(425,220).into(holder.img);
+        Picasso.with(context).load(url).resize(425, 220).into(holder.img);
         Log.d(TAG, "onBindViewHolder: ");
-        holder.countryCV.setTag(false);
+
+        if (DropletCreateActivity.getDroplet().getRegion() == null) {
+            deselectRegion(position, holder);
+        } else if (DropletCreateActivity.getDroplet().getRegion().getSlug().equals(countriesList.get(position).getRegion().getSlug())) {
+            selectRegion(position, holder);
+            previousHolder = holder;
+            selectedRegion = position;
+        } else {
+            deselectRegion(position, holder);
+        }
+
         holder.countryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!(Boolean)holder.countryCV.getTag()){
+                if (!(Boolean) holder.countryCV.getTag()) {
+                    if (previousHolder != null) {
+                        deselectRegion(selectedRegion, previousHolder);
+                    }
                     DropletCreateActivity.getDroplet().setRegion(countriesList.get(position).getRegion());
-                    v.setBackgroundColor(Color.argb(60,0,90,230));
-                    holder.countryCV.setBackgroundColor(Color.argb(60,0,90,230));
-                    holder.countryCV.setTag(true);
-                }else{
-                    v.setBackgroundColor(Color.WHITE);
-                    holder.countryCV.setBackgroundColor(Color.WHITE);
-                    holder.countryCV.setTag(false);
+                    selectRegion(position, holder);
+                    previousHolder = holder;
+                    selectedRegion = position;
+                } else {
+                    deselectRegion(position, holder);
+                    previousHolder = null;
+                    DropletCreateActivity.getDroplet().setRegion(null);
+                    selectedRegion = -1;
                 }
-
             }
         });
 
     }
+
+    private void selectRegion(int position, DataCenterViewHolder holder) {
+        holder.countryLayout.setBackgroundColor(Color.argb(60, 0, 90, 230));
+        holder.countryCV.setBackgroundColor(Color.argb(60, 0, 90, 230));
+        holder.countryCV.setTag(true);
+        Log.i(TAG, "selectRegion:" + countriesList.get(position).getCity() + " Selected");
+    }
+
+    private void deselectRegion(int position, DataCenterViewHolder holder) {
+        holder.countryLayout.setBackgroundColor(Color.WHITE);
+        holder.countryCV.setBackgroundColor(Color.WHITE);
+        holder.countryCV.setTag(false);
+    }
+
 
     @Override
     public int getItemCount() {
         return countriesList.size();
     }
 
-    class DataCenterViewHolder extends  RecyclerView.ViewHolder{
+    class DataCenterViewHolder extends RecyclerView.ViewHolder {
 
         TextView countryName;
         ImageView img;

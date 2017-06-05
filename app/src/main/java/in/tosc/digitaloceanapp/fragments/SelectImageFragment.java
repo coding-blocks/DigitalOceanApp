@@ -29,34 +29,37 @@ public class SelectImageFragment extends Fragment {
     RecyclerView imageRecyclerView;
 
     public SelectImageFragment() {
+
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image, container, false);
-        DigitalOceanClient doClient = DigitalOcean.getDOClient(getContext().getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
+        DigitalOceanClient doClient = DigitalOcean.getDOClient(getContext().getSharedPreferences("DO", MODE_PRIVATE).getString("authToken", null));
         imageRecyclerView = (RecyclerView) view.findViewById(R.id.imageRecyclerVIew);
-        imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         imageRecyclerView.setAdapter(imageAdapter);
-                doClient.getImages(1,100,"distribution").enqueue(new Callback<List<Image>>() {
-                    @Override
-                    public void onResponse(Call<List<Image>> call, Response<List<Image>> response) {
-                        imageList = response.body();
-                        imageAdapter = new ImageAdapter(imageList,getContext());
-                        imageRecyclerView.setAdapter(imageAdapter);
-                        Log.e("Droplets fetched", String.valueOf(imageList.size()));
-                    }
-                    @Override
-                    public void onFailure(Call<List<Image>> call, Throwable t) {
-                        Log.e("Failed getting images",t.getLocalizedMessage());
-                    }
-                });
+        doClient.getImages(1, 100, "distribution").enqueue(new Callback<List<Image>>() {
+            @Override
+            public void onResponse(Call<List<Image>> call, Response<List<Image>> response) {
+                imageList = response.body();
+                imageAdapter = new ImageAdapter(imageList, getContext());
+                imageRecyclerView.setAdapter(imageAdapter);
+                Log.i("Droplets fetched", String.valueOf(imageList.size()));
+            }
+            @Override
+            public void onFailure(Call<List<Image>> call, Throwable t) {
+                Log.e("Failed getting images", t.getLocalizedMessage());
+            }
+        });
         return view;
     }
 }

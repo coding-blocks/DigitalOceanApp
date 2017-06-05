@@ -23,15 +23,17 @@ public class SelectSizeAdapter extends RecyclerView.Adapter<SelectSizeAdapter.Vi
 
     List<Size> sizeList;
     Context context;
+    private ViewHolder prevHolder = null;
+    private static int selectedSize = -1;
 
-    public SelectSizeAdapter(List<Size> sizeList, Context context){
+    public SelectSizeAdapter(List<Size> sizeList, Context context) {
         this.sizeList = sizeList;
         this.context = context;
     }
 
     @Override
     public SelectSizeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_size,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_size, parent, false);
         itemView.setOnClickListener(this);
         return new SelectSizeAdapter.ViewHolder(itemView);
     }
@@ -44,20 +46,46 @@ public class SelectSizeAdapter extends RecyclerView.Adapter<SelectSizeAdapter.Vi
         holder.memory.setText(String.format(context.getString(R.string.memory), sizeList.get(position).getMemorySizeInMb().toString(), sizeList.get(position).getVirutalCpuCount().toString()));
         holder.diskSpace.setText(String.format(context.getString(R.string.disk_space), sizeList.get(position).getDiskSize().toString()));
         holder.transfer.setText(String.format(context.getString(R.string.transfer), sizeList.get(position).getTransfer().toString()));
-        holder.sizeCV.setTag(false);
+
+        if (DropletCreateActivity.getDroplet().getSize() == null) {
+            deselectSize(holder, position);
+        } else if (DropletCreateActivity.getDroplet().getSize().equals(sizeList.get(position).getSlug())) {
+            selectSize(holder, position);
+            prevHolder = holder;
+            selectedSize = position;
+        } else {
+            deselectSize(holder, position);
+        }
         holder.sizeCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!(Boolean)holder.sizeCV.getTag()){
-                    holder.sizeCV.setBackgroundColor(Color.argb(60,0,90,230));
+                if (!(Boolean) holder.sizeCV.getTag()) {
+                    if (prevHolder != null) {
+                        deselectSize(prevHolder, selectedSize);
+                    }
                     DropletCreateActivity.getDroplet().setSize(sizeList.get(position).getSlug());
-                    holder.sizeCV.setTag(true);
-                }else{
-                    holder.sizeCV.setBackgroundColor(Color.WHITE);
-                    holder.sizeCV.setTag(false);
+                    selectSize(holder, position);
+                    prevHolder = holder;
+                    selectedSize = position;
+                } else {
+                    DropletCreateActivity.getDroplet().setSize(null);
+                    deselectSize(holder, position);
+                    selectedSize = -1;
+                    prevHolder = null;
+
                 }
             }
         });
+    }
+
+    private void selectSize(ViewHolder holder, int position) {
+        holder.sizeCV.setBackgroundColor(Color.argb(60, 0, 90, 230));
+        holder.sizeCV.setTag(true);
+    }
+
+    private void deselectSize(ViewHolder holder, int position) {
+        holder.sizeCV.setBackgroundColor(Color.WHITE);
+        holder.sizeCV.setTag(false);
     }
 
     @Override
@@ -75,6 +103,7 @@ public class SelectSizeAdapter extends RecyclerView.Adapter<SelectSizeAdapter.Vi
         TextView monthlyPrice, hourlyPrice, memory, diskSpace, transfer;
         CardView sizeCV;
         View view;
+
         public ViewHolder(View itemView) {
             super(itemView);
             view = itemView;
