@@ -19,6 +19,8 @@ import in.tosc.digitaloceanapp.models.Datacenter;
  * A simple {@link Fragment} subclass.
  */
 public class DataCenterFragment extends Fragment {
+    DataCenterAdapter dataCenterAdapter;
+    private static final String TAG = "DataCenterFragment";
 
 
     public DataCenterFragment() {
@@ -31,13 +33,12 @@ public class DataCenterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ArrayList<Datacenter.center> countries = Datacenter.getCenter();
-        View view =  inflater.inflate(R.layout.fragment_select_data_center, container, false);
+        View view = inflater.inflate(R.layout.fragment_select_data_center, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.datacenter_recycler);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        DataCenterAdapter dataCenterAdapter = new DataCenterAdapter(countries , getActivity(),SelectImageFragment.imageList);
+        dataCenterAdapter = new DataCenterAdapter(countries, getActivity(), SelectImageFragment.imageList);
         recyclerView.setAdapter(dataCenterAdapter);
         dataCenterAdapter.notifyDataSetChanged();
-
         return view;
     }
 

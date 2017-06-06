@@ -21,18 +21,18 @@ import in.tosc.doandroidlib.objects.Image;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
+    public static final String TAG = "ImageAdapter";
+    private static int selectedPosition = -1;
     private final List<Image> imageList;
+    private ViewHolder prevholder = null;
     private int position;
     private Context context;
-    private int selectedposition = -1;
-    ViewHolder prevholder = null;
-    public static final String TAG = "ImageAdapter";
 
     public ImageAdapter(List<Image> items, Context context) {
         imageList = items;
         this.context = context;
-
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,51 +46,45 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         holder.imageName.setText(imageList.get(position).getName());
         this.position = holder.getAdapterPosition();
         holder.imageDistribution.setText(imageList.get(position).getDistribution());
-        if(selectedposition!=-1&&position==selectedposition){
-            selectImage(position,holder);
-        }
-        else {
+
+        if (DropletCreateActivity.getDroplet().getImage() == null) {
+            deselectImage(position, holder);
+        } else if (DropletCreateActivity.getDroplet().getImage().getDistribution().equals(imageList.get(position).getDistribution()) &&
+                DropletCreateActivity.getDroplet().getImage().getName().equals(imageList.get(position).getName())) {
+            selectImage(position, holder);
+            prevholder = holder;
+            selectedPosition = position;
+        } else {
             deselectImage(position, holder);
         }
 
-
         holder.imageCard.setOnClickListener(new View.OnClickListener() {
-
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
                 if ((Boolean) holder.imageImage.getTag()) {
                     deselectImage(position, holder);
+                    prevholder = null;
+                    selectedPosition = -1;
+                    DropletCreateActivity.getDroplet().setImage(null);
                 } else {
-                    selectImage(position, holder);
-                    if (selectedposition != -1) {
-                        deselectImage(selectedposition, prevholder);
+                    if (prevholder != null) {
+                        deselectImage(selectedPosition, prevholder);
                     }
+                    DropletCreateActivity.getDroplet().setImage(imageList.get(position));
+                    selectImage(position, holder);
+                    prevholder = holder;
+                    selectedPosition = position;
                 }
-                selectedposition = position;
-                prevholder = holder;
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return imageList.size();
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageImage;
-        TextView imageName;
-        TextView imageDistribution;
-        CardView imageCard;
-
-        ViewHolder(View view) {
-            super(view);
-            imageImage = (ImageView) view.findViewById(R.id.imageImage);
-            imageName = (TextView) view.findViewById(R.id.imageName);
-            imageDistribution = (TextView) view.findViewById(R.id.imageDistribution);
-            imageCard = (CardView) view.findViewById(R.id.imagecard);
-        }
+        if (imageList != null)
+            return imageList.size();
+        else return 0;
     }
 
     public void selectImage(int position, ViewHolder holder) {
@@ -117,8 +111,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
         }
         holder.imageImage.setBackground(ContextCompat.getDrawable(context, selectorImage));
-        DropletCreateActivity.getDroplet().setImage(imageList.get(position));
-        Log.e("OnClick", imageList.get(position).getDistribution());
+        Log.i("OnClick", imageList.get(position).getDistribution());
         holder.imageImage.setTag(true);
     }
 
@@ -143,6 +136,22 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 holder.imageImage.setBackground(ContextCompat.getDrawable(context, R.drawable.ubuntu));
                 break;
         }
+
         holder.imageImage.setTag(false);
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageImage;
+        TextView imageName;
+        TextView imageDistribution;
+        CardView imageCard;
+
+        ViewHolder(View view) {
+            super(view);
+            imageImage = (ImageView) view.findViewById(R.id.imageImage);
+            imageName = (TextView) view.findViewById(R.id.imageName);
+            imageDistribution = (TextView) view.findViewById(R.id.imageDistribution);
+            imageCard = (CardView) view.findViewById(R.id.imagecard);
+        }
     }
 }
