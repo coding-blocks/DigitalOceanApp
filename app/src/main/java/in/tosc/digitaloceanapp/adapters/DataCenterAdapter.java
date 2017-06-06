@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
 import in.tosc.doandroidlib.objects.Regions;
@@ -24,9 +26,11 @@ import in.tosc.doandroidlib.objects.Regions;
 public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.DataCenterViewHolder> {
 
     public static final String TAG = "DataCenterAdapter";
+    private static int selectedRegion = -1;
     private Regions regions;
     private Context context;
     private int postion;
+    private DataCenterViewHolder previousHolder = null;
 
 
     public DataCenterAdapter(Regions regions, Context context) {
@@ -46,44 +50,68 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
         String thisRegion = regions.getRegions().get(position).getName();
         holder.countryName.setText(thisRegion);
         if (thisRegion.contains("New York")) {
-            holder.img.setImageResource(R.drawable.murrica);
+            Picasso.with(context).load(R.drawable.murrica).resize(425, 220).into(holder.img);
         } else if (thisRegion.contains("San Francisco")) {
-            holder.img.setImageResource(R.drawable.murrica);
+            Picasso.with(context).load(R.drawable.murrica).resize(425, 220).into(holder.img);
         } else if (thisRegion.contains("Amsterdam")) {
-            holder.img.setImageResource(R.drawable.amsterdam);
+            Picasso.with(context).load(R.drawable.amsterdam).resize(425, 220).into(holder.img);
         } else if (thisRegion.contains("Singapore")) {
-            holder.img.setImageResource(R.drawable.singapore);
+            Picasso.with(context).load(R.drawable.singapore).resize(425, 220).into(holder.img);
         } else if (thisRegion.contains("London")) {
-            holder.img.setImageResource(R.drawable.london);
+            Picasso.with(context).load(R.drawable.london).resize(425, 220).into(holder.img);
         } else if (thisRegion.contains("Frankfurt")) {
-            holder.img.setImageResource(R.drawable.frankfurt);
+            Picasso.with(context).load(R.drawable.frankfurt).resize(425, 220).into(holder.img);
         } else if (thisRegion.contains("Bangalore")) {
-            holder.img.setImageResource(R.drawable.india);
+            Picasso.with(context).load(R.drawable.india).resize(425, 220).into(holder.img);
         } else if (thisRegion.contains("Toronto")) {
-            holder.img.setImageResource(R.drawable.canada);
+            Picasso.with(context).load(R.drawable.canada).resize(425, 220).into(holder.img);
+        }
+        if (DropletCreateActivity.getDroplet().getRegion() == null) {
+            deselectRegion(position, holder);
+        } else if (DropletCreateActivity.getDroplet().getRegion().getSlug().equals(regions.getRegions().get(position).getSlug())) {
+            selectRegion(position, holder);
+            previousHolder = holder;
+            selectedRegion = position;
+        } else {
+            deselectRegion(position, holder);
         }
 
-        Log.d(TAG, "onBindViewHolder: ");
-        holder.countryCV.setTag(false);
         holder.countryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!(Boolean) holder.countryCV.getTag()) {
+                    if (previousHolder != null) {
+                        deselectRegion(selectedRegion, previousHolder);
+                    }
                     DropletCreateActivity.getDroplet().setRegion(regions.getRegions().get(position));
-                    v.setBackgroundColor(Color.argb(60, 0, 90, 230));
-                    holder.countryCV.setBackgroundColor(Color.argb(60, 0, 90, 230));
-                    holder.countryCV.setTag(true);
+                    selectRegion(position, holder);
+                    previousHolder = holder;
+                    selectedRegion = position;
                 } else {
-                    v.setBackgroundColor(Color.WHITE);
-                    holder.countryCV.setBackgroundColor(Color.WHITE);
-                    holder.countryCV.setTag(false);
+                    deselectRegion(position, holder);
+                    previousHolder = null;
+                    DropletCreateActivity.getDroplet().setRegion(null);
+                    selectedRegion = -1;
                 }
-
             }
         });
 
 
     }
+
+    private void selectRegion(int position, DataCenterViewHolder holder) {
+        holder.countryLayout.setBackgroundColor(Color.argb(60, 0, 90, 230));
+        holder.countryCV.setBackgroundColor(Color.argb(60, 0, 90, 230));
+        holder.countryCV.setTag(true);
+        Log.i(TAG, "selectRegion:" + regions.getRegions().get(position).getSlug() + " Selected");
+    }
+
+    private void deselectRegion(int position, DataCenterViewHolder holder) {
+        holder.countryLayout.setBackgroundColor(Color.WHITE);
+        holder.countryCV.setBackgroundColor(Color.WHITE);
+        holder.countryCV.setTag(false);
+    }
+
 
     @Override
     public int getItemCount() {

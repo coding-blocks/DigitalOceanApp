@@ -25,6 +25,7 @@ public class DropletCreateActivity extends AppCompatActivity {
     Button btnNext;
     Button btnPrev;
     Button btnCreateDropet;
+    private static final String TAG = "DropletCreateActivity";
 
 
     public static Droplet getDroplet() {
@@ -128,4 +129,5 @@ public class DropletCreateActivity extends AppCompatActivity {
         addFragment(count);
         Log.e("Decreased count", String.valueOf(count));
     }
+
 }

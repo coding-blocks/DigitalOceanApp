@@ -25,6 +25,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class DataCenterFragment extends Fragment {
+
     private static final String TAG = "DataCenterFragment";
     DataCenterAdapter dataCenterAdapter;
 
