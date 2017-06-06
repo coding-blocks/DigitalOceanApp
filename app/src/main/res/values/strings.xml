@@ -63,4 +63,18 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="country_name">India</string>
+    <string name="droplet_specs">Ubuntu-512mb-blr1-01</string>
+    <string name="droplet_RAM">512 MB</string>
+    <string name="forward_slash">/</string>
+    <string name="image_distribution">TEST</string>
+    <string name="x86_arch">x86</string>
+    <string name="droplet_HDD">20 GB Disk</string>
+    <string name="colon">:</string>
+    <string name="static_ip_address">192.168.1.1</string>
+    <string name="static_droplet_name">Ubuntu-512mb-blr1-01</string>
+    <string name="static_droplet_region">Bangalore</string>
+    <string name="static_email_account">android.studio@android.com</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign-Up</string>
 </resources>
