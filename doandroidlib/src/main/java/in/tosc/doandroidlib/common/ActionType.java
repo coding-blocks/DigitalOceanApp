@@ -34,6 +34,9 @@ public enum ActionType {
   
   @SerializedName("create")
   CREATE("create"),
+  
+  @SerializedName("destroy")
+  DESTROY("destroy"),
 
   @SerializedName("reboot")
   REBOOT("reboot"),
