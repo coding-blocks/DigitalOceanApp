@@ -29,12 +29,13 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class AdditionalDetailsFragment extends Fragment {
+
+    public static final String TAG = "AdditionalFragment";
     CheckBox cbPrivateNetworking;
     CheckBox cbBackups;
     CheckBox cbIpv6;
     EditText etDropletName;
     Button btnCreateDroplet;
-    public static final String TAG = "AdditionalFragment";
 
     public AdditionalDetailsFragment() {
         // Required empty public constructor
@@ -134,4 +135,5 @@ public class AdditionalDetailsFragment extends Fragment {
             }
         });
     }
+
 }

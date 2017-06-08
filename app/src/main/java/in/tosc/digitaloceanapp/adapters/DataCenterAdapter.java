@@ -14,13 +14,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
-import in.tosc.digitaloceanapp.models.Datacenter;
-import in.tosc.doandroidlib.objects.Image;
+import in.tosc.doandroidlib.objects.Regions;
+
 
 /**
  * Created by rishabhkhanna on 27/11/16.
@@ -28,15 +25,16 @@ import in.tosc.doandroidlib.objects.Image;
 
 public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.DataCenterViewHolder> {
 
-    private ArrayList<Datacenter.center> countriesList;
+    public static final String TAG = "DataCenterAdapter";
+    private static int selectedRegion = -1;
+    private Regions regions;
     private Context context;
     private int postion;
     private DataCenterViewHolder previousHolder = null;
-    private static int selectedRegion = -1;
-    public static final String TAG = "DataCenterAdapter";
 
-    public DataCenterAdapter(ArrayList<Datacenter.center> countries, Context context, List<Image> imageList) {
-        countriesList = countries;
+
+    public DataCenterAdapter(Regions regions, Context context) {
+        this.regions = regions;
         this.context = context;
     }
 
@@ -49,15 +47,28 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
     @Override
     public void onBindViewHolder(final DataCenterViewHolder holder, final int position) {
         this.postion = holder.getAdapterPosition();
-        String thisCountry = countriesList.get(position).getCity();
-        int url = countriesList.get(position).getId();
-        holder.countryName.setText(thisCountry);
-        Picasso.with(context).load(url).resize(425, 220).into(holder.img);
-        Log.d(TAG, "onBindViewHolder: ");
-
+        String thisRegion = regions.getRegions().get(position).getName();
+        holder.countryName.setText(thisRegion);
+        if (thisRegion.contains("New York")) {
+            Picasso.with(context).load(R.drawable.murrica).resize(425, 220).into(holder.img);
+        } else if (thisRegion.contains("San Francisco")) {
+            Picasso.with(context).load(R.drawable.murrica).resize(425, 220).into(holder.img);
+        } else if (thisRegion.contains("Amsterdam")) {
+            Picasso.with(context).load(R.drawable.amsterdam).resize(425, 220).into(holder.img);
+        } else if (thisRegion.contains("Singapore")) {
+            Picasso.with(context).load(R.drawable.singapore).resize(425, 220).into(holder.img);
+        } else if (thisRegion.contains("London")) {
+            Picasso.with(context).load(R.drawable.london).resize(425, 220).into(holder.img);
+        } else if (thisRegion.contains("Frankfurt")) {
+            Picasso.with(context).load(R.drawable.frankfurt).resize(425, 220).into(holder.img);
+        } else if (thisRegion.contains("Bangalore")) {
+            Picasso.with(context).load(R.drawable.india).resize(425, 220).into(holder.img);
+        } else if (thisRegion.contains("Toronto")) {
+            Picasso.with(context).load(R.drawable.canada).resize(425, 220).into(holder.img);
+        }
         if (DropletCreateActivity.getDroplet().getRegion() == null) {
             deselectRegion(position, holder);
-        } else if (DropletCreateActivity.getDroplet().getRegion().getSlug().equals(countriesList.get(position).getRegion().getSlug())) {
+        } else if (DropletCreateActivity.getDroplet().getRegion().getSlug().equals(regions.getRegions().get(position).getSlug())) {
             selectRegion(position, holder);
             previousHolder = holder;
             selectedRegion = position;
@@ -72,7 +83,7 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
                     if (previousHolder != null) {
                         deselectRegion(selectedRegion, previousHolder);
                     }
-                    DropletCreateActivity.getDroplet().setRegion(countriesList.get(position).getRegion());
+                    DropletCreateActivity.getDroplet().setRegion(regions.getRegions().get(position));
                     selectRegion(position, holder);
                     previousHolder = holder;
                     selectedRegion = position;
@@ -85,13 +96,14 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
             }
         });
 
+
     }
 
     private void selectRegion(int position, DataCenterViewHolder holder) {
         holder.countryLayout.setBackgroundColor(Color.argb(60, 0, 90, 230));
         holder.countryCV.setBackgroundColor(Color.argb(60, 0, 90, 230));
         holder.countryCV.setTag(true);
-        Log.i(TAG, "selectRegion:" + countriesList.get(position).getCity() + " Selected");
+        Log.i(TAG, "selectRegion:" + regions.getRegions().get(position).getSlug() + " Selected");
     }
 
     private void deselectRegion(int position, DataCenterViewHolder holder) {
@@ -103,7 +115,7 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
 
     @Override
     public int getItemCount() {
-        return countriesList.size();
+        return regions.getRegions().size();
     }
 
     class DataCenterViewHolder extends RecyclerView.ViewHolder {
@@ -113,12 +125,16 @@ public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.Da
         LinearLayout countryLayout;
         CardView countryCV;
 
+
         public DataCenterViewHolder(View itemView) {
             super(itemView);
             countryName = (TextView) itemView.findViewById(R.id.countryName);
             img = (ImageView) itemView.findViewById(R.id.country_url);
+
+
             countryLayout = (LinearLayout) itemView.findViewById(R.id.countryLayout);
             countryCV = (CardView) itemView.findViewById(R.id.countryCardView);
+
         }
     }
 }
