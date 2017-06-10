@@ -109,7 +109,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                     .positiveText("Confirm").onPositive(new MaterialDialog.SingleButtonCallback() {
                 @Override
                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                    Snackbar.make(coordinatorLayout, getString(R.string.delete_droplet_progress), Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(coordinatorLayout, getString(R.string.delete_droplet_msg), Snackbar.LENGTH_INDEFINITE).show();
                     doaClient.performAction(droplet.getId(),ActionType.DESTROY,null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
