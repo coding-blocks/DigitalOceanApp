@@ -80,6 +80,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         switchBackup = (SwitchCompat) findViewById(R.id.switch_backup);
 
         setData(droplet);
+        setIndividualFeatures(droplet);
         setSwitches();
 
         switchIPv6.setOnCheckedChangeListener(this);
@@ -163,6 +164,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.code() >= 200 && response.code()<=299) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.ipv6_enabled), Snackbar.LENGTH_SHORT).show();
+                                DropletActivity.refreshData();
                             } else {
                                 Log.d("IPv6", response.code() + "");
                                 setSwitchWithoutTriggering(switchIPv6,false);
@@ -190,6 +192,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.code() >= 200 && response.code()<=299) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.private_network_enabled), Snackbar.LENGTH_SHORT).show();
+                                DropletActivity.refreshData();
                             } else {
                                 Log.d("SPN", response.code() + "");
                                 setSwitchWithoutTriggering(switchPrivateNet,false);
@@ -216,6 +219,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.code() >= 200 && response.code()<=299) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.backup_enabled), Snackbar.LENGTH_SHORT).show();
+                                DropletActivity.refreshData();
                             } else {
                                 setSwitchWithoutTriggering(switchBackup,false);
                                 Snackbar.make(coordinatorLayout, getString(R.string.backup_couldnt_be_enabled), Snackbar.LENGTH_SHORT).show();
@@ -235,6 +239,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.code() >= 200 && response.code()<=299) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.backup_disabled), Snackbar.LENGTH_SHORT).show();
+                                DropletActivity.refreshData();
                             } else {
                                 Log.d("SBD", response.code() + "");
                                 setSwitchWithoutTriggering(switchBackup,true);
@@ -276,11 +281,27 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         switchBackup.setChecked(isBackupEnabled);
     }
 
-    public void setSwitchWithoutTriggering(SwitchCompat switchCompat,boolean newState)
+    private void setSwitchWithoutTriggering(SwitchCompat switchCompat,boolean newState)
     {
         switchCompat.setOnCheckedChangeListener(null);
         switchCompat.setChecked(newState);
         switchCompat.setOnCheckedChangeListener(this);
+    }
+
+    private void setIndividualFeatures(Droplet droplet)
+    {
+        droplet.setEnableIpv6(false);
+        droplet.setEnablePrivateNetworking(false);
+        droplet.setEnableBackup(false);
+        for(String feature: droplet.getFeatures())
+        {
+            if(feature.equals("backups"))
+                droplet.setEnableBackup(true);
+            else if(feature.equals("private_networking"))
+                droplet.setEnablePrivateNetworking(true);
+            else if(feature.equals("ipv6"))
+                droplet.setEnableIpv6(true);
+        }
     }
 
 }
