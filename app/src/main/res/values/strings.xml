@@ -46,6 +46,10 @@
     <string name="network_error">Network error! Please check your internet connection</string>
     <string name="ipv6_cannot_be_disabled">IPv6 cannot be disabled</string>
     <string name="private_network_cannot_be_disabled">Private network cannot be disabled</string>
+    <string name="dialog_delete_droplet_msg">Are you sure you would like to delete %s? This is irreversible. We will destroy your Droplet and all associated backups. All Droplet data will be scrubbed and irretrievable.</string>
+    <string name="dialog_confirm">Confirm</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="delete_droplet_msg">Deleting Droplet</string>
 
     <string name="title_activity_droplet_create">DropletCreateActivity</string>
     <string name="dummy_button">Dummy Button</string>
