@@ -208,7 +208,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                     });
                 } else {
                     setSwitchWithoutTriggering(switchPrivateNet,true);
-                    Snackbar.make(coordinatorLayout, getString(R.string.private_network_cannot_be_disabled), Snackbar.LENGTH_SHORT);
+                    Snackbar.make(coordinatorLayout, getString(R.string.private_network_cannot_be_disabled), Snackbar.LENGTH_SHORT).show();
                 }
                 break;
 
