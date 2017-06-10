@@ -161,19 +161,24 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                     doaClient.performAction(droplet.getId(), ActionType.ENABLE_IPV6, null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
-                            if (response.code() == 200) {
+                            if (response.code() >= 200 && response.code()<=299) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.ipv6_enabled), Snackbar.LENGTH_SHORT).show();
                             } else {
                                 Log.d("IPv6", response.code() + "");
+                                setSwitchWithoutTriggering(switchIPv6,false);
+                                Snackbar.make(coordinatorLayout, getString(R.string.ipv6_couldnt_be_enabled), Snackbar.LENGTH_SHORT).show();
+
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
+                            setSwitchWithoutTriggering(switchIPv6,false);
                             Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
                         }
                     });
                 } else {
+                    setSwitchWithoutTriggering(switchIPv6,true);
                     Snackbar.make(coordinatorLayout, getString(R.string.ipv6_cannot_be_disabled), Snackbar.LENGTH_SHORT).show();
                 }
                 break;
@@ -183,19 +188,23 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                     doaClient.performAction(droplet.getId(), ActionType.ENABLE_PRIVATE_NETWORKING, null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
-                            if (response.code() == 200) {
+                            if (response.code() >= 200 && response.code()<=299) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.private_network_enabled), Snackbar.LENGTH_SHORT).show();
                             } else {
                                 Log.d("SPN", response.code() + "");
+                                setSwitchWithoutTriggering(switchPrivateNet,false);
+                                Snackbar.make(coordinatorLayout, getString(R.string.private_network_couldnt_be_enabled), Snackbar.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
+                            setSwitchWithoutTriggering(switchPrivateNet,false);
                             Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
                         }
                     });
                 } else {
+                    setSwitchWithoutTriggering(switchPrivateNet,true);
                     Snackbar.make(coordinatorLayout, getString(R.string.private_network_cannot_be_disabled), Snackbar.LENGTH_SHORT);
                 }
                 break;
@@ -205,15 +214,18 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                     doaClient.performAction(droplet.getId(), ActionType.ENABLE_BACKUPS, null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
-                            if (response.code() == 200) {
+                            if (response.code() >= 200 && response.code()<=299) {
                                 Snackbar.make(coordinatorLayout, getString(R.string.backup_enabled), Snackbar.LENGTH_SHORT).show();
                             } else {
+                                setSwitchWithoutTriggering(switchBackup,false);
+                                Snackbar.make(coordinatorLayout, getString(R.string.backup_couldnt_be_enabled), Snackbar.LENGTH_SHORT).show();
                                 Log.d("SBE", response.code() + "");
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
+                            setSwitchWithoutTriggering(switchBackup,false);
                             Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
                         }
                     });
@@ -221,15 +233,19 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                     doaClient.performAction(droplet.getId(), ActionType.DISABLE_BACKUPS, null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
-                            if (response.code() == 200) {
-                                Snackbar.make(coordinatorLayout, getString(R.string.backup_diabled), Snackbar.LENGTH_SHORT).show();
+                            if (response.code() >= 200 && response.code()<=299) {
+                                Snackbar.make(coordinatorLayout, getString(R.string.backup_disabled), Snackbar.LENGTH_SHORT).show();
                             } else {
                                 Log.d("SBD", response.code() + "");
+                                setSwitchWithoutTriggering(switchBackup,true);
+                                Snackbar.make(coordinatorLayout, getString(R.string.backup_couldnt_be_disabled), Snackbar.LENGTH_SHORT).show();
+
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
+                            setSwitchWithoutTriggering(switchBackup,true);
                             Snackbar.make(coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
                         }
                     });
@@ -258,6 +274,13 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         switchIPv6.setChecked(isIPv6Enabled);
         switchPrivateNet.setChecked(isPrivateNetworkEnabled);
         switchBackup.setChecked(isBackupEnabled);
+    }
+
+    public void setSwitchWithoutTriggering(SwitchCompat switchCompat,boolean newState)
+    {
+        switchCompat.setOnCheckedChangeListener(null);
+        switchCompat.setChecked(newState);
+        switchCompat.setOnCheckedChangeListener(this);
     }
 
 }
