@@ -1,4 +1,4 @@
-package in.tosc.digitaloceanapp.models;
+package in.tosc.doandroidlib.models;
 
 import android.util.Log;
 

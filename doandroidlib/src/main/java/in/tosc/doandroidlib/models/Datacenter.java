@@ -1,8 +1,8 @@
-package in.tosc.digitaloceanapp.models;
+package in.tosc.doandroidlib.models;
 
 import java.util.ArrayList;
 
-import in.tosc.digitaloceanapp.R;
+import in.tosc.doandroidlib.R;
 import in.tosc.doandroidlib.objects.Region;
 
 /**
