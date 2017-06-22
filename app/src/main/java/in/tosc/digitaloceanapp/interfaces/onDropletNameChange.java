@@ -1,4 +1,4 @@
-package in.tosc.digitaloceanapp.Interfaces;
+package in.tosc.digitaloceanapp.interfaces;
 
 
 import java.util.List;
