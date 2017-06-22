@@ -21,7 +21,7 @@ import java.util.List;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
-import in.tosc.digitaloceanapp.interfaces.onDropletNameChange;
+import in.tosc.digitaloceanapp.interfaces.OnDropletNameChange;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.common.ActionType;
@@ -127,7 +127,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                                 @Override
                                 public void onResponse(Call<Action> call, Response<Action> response) {
                                     Log.d("RENAME", response.code() + "");
-                                    onDropletNameChange onDropletNameChange = new onDropletNameChange() {
+                                    OnDropletNameChange onDropletNameChange = new OnDropletNameChange() {
                                         @Override
                                         public void onSuccess(List<Droplet> modifiedData) {
                                             Droplet thisDroplet = modifiedData.get(position);

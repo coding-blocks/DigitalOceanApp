@@ -31,7 +31,7 @@ import java.util.List;
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
 import in.tosc.digitaloceanapp.utils.FontsOverride;
-import in.tosc.digitaloceanapp.interfaces.onDropletNameChange;
+import in.tosc.digitaloceanapp.interfaces.OnDropletNameChange;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Account;
@@ -130,7 +130,7 @@ public class DropletActivity extends AppCompatActivity
         });
     }
 
-    public static void refreshModifiedData(final onDropletNameChange onDropletNameChange) {
+    public static void refreshModifiedData(final OnDropletNameChange onDropletNameChange) {
 
         doClient.getDroplets(1, 10).enqueue(new Callback<List<Droplet>>() {
             @Override
