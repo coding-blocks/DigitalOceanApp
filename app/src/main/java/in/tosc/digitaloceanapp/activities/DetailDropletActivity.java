@@ -107,7 +107,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
             new MaterialDialog.Builder(this)
                     .title(R.string.delete_droplet)
                     .content(getString(R.string.dialog_delete_droplet_msg,droplet.getName()))
-                    .positiveText("Confirm").onPositive(new MaterialDialog.SingleButtonCallback() {
+                    .positiveText(R.string.dialog_confirm).onPositive(new MaterialDialog.SingleButtonCallback() {
                 @Override
                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                     Snackbar.make(coordinatorLayout, getString(R.string.delete_droplet_msg), Snackbar.LENGTH_INDEFINITE).show();
@@ -131,7 +131,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                     });
                 }
             })
-                    .negativeText("Cancel").onNegative(new MaterialDialog.SingleButtonCallback() {
+                    .negativeText(R.string.dialog_cancel).onNegative(new MaterialDialog.SingleButtonCallback() {
                 @Override
                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                     dialog.dismiss();
