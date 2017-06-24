@@ -117,6 +117,13 @@ public class DropletActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
                 droplets.clear();
+                for(Droplet droplet: response.body())
+                {
+                    if(droplet.isLocked())
+                    {
+                        response.body().remove(droplet);  //A locked droplet prevents any user actions
+                    }
+                }
                 droplets.addAll(response.body());
                 dropletsAdapter.notifyDataSetChanged();
                 Log.e("Droplets fetched", String.valueOf(response.body().size()));

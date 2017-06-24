@@ -115,13 +115,8 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             Log.d("DESTROY",String.valueOf(response.code()));
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    DropletActivity.refreshData();
-                                    finish();
-                                }
-                            }, 5000);
+                            DropletActivity.refreshData();
+                            finish();
                         }
 
                         @Override
