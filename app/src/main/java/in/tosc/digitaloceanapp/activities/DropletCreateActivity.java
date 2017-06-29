@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.fragments.AdditionalDetailsFragment;
@@ -124,10 +125,20 @@ public class DropletCreateActivity extends AppCompatActivity {
     }
 
     public void next(View view) {
-        count++;
-//        Log.d("count" , String.valueOf(count));
-        addFragment(count);
-        Log.e("Decreased count", String.valueOf(count));
+
+        int setCount =  (droplet.getImage()!=null?1:0) +
+                        (droplet.getRegion()!=null?1:0) +
+                        (droplet.getSize()!=null?1:0);
+
+        if(setCount == count) {
+            count++;
+            addFragment(count);
+            Log.e("Decreased count", String.valueOf(count));
+        }
+        else
+        {
+            Toast.makeText(this, R.string.please_choose_option, Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

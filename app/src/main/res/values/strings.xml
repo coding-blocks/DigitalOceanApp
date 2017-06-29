@@ -86,4 +86,6 @@
     <string name="private_network_couldnt_be_enabled">Private network could not be enabled</string>
     <string name="backup_couldnt_be_enabled">Backup could not be enabled</string>
     <string name="backup_couldnt_be_disabled">Backup could not be disabled</string>
+
+    <string name="please_choose_option">Please choose an option</string>
 </resources>
