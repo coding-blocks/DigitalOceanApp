@@ -1,6 +1,9 @@
 package in.tosc.digitaloceanapp.activities;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.design.internal.SnackbarContentLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 
@@ -100,6 +104,35 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         if (id == R.id.delete_droplet) {
 
             // TODO: 26/11/16 perform delete
+            new MaterialDialog.Builder(this)
+                    .title(R.string.delete_droplet)
+                    .content(getString(R.string.dialog_delete_droplet_msg,droplet.getName()))
+                    .positiveText(R.string.dialog_confirm).onPositive(new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    Snackbar.make(coordinatorLayout, getString(R.string.delete_droplet_msg), Snackbar.LENGTH_INDEFINITE).show();
+                    doaClient.performAction(droplet.getId(),ActionType.DESTROY,null).enqueue(new Callback<Action>() {
+                        @Override
+                        public void onResponse(Call<Action> call, Response<Action> response) {
+                            Log.d("DESTROY",String.valueOf(response.code()));
+                            DropletActivity.refreshData();
+                            finish();
+                        }
+
+                        @Override
+                        public void onFailure(Call<Action> call, Throwable t) {
+
+                        }
+                    });
+                }
+            })
+                    .negativeText(R.string.dialog_cancel).onNegative(new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    dialog.dismiss();
+                }
+            })
+                    .show();
             return true;
         } else if (id == R.id.switch_off) {
 
