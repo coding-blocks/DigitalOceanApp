@@ -17,6 +17,8 @@ import android.widget.ProgressBar;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.R;
 
+import static in.tosc.doandroidlib.DigitalOcean.EXTRA_AUTH_TOKEN;
+
 public class DOLoginActivity extends AppCompatActivity {
 
     public static final String TAG = DOLoginActivity.class.getSimpleName();
@@ -60,7 +62,7 @@ public class DOLoginActivity extends AppCompatActivity {
                     String properUrl = url.replace("#", "?");
                     String authToken = Uri.parse(properUrl).getQueryParameter("access_token");
                     DigitalOcean.onLoggedIn(authToken);
-                    setResult(DigitalOcean.LOGIN_SUCCESS, new Intent().putExtra("authToken", authToken));
+                    setResult(DigitalOcean.LOGIN_SUCCESS, new Intent().putExtra(EXTRA_AUTH_TOKEN, authToken));
                     finish();
                 }
 

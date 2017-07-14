@@ -47,3 +47,4 @@ captures/
 .idea/workspace.xml
 *.jks
 /.idea
+/javadocs

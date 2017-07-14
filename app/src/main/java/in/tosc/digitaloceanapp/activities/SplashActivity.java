@@ -52,10 +52,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (resultCode == DigitalOcean.LOGIN_SUCCESS) {
-            Log.d(TAG, "onActivityResult: " + "LOGIN SUCCESS" + data.getStringExtra("authToken"));
-            DigitalOcean.onLoggedIn(data.getStringExtra("authToken"));
+            Log.d(TAG, "onActivityResult: " + "LOGIN SUCCESS" + data.getStringExtra(DigitalOcean.EXTRA_AUTH_TOKEN));
+            DigitalOcean.onLoggedIn(data.getStringExtra(DigitalOcean.EXTRA_AUTH_TOKEN));
             getSharedPreferences("DO", MODE_PRIVATE).edit()
-                    .putString("authToken", data.getStringExtra("authToken"))
+                    .putString("authToken", data.getStringExtra(DigitalOcean.EXTRA_AUTH_TOKEN))
                     .apply();
             progressFurther();
         }
