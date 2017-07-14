@@ -17,6 +17,7 @@ android {
     useLibrary 'org.apache.http.legacy'
     buildTypes {
         debug {
+            testCoverageEnabled true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -41,4 +42,5 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.afollestad.material-dialogs:core:0.9.1.0'
     compile project(path: ':doandroidlib')
+    testCompile 'junit:junit:4.12'
 }

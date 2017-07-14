@@ -21,6 +21,11 @@ android {
     lintOptions {
         abortOnError false
     }
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
 }
 
 ext {
@@ -35,4 +40,5 @@ dependencies {
     compile 'me.panavtec:wizard:1.2'
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    testCompile 'junit:junit:4.12'
 }

@@ -10,4 +10,6 @@ android:
     - extra
     - tools
 script:
-   - ./gradlew assembleDebug
+   - ./gradlew assembleDebug test
+after_success:
+   - bash <(curl -s https://codecov.io/bash)
