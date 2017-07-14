@@ -6,12 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.fragments.AdditionalDetailsFragment;
+import in.tosc.digitaloceanapp.fragments.DataCenterFragment;
 import in.tosc.digitaloceanapp.fragments.SelectImageFragment;
 import in.tosc.digitaloceanapp.fragments.SelectSizeFragment;
-import in.tosc.digitaloceanapp.fragments.DataCenterFragment;
 import in.tosc.doandroidlib.objects.Droplet;
 
 /**
@@ -25,13 +26,15 @@ public class DropletCreateActivity extends AppCompatActivity {
     Button btnNext;
     Button btnPrev;
     Button btnCreateDropet;
+    private static final String TAG = "DropletCreateActivity";
 
 
-    public static Droplet getDroplet(){
+    public static Droplet getDroplet() {
         return droplet;
     }
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         droplet = new Droplet();
         setContentView(R.layout.activity_droplet_create);
@@ -43,19 +46,19 @@ public class DropletCreateActivity extends AppCompatActivity {
     private void removeFragment(int count) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        switch (count){
-            case 4 :
-                fragmentManager.popBackStack("additionalDetailsFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        switch (count) {
+            case 4:
+                fragmentManager.popBackStack("additionalDetailsFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
-            case 3 :
-                fragmentManager.popBackStack("selectSizeFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            case 3:
+                fragmentManager.popBackStack("selectSizeFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 btnNext.setVisibility(View.VISIBLE);
                 break;
-            case 2 :
-                fragmentManager.popBackStack("DataCenterFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            case 2:
+                fragmentManager.popBackStack("DataCenterFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
-            case 1 :
-                fragmentManager.popBackStack("DataCenterFragment" , FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            case 1:
+                fragmentManager.popBackStack("DataCenterFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             default:
                 count = 1;
@@ -67,23 +70,23 @@ public class DropletCreateActivity extends AppCompatActivity {
     private void addFragment(int count) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        switch(count){
+        switch (count) {
 
-            case 2 :
+            case 2:
                 DataCenterFragment selectDataCenter = new DataCenterFragment();
-                fragmentTransaction.replace(R.id.fragmentHolder,selectDataCenter,"DATA_CENTER");
+                fragmentTransaction.replace(R.id.fragmentHolder, selectDataCenter, "DATA_CENTER");
                 fragmentTransaction.addToBackStack("DataCenterFragment");
                 fragmentTransaction.commit();
                 break;
-            case 3 :
+            case 3:
                 SelectSizeFragment selectSizeFragment = new SelectSizeFragment();
-                fragmentTransaction.replace(R.id.fragmentHolder,selectSizeFragment,"SELECT_SIZE");
+                fragmentTransaction.replace(R.id.fragmentHolder, selectSizeFragment, "SELECT_SIZE");
                 fragmentTransaction.addToBackStack("selectSizeFragment");
                 fragmentTransaction.commit();
                 break;
-            case 4 :
+            case 4:
                 AdditionalDetailsFragment additionalDetailsFragment = new AdditionalDetailsFragment();
-                fragmentTransaction.replace(R.id.fragmentHolder,additionalDetailsFragment,"ADDITIONAL_DETAILS");
+                fragmentTransaction.replace(R.id.fragmentHolder, additionalDetailsFragment, "ADDITIONAL_DETAILS");
                 fragmentTransaction.addToBackStack("additionalDetailsFragment");
                 fragmentTransaction.commit();
                 btnNext.setVisibility(View.GONE);
@@ -109,7 +112,7 @@ public class DropletCreateActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         SelectImageFragment selectImageFragment = new SelectImageFragment();
-        fragmentTransaction.replace(R.id.fragmentHolder,selectImageFragment,"CREATE_DROPLET");
+        fragmentTransaction.replace(R.id.fragmentHolder, selectImageFragment, "CREATE_DROPLET");
         fragmentTransaction.addToBackStack("additionalDetailsFragment");
         fragmentTransaction.commit();
     }
@@ -122,9 +125,20 @@ public class DropletCreateActivity extends AppCompatActivity {
     }
 
     public void next(View view) {
-        count++;
-//        Log.d("count" , String.valueOf(count));
-        addFragment(count);
-        Log.e("Decreased count", String.valueOf(count));
+
+        int setCount =  (droplet.getImage()!=null?1:0) +
+                        (droplet.getRegion()!=null?1:0) +
+                        (droplet.getSize()!=null?1:0);
+
+        if(setCount == count) {
+            count++;
+            addFragment(count);
+            Log.e("Decreased count", String.valueOf(count));
+        }
+        else
+        {
+            Toast.makeText(this, R.string.please_choose_option, Toast.LENGTH_SHORT).show();
+        }
     }
+
 }

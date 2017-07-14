@@ -30,8 +30,11 @@ import java.util.List;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
+import in.tosc.digitaloceanapp.interfaces.OnDropletNameChange;
 import in.tosc.digitaloceanapp.utils.FontsOverride;
-import in.tosc.digitaloceanapp.Interfaces.onDropletNameChange;
+
+
+
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Account;
@@ -121,7 +124,15 @@ public class DropletActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<Droplets> call, Response<Droplets> response) {
                 droplets.clear();
-                droplets.addAll(response.body().getDroplets());
+                List<Droplet> dropletsDownloaded = response.body().getDroplets();
+                for(Droplet droplet: dropletsDownloaded)
+                {
+                    if(droplet.isLocked())
+                    {
+                        dropletsDownloaded.remove(droplet);  //A locked droplet prevents any user actions
+                    }
+                }
+                droplets.addAll(dropletsDownloaded);
                 dropletsAdapter.notifyDataSetChanged();
                 Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
             }
@@ -134,7 +145,7 @@ public class DropletActivity extends AppCompatActivity
         });
     }
 
-    public static void refreshModifiedData(final onDropletNameChange onDropletNameChange) {
+    public static void refreshModifiedData(final OnDropletNameChange onDropletNameChange) {
 
         doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
             @Override
@@ -240,7 +251,8 @@ public class DropletActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_about) {
-
+            Intent i = new Intent(this,AboutActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

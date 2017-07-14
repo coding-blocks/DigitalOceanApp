@@ -10,6 +10,7 @@ import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.objects.Droplets;
 import in.tosc.doandroidlib.objects.Image;
 import in.tosc.doandroidlib.objects.Images;
+import in.tosc.doandroidlib.objects.Regions;
 import in.tosc.doandroidlib.objects.Size;
 import in.tosc.doandroidlib.objects.Sizes;
 import retrofit2.Call;
@@ -24,7 +25,7 @@ import retrofit2.http.Query;
  * Created by championswimmer on 26/11/16.
  */
 
-public interface    DigitalOceanClient {
+public interface DigitalOceanClient {
 
     @GET("account")
     Call<AccountInfo> getAccount();
@@ -50,8 +51,12 @@ public interface    DigitalOceanClient {
     Call<Action> performAction(
             @Path("id") Integer dropletId,
             @Field("type") ActionType actionType,
-            @Field("name") String name              // for rename or snapshot
-            );
+            @Field("name") String name             // for rename or snapshot
+    );
+
+    //For getting regions
+    @GET("regions")
+    Call<Regions> getRegions();
 
 
     @FormUrlEncoded
@@ -66,8 +71,6 @@ public interface    DigitalOceanClient {
             @Field("private_networking") Boolean private_networking
 
     );
-
-
 
 
 }

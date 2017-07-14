@@ -1,6 +1,9 @@
 # DigitalOceanApp
+
+[![Build Status](https://travis-ci.org/coding-blocks/DigitalOceanApp.svg?branch=master)](https://travis-ci.org/coding-blocks/DigitalOceanApp)
+
 Android App and Android Library for accessing the DigitalOcean API.
-Made as a part of DigitalOcean CloudHackathon.
+Originally made as a part of DigitalOcean CloudHackathon.
 
 The library provides easy to use Java methods to make API calls to DigitalOcean.
 
