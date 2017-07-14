@@ -3,23 +3,11 @@ package in.tosc.doandroidlib;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-import java.util.List;
 
 import in.tosc.doandroidlib.api.DOLoginActivity;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.api.DigitalOceanStatisticsClient;
-import in.tosc.doandroidlib.objects.Account;
-import in.tosc.doandroidlib.objects.Action;
-import in.tosc.doandroidlib.objects.Droplet;
-import in.tosc.doandroidlib.objects.Image;
-import in.tosc.doandroidlib.objects.Size;
-import in.tosc.doandroidlib.serializer.ListDeserializer;
-import in.tosc.doandroidlib.serializer.ObjectDeserializer;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

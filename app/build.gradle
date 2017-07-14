@@ -7,8 +7,8 @@ android {
         applicationId "in.tosc.digitaloceanapp"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 11
-        versionName "0.1.1"
+        versionCode 20
+        versionName "0.2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
@@ -16,8 +16,12 @@ android {
     }
     useLibrary 'org.apache.http.legacy'
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
