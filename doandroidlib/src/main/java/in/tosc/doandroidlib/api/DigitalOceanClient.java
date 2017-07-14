@@ -4,10 +4,14 @@ import java.util.List;
 
 import in.tosc.doandroidlib.common.ActionType;
 import in.tosc.doandroidlib.objects.Account;
+import in.tosc.doandroidlib.objects.AccountInfo;
 import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
+import in.tosc.doandroidlib.objects.Droplets;
 import in.tosc.doandroidlib.objects.Image;
+import in.tosc.doandroidlib.objects.Images;
 import in.tosc.doandroidlib.objects.Size;
+import in.tosc.doandroidlib.objects.Sizes;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -23,23 +27,23 @@ import retrofit2.http.Query;
 public interface    DigitalOceanClient {
 
     @GET("account")
-    Call<Account> getAccount();
+    Call<AccountInfo> getAccount();
 
     @GET("droplets")
-    Call<List<Droplet>> getDroplets(
+    Call<Droplets> getDroplets(
             @Query("page") int pageNo,
             @Query("per_page") int dropsPerPage
     );
 
     @GET("images")
-    Call<List<Image>> getImages(
+    Call<Images> getImages(
             @Query("page") int pageNo,
             @Query("per_page") int dropsPerPage,
             @Query("type") String type
     );
 
     @GET("sizes")
-    Call<List<Size>> getSizes();
+    Call<Sizes> getSizes();
 
     @FormUrlEncoded
     @POST("droplets/{id}/actions")

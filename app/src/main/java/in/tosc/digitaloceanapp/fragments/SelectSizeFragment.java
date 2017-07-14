@@ -17,6 +17,7 @@ import in.tosc.digitaloceanapp.adapters.SelectSizeAdapter;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Size;
+import in.tosc.doandroidlib.objects.Sizes;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,17 +43,17 @@ public class SelectSizeFragment extends Fragment{
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_size);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
         recyclerView.setAdapter(selectSizeAdapter);
-        doClient.getSizes().enqueue(new Callback<List<Size>>() {
+        doClient.getSizes().enqueue(new Callback<Sizes>() {
             @Override
-            public void onResponse(Call<List<Size>> call, Response<List<Size>> response) {
-                sizeList = response.body();
+            public void onResponse(Call<Sizes> call, Response<Sizes> response) {
+                sizeList = response.body().getSizes();
                 selectSizeAdapter = new SelectSizeAdapter(sizeList, getContext());
                 recyclerView.setAdapter(selectSizeAdapter);
                 Log.e("Sizes fetched", String.valueOf(sizeList.size()));
             }
 
             @Override
-            public void onFailure(Call<List<Size>> call, Throwable t) {
+            public void onFailure(Call<Sizes> call, Throwable t) {
                 Log.e("Failed getting sizes",t.getLocalizedMessage());
             }
         });

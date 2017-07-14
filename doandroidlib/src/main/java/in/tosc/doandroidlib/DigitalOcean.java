@@ -84,20 +84,10 @@ public class DigitalOcean {
                 .build();
 
 
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(Account.class, new ObjectDeserializer<Account>("account"))
-                .registerTypeAdapter(Action.class, new ObjectDeserializer<Action>("action"))
-                .registerTypeAdapter(new TypeToken<List<Droplet>>() {
-                }.getType(), new ListDeserializer<Droplet>("droplets"))
-                .registerTypeAdapter(new TypeToken<List<Image>>() {
-                }.getType(), new ListDeserializer<Image>("images"))
-                .registerTypeAdapter(new TypeToken<List<Size>>() {
-                }.getType(), new ListDeserializer<Size>("sizes"))
-                .create();
 
         r = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient)
                 .build();
         r2 = new Retrofit.Builder()
@@ -123,21 +113,9 @@ public class DigitalOcean {
                     })
                     .build();
 
-
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(Account.class, new ObjectDeserializer<Account>("account"))
-                    .registerTypeAdapter(Action.class, new ObjectDeserializer<Action>("action"))
-                    .registerTypeAdapter(new TypeToken<List<Droplet>>() {
-                    }.getType(), new ListDeserializer<Droplet>("droplets"))
-                    .registerTypeAdapter(new TypeToken<List<Image>>() {
-                    }.getType(), new ListDeserializer<Image>("images"))
-                    .registerTypeAdapter(new TypeToken<List<Size>>() {
-                    }.getType(), new ListDeserializer<Size>("sizes"))
-                    .create();
-
             r = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .addConverterFactory(GsonConverterFactory.create())
                     .client(httpClient)
                     .build();
         }

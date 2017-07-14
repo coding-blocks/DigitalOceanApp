@@ -35,7 +35,9 @@ import in.tosc.digitaloceanapp.Interfaces.onDropletNameChange;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Account;
+import in.tosc.doandroidlib.objects.AccountInfo;
 import in.tosc.doandroidlib.objects.Droplet;
+import in.tosc.doandroidlib.objects.Droplets;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -91,18 +93,20 @@ public class DropletActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        doClient.getAccount().enqueue(new Callback<Account>() {
+        doClient.getAccount().enqueue(new Callback<AccountInfo>() {
             @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-                String email = response.body().getEmail();
+            public void onResponse(Call<AccountInfo> call, Response<AccountInfo> response) {
+                String email = response.body().getAccount().getEmail();
                 ((TextView) drawer.findViewById(R.id.accountEmail)).setText(email);
                 ImageView profilePic = ((ImageView) drawer.findViewById(R.id.accountPic));
-                Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/" + md5(email)).into(profilePic);
+                if (email != null && !email.isEmpty()) {
+                    Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/" + md5(email)).into(profilePic);
+                }
 
             }
 
             @Override
-            public void onFailure(Call<Account> call, Throwable t) {
+            public void onFailure(Call<AccountInfo> call, Throwable t) {
                 Log.e("Failed to get email", t.getLocalizedMessage());
             }
         });
@@ -113,17 +117,17 @@ public class DropletActivity extends AppCompatActivity
 
     public static void refreshData() {
 
-        doClient.getDroplets(1, 10).enqueue(new Callback<List<Droplet>>() {
+        doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
             @Override
-            public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
+            public void onResponse(Call<Droplets> call, Response<Droplets> response) {
                 droplets.clear();
-                droplets.addAll(response.body());
+                droplets.addAll(response.body().getDroplets());
                 dropletsAdapter.notifyDataSetChanged();
-                Log.e("Droplets fetched", String.valueOf(response.body().size()));
+                Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
             }
 
             @Override
-            public void onFailure(Call<List<Droplet>> call, Throwable t) {
+            public void onFailure(Call<Droplets> call, Throwable t) {
                 droplets = null;
                 Log.e("Failed to get Droplets", t.getMessage());
             }
@@ -132,18 +136,18 @@ public class DropletActivity extends AppCompatActivity
 
     public static void refreshModifiedData(final onDropletNameChange onDropletNameChange) {
 
-        doClient.getDroplets(1, 10).enqueue(new Callback<List<Droplet>>() {
+        doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
             @Override
-            public void onResponse(Call<List<Droplet>> call, Response<List<Droplet>> response) {
+            public void onResponse(Call<Droplets> call, Response<Droplets> response) {
                 droplets.clear();
-                droplets.addAll(response.body());
+                droplets.addAll(response.body().getDroplets());
                 dropletsAdapter.notifyDataSetChanged();
-                Log.e("Droplets fetched", String.valueOf(response.body().size()));
+                Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
                 onDropletNameChange.onSuccess(droplets);
             }
 
             @Override
-            public void onFailure(Call<List<Droplet>> call, Throwable t) {
+            public void onFailure(Call<Droplets> call, Throwable t) {
                 droplets = null;
                 Log.e("Failed to get Droplets", t.getMessage());
                 onDropletNameChange.onError(t.getMessage());

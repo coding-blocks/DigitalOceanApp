@@ -16,6 +16,7 @@ import in.tosc.digitaloceanapp.adapters.ImageAdapter;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Image;
+import in.tosc.doandroidlib.objects.Images;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,16 +45,16 @@ public class SelectImageFragment extends Fragment {
         imageRecyclerView = (RecyclerView) view.findViewById(R.id.imageRecyclerVIew);
         imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
         imageRecyclerView.setAdapter(imageAdapter);
-                doClient.getImages(1,100,"distribution").enqueue(new Callback<List<Image>>() {
+                doClient.getImages(1,100,"distribution").enqueue(new Callback<Images>() {
                     @Override
-                    public void onResponse(Call<List<Image>> call, Response<List<Image>> response) {
-                        imageList = response.body();
+                    public void onResponse(Call<Images> call, Response<Images> response) {
+                        imageList = response.body().getImages();
                         imageAdapter = new ImageAdapter(imageList,getContext());
                         imageRecyclerView.setAdapter(imageAdapter);
                         Log.e("Droplets fetched", String.valueOf(imageList.size()));
                     }
                     @Override
-                    public void onFailure(Call<List<Image>> call, Throwable t) {
+                    public void onFailure(Call<Images> call, Throwable t) {
                         Log.e("Failed getting images",t.getLocalizedMessage());
                     }
                 });

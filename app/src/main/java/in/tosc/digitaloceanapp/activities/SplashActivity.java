@@ -20,7 +20,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (!getSharedPreferences("DO", MODE_PRIVATE).getString("authToken", "").isEmpty()) {
+        String authToken = getSharedPreferences("DO", MODE_PRIVATE).getString("authToken", "");
+
+        if (!authToken.isEmpty()) {
             progressFurther();
         }
 
