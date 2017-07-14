@@ -77,7 +77,7 @@
     <string name="static_email_account">android.studio@android.com</string>
     <string name="login">Login</string>
     <string name="signup">Sign-Up</string>
-  
+
     <string name="dialog_delete_droplet_msg">Are you sure you would like to delete %s? This is irreversible. We will destroy your Droplet and all associated backups. All Droplet data will be scrubbed and irretrievable.</string>
     <string name="dialog_confirm">Confirm</string>
     <string name="dialog_cancel">Cancel</string>
@@ -88,4 +88,23 @@
     <string name="backup_couldnt_be_disabled">Backup could not be disabled</string>
 
     <string name="please_choose_option">Please choose an option</string>
+
+
+    <string name="about">About</string>
+    <string name="support_development">Support Development</string>
+    <string name="github">GitHub</string>
+    <string name="github_summary">Fork the repo and push changes or submit new issues.</string>
+    <string name="contributors">Contributors</string>
+    <string name="contributor1_name">Arnav Gupta</string>
+    <string name="contributor1_username">championswimmer</string>
+    <string name="contributor2_name">Harshit Dwidedi</string>
+    <string name="contributor2_username">the-dagger</string>
+    <string name="contributor3_name">Rishabh Khanna</string>
+    <string name="contributor3_username">Rishabhk07</string>
+    <string name="contributor4_name">Ojasva Jain</string>
+    <string name="contributor4_username">ojasvajain</string>
+    <string name="contributor5_name">Neeraj Jha</string>
+    <string name="contributor5_username">Jonsnow21</string>
+    <string name="see_all_contributors">See all contributors</string>
+
 </resources>
