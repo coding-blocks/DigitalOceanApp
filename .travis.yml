@@ -1,7 +1,7 @@
 language: android
 env:
   global:
-    - ANDROID_VERSION=25
+    - ANDROID_VERSION=android-22
     - ANDROID_ABI=armeabi-v7a
 jdk:
   - oraclejdk8
@@ -12,10 +12,10 @@ android:
     - tools # not a typo
     - extra
     - build-tools-25.0.2
-    - android-$ANDROID_VERSION
-    - sys-img-$ANDROID_ABI-android-$ANDROID_VERSION
+    - $ANDROID_VERSION
+    - sys-img-$ANDROID_ABI-$ANDROID_VERSION
 before_script:
-  - echo no | android create avd --force -n test -t "android-"$ANDROID_VERSION --abi $ANDROID_ABI
+  - echo no | android create avd --force -n test -t $ANDROID_VERSION --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
