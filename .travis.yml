@@ -1,37 +1,41 @@
 language: android
 env:
   matrix:
-    - ANDROID_VERSION=android-16 ANDROID_ABI=armeabi-v7a
+    - ANDROID_VERSION=android-19 ANDROID_ABI=armeabi-v7a
     - ANDROID_VERSION=android-21 ANDROID_ABI=armeabi-v7a
-    - ANDROID_VERSION=android-22 ANDROID_ABI=armeabi-v7a
     - ANDROID_VERSION=android-23 ANDROID_ABI=armeabi-v7a
+    - ANDROID_VERSION=android-25 ANDROID_ABI=armeabi-v7a
+matrix:
+  allow_failures:
+    - env: ANDROID_VERSION=android-19 ANDROID_ABI=armeabi-v7a
+    - env: ANDROID_VERSION=android-25 ANDROID_ABI=armeabi-v7a
 jdk:
   - oraclejdk8
 android:
   components:
     - tools
-    - tools
     - build-tools-25.0.2
     - platform-tools
+    - tools
     - extra-android-m2repository
     - extra-google-android-support
     # The BuildTools version used by your project
     #- build-tools-19.1.0
 
     # The SDK version used to compile your project
-    - android-16
+    - android-19
     - android-21
-    - android-22
     - android-23
+    - android-25
 
     # Additional components
 
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
-    - sys-img-armeabi-v7a-android-16
+    - sys-img-armeabi-v7a-android-19
     - sys-img-armeabi-v7a-android-21
-    - sys-img-armeabi-v7a-android-22
     - sys-img-armeabi-v7a-android-23
+    - sys-img-armeabi-v7a-android-25
 before_script:
   - echo no | android create avd --force -n test -t $ANDROID_VERSION --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-window &
