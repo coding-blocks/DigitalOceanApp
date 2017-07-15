@@ -9,13 +9,13 @@ env:
     - BUILD_TOOLS="25.0.2"
     - TARGET_SDK=25
   matrix:
-    - EMULATOR_API=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+#    - EMULATOR_API=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
     - EMULATOR_API=21 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-#    - EMULATOR_API=23 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - EMULATOR_API=24 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 #    - EMULATOR_API=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-#matrix:
-#  allow_failures:
-#    - EMULATOR_API=23 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+matrix:
+  allow_failures:
+    - EMULATOR_API=24 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 #    - EMULATOR_API=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 android:
  components:
