@@ -130,6 +130,426 @@ public class MockResponses {
                         "  }\n" +
                         "}"
         );
+        api.put("sizes",
+                "{\n" +
+                        "  \"sizes\": [\n" +
+                        "    {\n" +
+                        "      \"slug\": \"512mb\",\n" +
+                        "      \"memory\": 512,\n" +
+                        "      \"vcpus\": 1,\n" +
+                        "      \"disk\": 20,\n" +
+                        "      \"transfer\": 1.0,\n" +
+                        "      \"price_monthly\": 5.0,\n" +
+                        "      \"price_hourly\": 0.00744,\n" +
+                        "      \"regions\": [\n" +
+                        "        \"nyc1\",\n" +
+                        "        \"sgp1\",\n" +
+                        "        \"ams1\",\n" +
+                        "        \"ams2\",\n" +
+                        "        \"sfo1\",\n" +
+                        "        \"nyc2\",\n" +
+                        "        \"lon1\",\n" +
+                        "        \"nyc3\",\n" +
+                        "        \"ams3\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"slug\": \"1gb\",\n" +
+                        "      \"memory\": 1024,\n" +
+                        "      \"vcpus\": 1,\n" +
+                        "      \"disk\": 30,\n" +
+                        "      \"transfer\": 2.0,\n" +
+                        "      \"price_monthly\": 10.0,\n" +
+                        "      \"price_hourly\": 0.01488,\n" +
+                        "      \"regions\": [\n" +
+                        "        \"nyc2\",\n" +
+                        "        \"sgp1\",\n" +
+                        "        \"ams1\",\n" +
+                        "        \"sfo1\",\n" +
+                        "        \"lon1\",\n" +
+                        "        \"nyc3\",\n" +
+                        "        \"ams3\",\n" +
+                        "        \"ams2\",\n" +
+                        "        \"nyc1\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"slug\": \"2gb\",\n" +
+                        "      \"memory\": 2048,\n" +
+                        "      \"vcpus\": 2,\n" +
+                        "      \"disk\": 40,\n" +
+                        "      \"transfer\": 3.0,\n" +
+                        "      \"price_monthly\": 20.0,\n" +
+                        "      \"price_hourly\": 0.02976,\n" +
+                        "      \"regions\": [\n" +
+                        "        \"nyc2\",\n" +
+                        "        \"sfo1\",\n" +
+                        "        \"ams1\",\n" +
+                        "        \"sgp1\",\n" +
+                        "        \"ams2\",\n" +
+                        "        \"lon1\",\n" +
+                        "        \"nyc3\",\n" +
+                        "        \"ams3\",\n" +
+                        "        \"nyc1\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"slug\": \"4gb\",\n" +
+                        "      \"memory\": 4096,\n" +
+                        "      \"vcpus\": 2,\n" +
+                        "      \"disk\": 60,\n" +
+                        "      \"transfer\": 4.0,\n" +
+                        "      \"price_monthly\": 40.0,\n" +
+                        "      \"price_hourly\": 0.05952,\n" +
+                        "      \"regions\": [\n" +
+                        "        \"nyc2\",\n" +
+                        "        \"sfo1\",\n" +
+                        "        \"ams1\",\n" +
+                        "        \"sgp1\",\n" +
+                        "        \"ams2\",\n" +
+                        "        \"lon1\",\n" +
+                        "        \"nyc3\",\n" +
+                        "        \"ams3\",\n" +
+                        "        \"nyc1\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"slug\": \"8gb\",\n" +
+                        "      \"memory\": 8192,\n" +
+                        "      \"vcpus\": 4,\n" +
+                        "      \"disk\": 80,\n" +
+                        "      \"transfer\": 5.0,\n" +
+                        "      \"price_monthly\": 80.0,\n" +
+                        "      \"price_hourly\": 0.11905,\n" +
+                        "      \"regions\": [\n" +
+                        "        \"nyc2\",\n" +
+                        "        \"sfo1\",\n" +
+                        "        \"sgp1\",\n" +
+                        "        \"ams1\",\n" +
+                        "        \"ams2\",\n" +
+                        "        \"nyc1\",\n" +
+                        "        \"lon1\",\n" +
+                        "        \"nyc3\",\n" +
+                        "        \"ams3\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"slug\": \"16gb\",\n" +
+                        "      \"memory\": 16384,\n" +
+                        "      \"vcpus\": 8,\n" +
+                        "      \"disk\": 160,\n" +
+                        "      \"transfer\": 6.0,\n" +
+                        "      \"price_monthly\": 160.0,\n" +
+                        "      \"price_hourly\": 0.2381,\n" +
+                        "      \"regions\": [\n" +
+                        "        \"sgp1\",\n" +
+                        "        \"nyc1\",\n" +
+                        "        \"sfo1\",\n" +
+                        "        \"ams2\",\n" +
+                        "        \"nyc3\",\n" +
+                        "        \"lon1\",\n" +
+                        "        \"nyc2\",\n" +
+                        "        \"ams1\",\n" +
+                        "        \"ams3\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"slug\": \"32gb\",\n" +
+                        "      \"memory\": 32768,\n" +
+                        "      \"vcpus\": 12,\n" +
+                        "      \"disk\": 320,\n" +
+                        "      \"transfer\": 7.0,\n" +
+                        "      \"price_monthly\": 320.0,\n" +
+                        "      \"price_hourly\": 0.47619,\n" +
+                        "      \"regions\": [\n" +
+                        "        \"nyc2\",\n" +
+                        "        \"sgp1\",\n" +
+                        "        \"ams2\",\n" +
+                        "        \"nyc1\",\n" +
+                        "        \"sfo1\",\n" +
+                        "        \"lon1\",\n" +
+                        "        \"ams3\",\n" +
+                        "        \"nyc3\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"slug\": \"48gb\",\n" +
+                        "      \"memory\": 49152,\n" +
+                        "      \"vcpus\": 16,\n" +
+                        "      \"disk\": 480,\n" +
+                        "      \"transfer\": 8.0,\n" +
+                        "      \"price_monthly\": 480.0,\n" +
+                        "      \"price_hourly\": 0.71429,\n" +
+                        "      \"regions\": [\n" +
+                        "        \"sgp1\",\n" +
+                        "        \"ams2\",\n" +
+                        "        \"sfo1\",\n" +
+                        "        \"nyc1\",\n" +
+                        "        \"lon1\",\n" +
+                        "        \"nyc2\",\n" +
+                        "        \"ams3\",\n" +
+                        "        \"nyc3\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"slug\": \"64gb\",\n" +
+                        "      \"memory\": 65536,\n" +
+                        "      \"vcpus\": 20,\n" +
+                        "      \"disk\": 640,\n" +
+                        "      \"transfer\": 9.0,\n" +
+                        "      \"price_monthly\": 640.0,\n" +
+                        "      \"price_hourly\": 0.95238,\n" +
+                        "      \"regions\": [\n" +
+                        "        \"sgp1\",\n" +
+                        "        \"nyc1\",\n" +
+                        "        \"nyc2\",\n" +
+                        "        \"sfo1\",\n" +
+                        "        \"lon1\",\n" +
+                        "        \"ams3\",\n" +
+                        "        \"ams2\",\n" +
+                        "        \"nyc3\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    }\n" +
+                        "  ],\n" +
+                        "  \"links\": {\n" +
+                        "  },\n" +
+                        "  \"meta\": {\n" +
+                        "    \"total\": 9\n" +
+                        "  }\n" +
+                        "}"
+        );
+
+        api.put("images",
+                "{\n" +
+                        "  \"images\": [\n" +
+                        "    {\n" +
+                        "      \"id\": 7555620,\n" +
+                        "      \"name\": \"Nifty New Snapshot\",\n" +
+                        "      \"distribution\": \"Ubuntu\",\n" +
+                        "      \"slug\": null,\n" +
+                        "      \"public\": false,\n" +
+                        "      \"regions\": [\n" +
+                        "        \"nyc2\",\n" +
+                        "        \"nyc2\"\n" +
+                        "      ],\n" +
+                        "      \"created_at\": \"2014-11-04T22:23:02Z\",\n" +
+                        "      \"type\": \"snapshot\",\n" +
+                        "      \"min_disk_size\": 20,\n" +
+                        "      \"size_gigabytes\": 2.34\n" +
+                        "    }\n" +
+                        "  ],\n" +
+                        "  \"links\": {\n" +
+                        "    \"pages\": {\n" +
+                        "      \"last\": \"https://api.digitalocean.com/v2/images?page=56&per_page=1\",\n" +
+                        "      \"next\": \"https://api.digitalocean.com/v2/images?page=2&per_page=1\"\n" +
+                        "    }\n" +
+                        "  },\n" +
+                        "  \"meta\": {\n" +
+                        "    \"total\": 56\n" +
+                        "  }\n" +
+                        "}"
+        );
+
+        api.put("regions",
+                "{\n" +
+                        "  \"regions\": [\n" +
+                        "    {\n" +
+                        "      \"name\": \"New York 1\",\n" +
+                        "      \"slug\": \"nyc1\",\n" +
+                        "      \"sizes\": [\n" +
+                        "\n" +
+                        "      ],\n" +
+                        "      \"features\": [\n" +
+                        "        \"virtio\",\n" +
+                        "        \"backups\"\n" +
+                        "      ],\n" +
+                        "      \"available\": false\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"name\": \"Amsterdam 1\",\n" +
+                        "      \"slug\": \"ams1\",\n" +
+                        "      \"sizes\": [\n" +
+                        "\n" +
+                        "      ],\n" +
+                        "      \"features\": [\n" +
+                        "        \"virtio\",\n" +
+                        "        \"backups\"\n" +
+                        "      ],\n" +
+                        "      \"available\": false\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"name\": \"San Francisco 1\",\n" +
+                        "      \"slug\": \"sfo1\",\n" +
+                        "      \"sizes\": [\n" +
+                        "        \"32gb\",\n" +
+                        "        \"16gb\",\n" +
+                        "        \"2gb\",\n" +
+                        "        \"1gb\",\n" +
+                        "        \"4gb\",\n" +
+                        "        \"8gb\",\n" +
+                        "        \"512mb\",\n" +
+                        "        \"64gb\",\n" +
+                        "        \"48gb\"\n" +
+                        "      ],\n" +
+                        "      \"features\": [\n" +
+                        "        \"virtio\",\n" +
+                        "        \"backups\",\n" +
+                        "        \"metadata\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"name\": \"New York 2\",\n" +
+                        "      \"slug\": \"nyc2\",\n" +
+                        "      \"sizes\": [\n" +
+                        "        \"32gb\",\n" +
+                        "        \"16gb\",\n" +
+                        "        \"2gb\",\n" +
+                        "        \"1gb\",\n" +
+                        "        \"4gb\",\n" +
+                        "        \"8gb\",\n" +
+                        "        \"512mb\",\n" +
+                        "        \"64gb\",\n" +
+                        "        \"48gb\"\n" +
+                        "      ],\n" +
+                        "      \"features\": [\n" +
+                        "        \"virtio\",\n" +
+                        "        \"private_networking\",\n" +
+                        "        \"backups\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"name\": \"Amsterdam 2\",\n" +
+                        "      \"slug\": \"ams2\",\n" +
+                        "      \"sizes\": [\n" +
+                        "        \"32gb\",\n" +
+                        "        \"16gb\",\n" +
+                        "        \"2gb\",\n" +
+                        "        \"1gb\",\n" +
+                        "        \"4gb\",\n" +
+                        "        \"8gb\",\n" +
+                        "        \"512mb\",\n" +
+                        "        \"64gb\",\n" +
+                        "        \"48gb\"\n" +
+                        "      ],\n" +
+                        "      \"features\": [\n" +
+                        "        \"virtio\",\n" +
+                        "        \"private_networking\",\n" +
+                        "        \"backups\",\n" +
+                        "        \"metadata\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"name\": \"Singapore 1\",\n" +
+                        "      \"slug\": \"sgp1\",\n" +
+                        "      \"sizes\": [\n" +
+                        "        \"32gb\",\n" +
+                        "        \"16gb\",\n" +
+                        "        \"2gb\",\n" +
+                        "        \"1gb\",\n" +
+                        "        \"4gb\",\n" +
+                        "        \"8gb\",\n" +
+                        "        \"512mb\",\n" +
+                        "        \"64gb\",\n" +
+                        "        \"48gb\"\n" +
+                        "      ],\n" +
+                        "      \"features\": [\n" +
+                        "        \"virtio\",\n" +
+                        "        \"private_networking\",\n" +
+                        "        \"backups\",\n" +
+                        "        \"ipv6\",\n" +
+                        "        \"metadata\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"name\": \"London 1\",\n" +
+                        "      \"slug\": \"lon1\",\n" +
+                        "      \"sizes\": [\n" +
+                        "        \"32gb\",\n" +
+                        "        \"16gb\",\n" +
+                        "        \"2gb\",\n" +
+                        "        \"1gb\",\n" +
+                        "        \"4gb\",\n" +
+                        "        \"8gb\",\n" +
+                        "        \"512mb\",\n" +
+                        "        \"64gb\",\n" +
+                        "        \"48gb\"\n" +
+                        "      ],\n" +
+                        "      \"features\": [\n" +
+                        "        \"virtio\",\n" +
+                        "        \"private_networking\",\n" +
+                        "        \"backups\",\n" +
+                        "        \"ipv6\",\n" +
+                        "        \"metadata\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"name\": \"New York 3\",\n" +
+                        "      \"slug\": \"nyc3\",\n" +
+                        "      \"sizes\": [\n" +
+                        "        \"32gb\",\n" +
+                        "        \"16gb\",\n" +
+                        "        \"2gb\",\n" +
+                        "        \"1gb\",\n" +
+                        "        \"4gb\",\n" +
+                        "        \"8gb\",\n" +
+                        "        \"512mb\",\n" +
+                        "        \"64gb\",\n" +
+                        "        \"48gb\"\n" +
+                        "      ],\n" +
+                        "      \"features\": [\n" +
+                        "        \"virtio\",\n" +
+                        "        \"private_networking\",\n" +
+                        "        \"backups\",\n" +
+                        "        \"ipv6\",\n" +
+                        "        \"metadata\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    },\n" +
+                        "    {\n" +
+                        "      \"name\": \"Amsterdam 3\",\n" +
+                        "      \"slug\": \"ams3\",\n" +
+                        "      \"sizes\": [\n" +
+                        "        \"32gb\",\n" +
+                        "        \"16gb\",\n" +
+                        "        \"2gb\",\n" +
+                        "        \"1gb\",\n" +
+                        "        \"4gb\",\n" +
+                        "        \"8gb\",\n" +
+                        "        \"512mb\",\n" +
+                        "        \"64gb\",\n" +
+                        "        \"48gb\"\n" +
+                        "      ],\n" +
+                        "      \"features\": [\n" +
+                        "        \"virtio\",\n" +
+                        "        \"private_networking\",\n" +
+                        "        \"backups\",\n" +
+                        "        \"ipv6\",\n" +
+                        "        \"metadata\"\n" +
+                        "      ],\n" +
+                        "      \"available\": true\n" +
+                        "    }\n" +
+                        "  ],\n" +
+                        "  \"links\": {\n" +
+                        "  },\n" +
+                        "  \"meta\": {\n" +
+                        "    \"total\": 9\n" +
+                        "  }\n" +
+                        "}"
+        );
     }
 
 }
