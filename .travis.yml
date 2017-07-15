@@ -14,9 +14,9 @@ jdk:
 android:
   components:
     - tools
-    - build-tools-25.0.2
     - platform-tools
     - tools
+    - build-tools-25.0.2
     - extra-android-m2repository
     - extra-google-android-support
     # The BuildTools version used by your project
@@ -36,6 +36,10 @@ android:
     - sys-img-armeabi-v7a-android-21
     - sys-img-armeabi-v7a-android-23
     - sys-img-armeabi-v7a-android-25
+licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 before_script:
   - echo no | android create avd --force -n test -t $ANDROID_VERSION --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-window &
