@@ -65,6 +65,7 @@ public class DigitalOcean {
     private static String callbackUrl;
     private static String authToken = "";
     private static Retrofit r, r2;
+    private static OkHttpClient okHttpClient;
 
     /**
      * Static initialiser to initialise usage of Digital Ocean in your app
@@ -89,6 +90,15 @@ public class DigitalOcean {
         act.startActivityForResult(loginIntent, LOGIN_ACT_INTENT_CODE);
     }
 
+    /**
+     * Method to set your custom HttpClient. Use this if you want custom interceptors
+     * You need to do this before calling {@link #getDOClient(String)}
+     * @param customClient
+     */
+    public static void setHttpClient (OkHttpClient customClient) {
+        okHttpClient = customClient;
+    }
+
 
     /**
      * You do not need to directly use the function ever. We use this to set the Oauth Token
@@ -99,30 +109,32 @@ public class DigitalOcean {
     public static void onLoggedIn(String token) {
         DigitalOcean.authToken = token;
 
-        OkHttpClient httpClient = new OkHttpClient.Builder()
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        Request request = chain.request().newBuilder()
-                                .addHeader("Content-Type", "application/json")
-                                .addHeader("Authorization", "Bearer " + authToken)
-                                .build();
-                        return chain.proceed(request);
-                    }
-                })
-                .build();
+        if (okHttpClient == null) {
+            okHttpClient = new OkHttpClient.Builder()
+                    .addInterceptor(new Interceptor() {
+                        @Override
+                        public Response intercept(Chain chain) throws IOException {
+                            Request request = chain.request().newBuilder()
+                                    .addHeader("Content-Type", "application/json")
+                                    .addHeader("Authorization", "Bearer " + authToken)
+                                    .build();
+                            return chain.proceed(request);
+                        }
+                    })
+                    .build();
+        }
 
 
 
         r = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient)
+                .client(okHttpClient)
                 .build();
         r2 = new Retrofit.Builder()
                 .baseUrl(BASE_URL_V1)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient)
+                .client(okHttpClient)
                 .build();
     }
 
