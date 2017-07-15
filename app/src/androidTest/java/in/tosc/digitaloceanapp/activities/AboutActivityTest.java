@@ -34,7 +34,7 @@ public class AboutActivityTest {
 
     @Before
     public void setup () {
-        aboutActivity = activityRule.launchActivity(null);
+        aboutActivity = activityRule.getActivity();
         Runnable wakeUpDevice = new Runnable() {
             public void run() {
                 aboutActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
@@ -51,8 +51,4 @@ public class AboutActivityTest {
                 .check(matches(withText("Arnav Gupta")));
     }
 
-    @After
-    public void tearDown () {
-        aboutActivity.finish();
-    }
 }
