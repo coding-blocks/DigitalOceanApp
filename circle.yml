@@ -29,7 +29,7 @@ test:
     # run clean and build
     - ./gradlew clean assembleDebug
     # run tests  against the emulator after waiting.
-    - circle-android wait-for-boot
+    - "adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'"
     - ./gradlew connectedCheck
     # run lint checker
     #- lint app --html app/build/outputs/result.html
