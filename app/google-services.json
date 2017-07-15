@@ -1,0 +1,113 @@
+{
+  "project_info": {
+    "project_number": "1055474616849",
+    "firebase_url": "https://codeup-3e5a8.firebaseio.com",
+    "project_id": "codeup-3e5a8",
+    "storage_bucket": "codeup-3e5a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055474616849:android:71bb1560d3f94410",
+        "android_client_info": {
+          "package_name": "com.codingblocks.codeup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055474616849-49rshie605ol6aseu9bfpu8cm3regr6f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codingblocks.codeup",
+            "certificate_hash": "4125de4d7b577f51c2226f16d6a4158b00995f70"
+          }
+        },
+        {
+          "client_id": "1055474616849-h66tibl5ko53b79em2oilv9gssbpsoqs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB88yfRX1ZjcrmS4QsT9SU0jXeZPGMFR_Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055474616849-fnm2sngt1hpe3lmtvg6k860u13kktb4h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hack.firebase.CodeUp"
+              }
+            },
+            {
+              "client_id": "1055474616849-h66tibl5ko53b79em2oilv9gssbpsoqs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055474616849:android:9c9c71e8004904e3",
+        "android_client_info": {
+          "package_name": "in.tosc.digitaloceanapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055474616849-5mms7gba08nmo928g4rtgbg6pasqoan9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.tosc.digitaloceanapp",
+            "certificate_hash": "f3d76bdff58c555d465e2f47c97beeb2c1f77416"
+          }
+        },
+        {
+          "client_id": "1055474616849-h66tibl5ko53b79em2oilv9gssbpsoqs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB88yfRX1ZjcrmS4QsT9SU0jXeZPGMFR_Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055474616849-fnm2sngt1hpe3lmtvg6k860u13kktb4h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hack.firebase.CodeUp"
+              }
+            },
+            {
+              "client_id": "1055474616849-h66tibl5ko53b79em2oilv9gssbpsoqs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
