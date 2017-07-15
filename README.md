@@ -1,6 +1,8 @@
 # DigitalOceanApp
 
 [![Build Status](https://travis-ci.org/coding-blocks/DigitalOceanApp.svg?branch=master)](https://travis-ci.org/coding-blocks/DigitalOceanApp)
+[![codecov](https://codecov.io/gh/coding-blocks/DigitalOceanApp/branch/master/graph/badge.svg)](https://codecov.io/gh/coding-blocks/DigitalOceanApp)
+
 
 Android App and Android Library for accessing the DigitalOcean API.
 Originally made as a part of DigitalOcean CloudHackathon.
