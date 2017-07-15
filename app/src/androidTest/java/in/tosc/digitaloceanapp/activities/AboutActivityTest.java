@@ -34,7 +34,7 @@ public class AboutActivityTest {
 
     @Before
     public void setup () {
-        aboutActivity = activityRule.getActivity();
+        aboutActivity = activityRule.launchActivity(null);
         Runnable wakeUpDevice = new Runnable() {
             public void run() {
                 aboutActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
