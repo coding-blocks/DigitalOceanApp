@@ -8,26 +8,26 @@ env:
     - GRADLE_OPTS="-Xmx512m"
     - ANDROID_BUILD_TOOLS_VERSION="25.0.2"
   matrix:
-    - ANDROID_VERSION=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-    - ANDROID_VERSION=21 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-    - ANDROID_VERSION=23 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-    - ANDROID_VERSION=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - ANDROID_TARGET=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - ANDROID_TARGET=21 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - ANDROID_TARGET=23 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - ANDROID_TARGET=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 matrix:
   allow_failures:
-    - ANDROID_VERSION=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-    - ANDROID_VERSION=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - ANDROID_TARGET=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - ANDROID_TARGET=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 android:
   components:
   - platform-tools
   - tools
   - build-tools-$ANDROID_BUILD_TOOLS_VERSION
-  - android-$ANDROID_VERSION
-  - addon-$ANDROID_TAG-google-$ANDROID_VERSION
+  - android-$ANDROID_TARGET
+  - addon-$ANDROID_TAG-google-$ANDROID_TARGET
   - extra-google-m2repository
   - extra-android-m2repository
-  - sys-img-armeabi-v7a-$ANDROID_VERSION
+  - sys-img-armeabi-v7a-$ANDROID_TARGET
 before_script:
-  - echo no | android create avd --force -n test -t $ANDROID_VERSION --abi $ANDROID_ABI
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
@@ -45,3 +45,6 @@ cache:
     - $HOME/.android/build-cache
     - "${TRAVIS_BUILD_DIR}/android/gradle/caches/"
     - "${TRAVIS_BUILD_DIR}/android/gradle/wrapper/dists/"
+branches:
+  only:
+    - master
