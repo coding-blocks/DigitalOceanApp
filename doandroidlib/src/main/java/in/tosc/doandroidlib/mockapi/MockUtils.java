@@ -1,4 +1,4 @@
-package in.tosc.doandroidlib.http;
+package in.tosc.doandroidlib.mockapi;
 
 import android.text.TextUtils;
 
@@ -28,9 +28,7 @@ public class MockUtils {
 
     public static OkHttpClient createClient(List<Interceptor> mockInterceptors) {
         OkHttpClient.Builder clientBuilder  = new OkHttpClient.Builder();
-
         clientBuilder.interceptors().addAll(mockInterceptors);
-
         return clientBuilder.build();
     }
 

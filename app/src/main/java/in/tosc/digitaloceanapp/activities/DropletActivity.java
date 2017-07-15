@@ -100,9 +100,11 @@ public class DropletActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<AccountInfo> call, Response<AccountInfo> response) {
                 String email = response.body().getAccount().getEmail();
-                ((TextView) drawer.findViewById(R.id.accountEmail)).setText(email);
+                if (((TextView) drawer.findViewById(R.id.accountEmail)) != null) {
+                    ((TextView) drawer.findViewById(R.id.accountEmail)).setText(email);
+                }
                 ImageView profilePic = ((ImageView) drawer.findViewById(R.id.accountPic));
-                if (email != null && !email.isEmpty()) {
+                if (profilePic != null && email != null && !email.isEmpty()) {
                     Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/" + md5(email)).into(profilePic);
                 }
 

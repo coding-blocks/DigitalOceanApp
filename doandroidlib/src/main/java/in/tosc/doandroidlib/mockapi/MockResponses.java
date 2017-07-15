@@ -1,4 +1,4 @@
-package in.tosc.doandroidlib.http;
+package in.tosc.doandroidlib.mockapi;
 
 import java.util.HashMap;
 import java.util.Map;

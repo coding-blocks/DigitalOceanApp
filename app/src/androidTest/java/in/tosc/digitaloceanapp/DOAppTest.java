@@ -3,11 +3,15 @@ package in.tosc.digitaloceanapp;
 import android.app.Instrumentation;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.test.runner.lifecycle.ApplicationLifecycleCallback;
+import android.support.test.runner.lifecycle.ApplicationLifecycleMonitor;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import in.tosc.doandroidlib.DigitalOcean;
 
 /**
  * Created by championswimmer on 15/07/17.
@@ -19,17 +23,16 @@ public class DOAppTest {
     Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
     DOApp doApp;
 
-
     @Before
-    public void setUp () throws IllegalAccessException, ClassNotFoundException, InstantiationException {
-
-        doApp = (DOApp) Instrumentation.newApplication(DOApp.class, instrumentation.getTargetContext());
-
+    public void setUp () {
+        DigitalOcean.init("id","token", true);
+        DigitalOcean.getDOClient("token");
     }
 
     @Test
-    public void check () {
-        doApp.onCreate();
+    public void startApp () throws IllegalAccessException, ClassNotFoundException, InstantiationException {
+        doApp = (DOApp) Instrumentation.newApplication(DOApp.class, instrumentation.getTargetContext());
+        instrumentation.callApplicationOnCreate(doApp);
     }
 
 }

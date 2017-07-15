@@ -12,6 +12,8 @@ import in.tosc.doandroidlib.api.DOLoginActivity;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.api.DigitalOceanStatisticsClient;
 import in.tosc.doandroidlib.exceptions.ClientInitializationException;
+import in.tosc.doandroidlib.mockapi.MockResponses;
+import in.tosc.doandroidlib.mockapi.MockUtils;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -39,6 +41,8 @@ public class DigitalOcean {
     public static final String TAG = "DO";
     public static final int LOGIN_ACT_INTENT_CODE = 3245;
     public static final String EXTRA_AUTH_TOKEN = "authToken";
+
+    private static boolean USE_MOCK_API = false;
 
     /**
      * The status code for successful login
@@ -78,6 +82,17 @@ public class DigitalOcean {
     }
 
     /**
+     * Initialise Digital Ocean, optionally with mock api
+     * @param clientId
+     * @param callbackUrl
+     * @param useMockApi
+     */
+    public static void init(String clientId, String callbackUrl, boolean useMockApi) {
+        USE_MOCK_API = useMockApi;
+        init(clientId, callbackUrl);
+    }
+
+    /**
      * This starts the login process (in a Chrome custom tab).
      * We use {@link #LOGIN_ACT_INTENT_CODE} to do a {@link Activity#startActivityForResult(Intent, int)}
      *
@@ -110,7 +125,7 @@ public class DigitalOcean {
         DigitalOcean.authToken = token;
 
         if (okHttpClient == null) {
-            okHttpClient = new OkHttpClient.Builder()
+            OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                     .addInterceptor(new Interceptor() {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
@@ -120,9 +135,16 @@ public class DigitalOcean {
                                     .build();
                             return chain.proceed(request);
                         }
-                    })
-                    .build();
+                    });
+
+            if (USE_MOCK_API) {
+                clientBuilder.addInterceptor(new MockUtils.MockGetInterceptor()
+                        .addPathResponse(MockResponses.api)
+                );
+            }
+            okHttpClient = clientBuilder.build();
         }
+
 
 
 

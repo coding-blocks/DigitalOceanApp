@@ -17,6 +17,7 @@
 
         </activity>
         <activity
+            android:exported="true"
             android:name=".activities.DropletActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>

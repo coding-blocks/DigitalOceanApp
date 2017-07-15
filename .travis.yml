@@ -4,7 +4,7 @@ env:
     - ANDROID_VERSION=android-16 ANDROID_ABI=armeabi-v7a
     - ANDROID_VERSION=android-21 ANDROID_ABI=armeabi-v7a
     - ANDROID_VERSION=android-22 ANDROID_ABI=armeabi-v7a
-    - ANDROID_VERSION=android-25 ANDROID_ABI=armeabi-v7a
+    - ANDROID_VERSION=android-23 ANDROID_ABI=armeabi-v7a
 jdk:
   - oraclejdk8
 android:
@@ -22,7 +22,7 @@ android:
     - android-16
     - android-21
     - android-22
-    - android-25
+    - android-23
 
     # Additional components
 
@@ -31,7 +31,7 @@ android:
     - sys-img-armeabi-v7a-android-16
     - sys-img-armeabi-v7a-android-21
     - sys-img-armeabi-v7a-android-22
-    - sys-img-armeabi-v7a-android-25
+    - sys-img-armeabi-v7a-android-23
 before_script:
   - echo no | android create avd --force -n test -t $ANDROID_VERSION --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-window &

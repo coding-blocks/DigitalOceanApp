@@ -4,12 +4,19 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import in.tosc.digitaloceanapp.R;
+
+import static android.support.test.espresso.Espresso.*;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
 
 /**
  * Created by championswimmer on 15/07/17.
@@ -30,11 +37,13 @@ public class AboutActivityTest {
     }
 
     @Test
-    public void tryOpenPage () {
-        View github = aboutActivity.findViewById(R.id.relative_layout_github);
-        View contributors = aboutActivity.findViewById(R.id.relative_layout_see_all_contributors);
+    public void verifyContributors () {
+        onView(withId(R.id.text_view_contributor_1_title))
+                .check(matches(withText("Arnav Gupta")));
+    }
 
-        aboutActivity.openPage(github);
-        aboutActivity.openPage(contributors);
+    @After
+    public void tearDown () {
+        aboutActivity.finish();
     }
 }
