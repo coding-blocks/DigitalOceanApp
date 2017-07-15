@@ -3,6 +3,7 @@ package in.tosc.digitaloceanapp.activities;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
+import android.view.WindowManager;
 
 import org.junit.After;
 import org.junit.Before;
@@ -34,6 +35,14 @@ public class AboutActivityTest {
     @Before
     public void setup () {
         aboutActivity = activityRule.getActivity();
+        Runnable wakeUpDevice = new Runnable() {
+            public void run() {
+                aboutActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                        WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            }
+        };
+        aboutActivity.runOnUiThread(wakeUpDevice);
     }
 
     @Test

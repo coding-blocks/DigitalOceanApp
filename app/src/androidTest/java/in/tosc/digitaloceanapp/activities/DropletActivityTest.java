@@ -7,6 +7,7 @@ import android.support.test.internal.runner.listener.InstrumentationRunListener;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
+import android.view.WindowManager;
 
 import org.junit.After;
 import org.junit.Before;
@@ -33,9 +34,18 @@ public class DropletActivityTest {
     public ActivityTestRule<DropletActivity> actRule =
             new ActivityTestRule<DropletActivity>(DropletActivity.class);
 
+
     @Before
     public void setup() {
         dropletActivity = actRule.getActivity();
+        Runnable wakeUpDevice = new Runnable() {
+            public void run() {
+                dropletActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                        WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            }
+        };
+        dropletActivity.runOnUiThread(wakeUpDevice);
     }
 
     @Test
