@@ -16,11 +16,11 @@ dependencies:
     - echo y | android update sdk --no-ui --all --filter "extra-google-m2repository"
     - echo y | android update sdk --no-ui --all --filter "addon-google_apis-google-25"
     - echo y | android update sdk --no-ui --all --filter "extra-android-support"
-    - echo y | android update sdk --no-ui --all --filter "sys-img-armeabi-v7a-addon-google_apis-google-25"
+    - echo y | android update sdk --no-ui --all --filter "sys-img-armeabi-v7a-addon-google_apis-google-21"
 test:
   pre:
     # start the emulator
-    - android create avd --force -n test -t android-25 --abi armeabi-v7a
+    - android create avd --force -n test -t android-21 --abi armeabi-v7a
     - emulator -avd test -no-window -no-boot-anim:
         background: true
         parallel: true
