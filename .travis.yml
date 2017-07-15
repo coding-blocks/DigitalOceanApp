@@ -1,18 +1,22 @@
 language: android
+env:
+  global:
+    - ANDROID_VERSION=25
+    - ANDROID_ABI=armeabi-v7a
 jdk:
   - oraclejdk8
 android:
   components:
     - tools # to get the new `repository-11.xml`
-    - tools # not a typo
     - platform-tools
+    - tools # not a typo
     - extra
     - build-tools-25.0.2
-    - android-24
-    - sys-img-armeabi-v7a-android-24
+    - android-$ANDROID_VERSION
+    - sys-img-$ANDROID_ABI-android-$ANDROID_VERSION
 before_script:
-  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
-  - emulator -avd test -no-audio -no-window &
+  - echo no | android create avd --force -n test -t "android-"$ANDROID_VERSION --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 script:
