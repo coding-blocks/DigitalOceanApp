@@ -6,7 +6,7 @@ engines:
   pmd:
     enabled: true
     chanel: "beta"
-  checkstyle
+  checkstyle:
     enabled: true
     channel: "beta"
 
