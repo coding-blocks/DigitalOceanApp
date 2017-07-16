@@ -1,12 +1,14 @@
 engines:
   duplication:
     enabled: true
-  eslint:
-    enabled: true
   fixme:
     enabled: true
   pmd:
     enabled: true
+    chanel: "beta"
+  checkstyle
+    enabled: true
+    channel: "beta"
 
 ratings:
   paths:
