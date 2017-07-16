@@ -1,6 +1,9 @@
 engines:
   duplication:
     enabled: true
+    config:
+      languages:
+        - java
   fixme:
     enabled: true
   pmd:
