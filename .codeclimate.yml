@@ -1,0 +1,14 @@
+engines:
+  duplication:
+    enabled: true
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  pmd:
+    enabled: true
+
+ratings:
+  paths:
+    - app/src/main/**
+    - doandroidlib/src/main/**
