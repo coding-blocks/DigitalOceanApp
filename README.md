@@ -5,6 +5,7 @@
 [![codecov](https://codecov.io/gh/coding-blocks/DigitalOceanApp/branch/master/graph/badge.svg)](https://codecov.io/gh/coding-blocks/DigitalOceanApp)
 [![codebeat badge](https://codebeat.co/badges/39a67587-5c32-416f-8166-3a5eb43335af)](https://codebeat.co/projects/github-com-coding-blocks-digitaloceanapp-master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ab89062fe8b3484485edd8babd04696a)](https://www.codacy.com/app/championswimmer/DigitalOceanApp?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=coding-blocks/DigitalOceanApp&amp;utm_campaign=Badge_Grade)
+[![Code Climate](https://codeclimate.com/github/coding-blocks/DigitalOceanApp/badges/gpa.svg)](https://codeclimate.com/github/coding-blocks/DigitalOceanApp)
 
 <a href='https://play.google.com/store/apps/details?id=in.tosc.digitaloceanapp&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img height=80 alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
