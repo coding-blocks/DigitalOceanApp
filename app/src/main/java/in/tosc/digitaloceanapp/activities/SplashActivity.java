@@ -1,6 +1,7 @@
 package in.tosc.digitaloceanapp.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,11 +38,21 @@ public class SplashActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         loginButton = (Button) findViewById(R.id.btnLogin);
+        signupButton = (Button) findViewById(R.id.btnSignup);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DigitalOcean.doLogin(SplashActivity.this);
+            }
+        });
+
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(getString(R.string.signup_url)));
+                startActivity(i);
             }
         });
 
