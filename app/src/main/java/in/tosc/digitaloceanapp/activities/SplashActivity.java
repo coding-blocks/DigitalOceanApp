@@ -50,9 +50,9 @@ public class SplashActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(getString(R.string.signup_url)));
-                startActivity(i);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(getString(R.string.signup_url)));
+                startActivity(intent);
             }
         });
 
