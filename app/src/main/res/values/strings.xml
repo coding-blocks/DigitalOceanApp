@@ -107,4 +107,6 @@
     <string name="contributor5_username">Jonsnow21</string>
     <string name="see_all_contributors">See all contributors</string>
 
+    <string name="signup_url">https://cloud.digitalocean.com/registrations/new</string>
+
 </resources>
