@@ -19,5 +19,16 @@
         android:title="@string/delete_droplet"
         android:icon="@drawable/ic_delete_white_24dp"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/power_off"
+        android:title="@string/power_off_droplet"
+        android:icon="@drawable/ic_power_settings_new_white_24dp"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/power_on"
+        android:title="@string/power_on_droplet"
+        android:icon="@drawable/ic_power_settings_new_white_24dp"
+        app:showAsAction="never"/>
 
 </menu>

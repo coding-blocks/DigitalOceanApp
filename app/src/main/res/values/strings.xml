@@ -14,6 +14,8 @@
     <string name="edit_droplet_name">Edit Droplet Name</string>
     <string name="delete_droplet">Delete Droplet</string>
     <string name="switch_off_droplet">Switch Off Droplet</string>
+    <string name="power_off_droplet">Power Off Droplet</string>
+    <string name="power_on_droplet">Power On Droplet</string>
 
     <string name="title_activity_droplet">DropletActivity</string>
 
@@ -108,5 +110,8 @@
     <string name="see_all_contributors">See all contributors</string>
 
     <string name="signup_url">https://cloud.digitalocean.com/registrations/new</string>
+    <string name="token">token</string>
+    <string name="checking_token">Checking token...</string>
+    <string name="this_token_is_invalid">This token is invalid</string>
 
 </resources>

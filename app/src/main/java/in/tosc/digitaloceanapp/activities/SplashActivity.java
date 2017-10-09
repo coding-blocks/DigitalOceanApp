@@ -1,15 +1,23 @@
 package in.tosc.digitaloceanapp.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.doandroidlib.DigitalOcean;
+import in.tosc.doandroidlib.api.DigitalOceanClient;
+import in.tosc.doandroidlib.objects.AccountInfo;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -40,10 +48,16 @@ public class SplashActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.btnLogin);
         signupButton = (Button) findViewById(R.id.btnSignup);
 
+        final EditText tokenEditText = (EditText) findViewById(R.id.etToken);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DigitalOcean.doLogin(SplashActivity.this);
+                String token = tokenEditText.getText().toString();
+                if (token.isEmpty()) {
+                    DigitalOcean.doLogin(SplashActivity.this);
+                } else {
+                    onLoggedIn(token);
+                }
             }
         });
 
@@ -63,18 +77,44 @@ public class SplashActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (resultCode == DigitalOcean.LOGIN_SUCCESS) {
-            Log.d(TAG, "onActivityResult: " + "LOGIN SUCCESS" + data.getStringExtra(DigitalOcean.EXTRA_AUTH_TOKEN));
-            DigitalOcean.onLoggedIn(data.getStringExtra(DigitalOcean.EXTRA_AUTH_TOKEN));
-            getSharedPreferences("DO", MODE_PRIVATE).edit()
-                    .putString("authToken", data.getStringExtra(DigitalOcean.EXTRA_AUTH_TOKEN))
-                    .apply();
-            progressFurther();
+            String token = data.getStringExtra(DigitalOcean.EXTRA_AUTH_TOKEN);
+            Log.d(TAG, "onActivityResult: " + "LOGIN SUCCESS" + token);
+            onLoggedIn(token);
         }
 
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void progressFurther () {
+    private void onLoggedIn(final String token) {
+        DigitalOceanClient client = DigitalOcean.getDOClient(token);
+        final ProgressDialog progressDialog = new ProgressDialog(SplashActivity.this);
+        progressDialog.setMessage(getString(R.string.checking_token));
+        progressDialog.show();
+        client.getAccount().enqueue(new Callback<AccountInfo>() {
+            @Override
+            public void onResponse(Call<AccountInfo> call, Response<AccountInfo> response) {
+                progressDialog.dismiss();
+                if (response.body() != null) {
+                    getSharedPreferences("DO", MODE_PRIVATE).edit()
+                            .putString("authToken", token)
+                            .apply();
+                    progressFurther();
+                } else {
+                    new AlertDialog.Builder(SplashActivity.this)
+                            .setMessage(R.string.this_token_is_invalid)
+                            .show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AccountInfo> call, Throwable t) {
+                Log.e("Failed check token", t.getLocalizedMessage());
+                progressDialog.dismiss();
+            }
+        });
+    }
+
+    public void progressFurther() {
         Intent i = new Intent(this, DropletActivity.class);
         startActivity(i);
         finish();
