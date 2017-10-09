@@ -21,11 +21,10 @@ import in.tosc.doandroidlib.objects.Droplet;
  * Created by the-dagger on 11/26/2016.
  */
 
-public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHolder> implements View.OnClickListener {
+public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHolder>{
 
     public List<Droplet> dropletList;
     private Context context;
-    private int position;
     public static final String DROPLET_CLICKED_POSITION = "position";
 
     public DropletsAdapter(List<Droplet> droplets, Context context) {
@@ -36,13 +35,11 @@ public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHo
     @Override
     public DropletsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_droplet, parent, false);
-        itemView.setOnClickListener(this);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(DropletsAdapter.ViewHolder holder, int position) {
-        this.position = holder.getAdapterPosition();
         Droplet droplet = dropletList.get(position);
         if (droplet.getStatus().toString().equals("active")) {
 
@@ -61,16 +58,7 @@ public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHo
         return dropletList.size();
     }
 
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(context, DetailDropletActivity.class);
-        Gson gson = new Gson();
-        intent.putExtra("DROPLET", gson.toJson(dropletList.get(position), Droplet.class));
-        intent.putExtra(DROPLET_CLICKED_POSITION, position);
-        context.startActivity(intent);
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView dropletStatusImage;
         TextView dropletName;
         TextView dropletRAM;
@@ -80,12 +68,21 @@ public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHo
 
         ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             dropletStatusImage = (ImageView) itemView.findViewById(R.id.dropletStatusImageView);
             dropletName = (TextView) itemView.findViewById(R.id.dropletName);
             dropletRAM = (TextView) itemView.findViewById(R.id.dropletRAM);
             dropletSize = (TextView) itemView.findViewById(R.id.dropletHDD);
             ipAddress = (TextView) itemView.findViewById(R.id.ipAddress);
             region = (TextView) itemView.findViewById(R.id.dropletRegion);
+        }
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, DetailDropletActivity.class);
+            Gson gson = new Gson();
+            intent.putExtra("DROPLET", gson.toJson(dropletList.get(getAdapterPosition()), Droplet.class));
+            intent.putExtra(DROPLET_CLICKED_POSITION, getAdapterPosition());
+            context.startActivity(intent);
         }
     }
 }
