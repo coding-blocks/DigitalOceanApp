@@ -14,6 +14,8 @@
     <string name="edit_droplet_name">Edit Droplet Name</string>
     <string name="delete_droplet">Delete Droplet</string>
     <string name="switch_off_droplet">Switch Off Droplet</string>
+    <string name="power_off_droplet">Power Off Droplet</string>
+    <string name="power_on_droplet">Power On Droplet</string>
 
     <string name="title_activity_droplet">DropletActivity</string>
 

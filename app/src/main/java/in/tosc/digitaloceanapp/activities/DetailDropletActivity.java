@@ -142,7 +142,35 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
             doaClient.performAction(droplet.getId(), ActionType.REBOOT, null).enqueue(new Callback<Action>() {
                 @Override
                 public void onResponse(Call<Action> call, Response<Action> response) {
-                    Log.d("OFF", response.code() + "");
+                    Log.d("REBOOT", response.code() + "");
+                }
+
+                @Override
+                public void onFailure(Call<Action> call, Throwable t) {
+
+                }
+            });
+            return true;
+        } else if (id == R.id.power_off) {
+
+            doaClient.performAction(droplet.getId(), ActionType.POWER_OFF, null).enqueue(new Callback<Action>() {
+                @Override
+                public void onResponse(Call<Action> call, Response<Action> response) {
+                    Log.d("POWER_OFF", response.code() + "");
+                }
+
+                @Override
+                public void onFailure(Call<Action> call, Throwable t) {
+
+                }
+            });
+            return true;
+        } else if (id == R.id.power_on) {
+
+            doaClient.performAction(droplet.getId(), ActionType.POWER_ON, null).enqueue(new Callback<Action>() {
+                @Override
+                public void onResponse(Call<Action> call, Response<Action> response) {
+                    Log.d("POWER_ON", response.code() + "");
                 }
 
                 @Override
