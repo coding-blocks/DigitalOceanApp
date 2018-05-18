@@ -3,7 +3,7 @@ apply plugin: 'jacoco-everywhere'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "in.tosc.digitaloceanapp"
         minSdkVersion 16
@@ -12,25 +12,31 @@ android {
         versionName "0.2.0"
         testInstrumentationRunner "in.tosc.digitaloceanapp.DOAppTestRunner"
     }
+
     lintOptions {
         abortOnError false
     }
+
     useLibrary 'org.apache.http.legacy'
+
     buildTypes {
         debug {
             testCoverageEnabled true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
+
 ext {
-    supportLibraryVersion = '25.3.1'
+    supportLibraryVersion = '25.4.0'
 }
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
@@ -44,16 +50,20 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.1.0'
     compile project(path: ':doandroidlib')
     testCompile 'junit:junit:4.12'
-    androidTestCompile ('com.android.support.test:runner:0.5') {
-        exclude group:'com.android.support', module:'support-annotations'
+
+    androidTestCompile('com.android.support.test:runner:0.5') {
+        exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile ('com.android.support.test:rules:0.5') {
-        exclude group:'com.android.support', module:'support-annotations'
+
+    androidTestCompile('com.android.support.test:rules:0.5') {
+        exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.2.2') {
-        exclude group:'com.android.support', module:'support-annotations'
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
+        exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2.2') {
+
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.2') {
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
         exclude module: 'support-v13'
