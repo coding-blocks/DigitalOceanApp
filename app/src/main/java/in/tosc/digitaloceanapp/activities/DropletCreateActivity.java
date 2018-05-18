@@ -15,10 +15,6 @@ import in.tosc.digitaloceanapp.fragments.SelectImageFragment;
 import in.tosc.digitaloceanapp.fragments.SelectSizeFragment;
 import in.tosc.doandroidlib.objects.Droplet;
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
 public class DropletCreateActivity extends AppCompatActivity {
 
     static Droplet droplet;

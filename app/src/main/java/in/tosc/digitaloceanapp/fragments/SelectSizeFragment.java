@@ -24,10 +24,6 @@ import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
-/**
- * Created by the-dagger on 11/26/2016.
- */
-
 public class SelectSizeFragment extends Fragment{
 
     private List<Size> sizeList;

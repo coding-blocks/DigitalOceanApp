@@ -24,10 +24,6 @@ import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
-/**
- * Created by harsh on 11/27/2016.
- */
-
 public class AdditionalDetailsFragment extends Fragment {
 
     public static final String TAG = "AdditionalFragment";

@@ -31,6 +31,7 @@ import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
 import in.tosc.digitaloceanapp.interfaces.OnDropletNameChange;
 import in.tosc.digitaloceanapp.utils.FontsOverride;
+
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.AccountInfo;
@@ -39,10 +40,6 @@ import in.tosc.doandroidlib.objects.Droplets;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-/**
- * Created by the-dagger on 11/26/2016.
- */
 
 public class DropletActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
