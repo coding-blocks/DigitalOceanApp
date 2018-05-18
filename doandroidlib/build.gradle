@@ -31,12 +31,12 @@ ext {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.4.0'
-    compile 'org.apache.commons:commons-lang3:3.4'
-    compile 'com.google.code.gson:gson:2.8.2'
-    compile 'me.panavtec:wizard:1.2'
-    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    testCompile 'junit:junit:4.12'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.android.support:appcompat-v7:25.4.0'
+    api 'org.apache.commons:commons-lang3:3.4'
+    api 'com.google.code.gson:gson:2.8.2'
+    api 'me.panavtec:wizard:1.2'
+    api "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    api "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    testImplementation 'junit:junit:4.12'
 }
