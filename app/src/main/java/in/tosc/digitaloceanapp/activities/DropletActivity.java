@@ -33,11 +33,8 @@ import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
 import in.tosc.digitaloceanapp.interfaces.OnDropletNameChange;
 import in.tosc.digitaloceanapp.utils.FontsOverride;
 
-
-
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
-import in.tosc.doandroidlib.objects.Account;
 import in.tosc.doandroidlib.objects.AccountInfo;
 import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.objects.Droplets;

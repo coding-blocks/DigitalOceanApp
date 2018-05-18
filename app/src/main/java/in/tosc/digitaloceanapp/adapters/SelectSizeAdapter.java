@@ -15,10 +15,6 @@ import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
 import in.tosc.doandroidlib.objects.Size;
 
-/**
- * Created by the-dagger on 11/27/2016.
- */
-
 public class SelectSizeAdapter extends RecyclerView.Adapter<SelectSizeAdapter.ViewHolder> implements View.OnClickListener {
 
     List<Size> sizeList;

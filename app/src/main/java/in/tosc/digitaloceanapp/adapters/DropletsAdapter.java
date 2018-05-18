@@ -17,10 +17,6 @@ import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.activities.DetailDropletActivity;
 import in.tosc.doandroidlib.objects.Droplet;
 
-/**
- * Created by the-dagger on 11/26/2016.
- */
-
 public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHolder>{
 
     public List<Droplet> dropletList;
