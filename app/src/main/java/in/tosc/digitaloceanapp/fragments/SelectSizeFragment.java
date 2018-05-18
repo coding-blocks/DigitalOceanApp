@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import in.tosc.digitaloceanapp.databinding.FragmentSizeBinding;
 import android.view.ViewGroup;
 
 import android.databinding.DataBindingUtil;
@@ -14,7 +15,6 @@ import java.util.List;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.SelectSizeAdapter;
-import in.tosc.digitaloceanapp.databinding.FragmentSizeBinding;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Size;

@@ -6,14 +6,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.databinding.DataBindingUtil;
 import android.view.ViewGroup;
 
-import android.databinding.DataBindingUtil;
+import in.tosc.digitaloceanapp.databinding.FragmentImageBinding;
 import java.util.List;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.ImageAdapter;
-import in.tosc.digitaloceanapp.databinding.FragmentImageBinding;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Image;

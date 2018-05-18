@@ -8,9 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.Toast;
-
 import android.databinding.DataBindingUtil;
+import android.widget.Toast;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
