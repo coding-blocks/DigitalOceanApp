@@ -9,6 +9,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static in.tosc.digitaloceanapp.matchers.RecyclerViewMatcher.withRecyclerView;
+import static junit.framework.Assert.assertNotNull;
 
 public class SelectImageFragmentTest {
 
@@ -18,8 +19,7 @@ public class SelectImageFragmentTest {
     public void fragmentcanbeinstantiated() {
 
         mFragmentTestRule.launchActivity(null);
-
-        onView(withRecyclerView(R.id.imageRecyclerVIew).atPosition(0)).check(matches(isDisplayed()));
+        assertNotNull(onView(withRecyclerView(R.id.imageRecyclerVIew).atPosition(0)).check(matches(isDisplayed())));
         onView(withRecyclerView(R.id.imageRecyclerVIew).atPosition(0)).perform(click());
 
 

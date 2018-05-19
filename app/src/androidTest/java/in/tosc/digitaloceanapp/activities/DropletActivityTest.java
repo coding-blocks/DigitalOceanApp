@@ -22,6 +22,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.*;
 import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
 import static android.support.test.espresso.matcher.ViewMatchers.*;
 import static in.tosc.digitaloceanapp.matchers.RecyclerViewMatcher.withRecyclerView;
+import static junit.framework.Assert.assertNotNull;
 
 /**
  * Created by championswimmer on 15/07/17.
@@ -62,10 +63,7 @@ public class DropletActivityTest {
 
     @Test
     public void clickOnYourNavigationItemShowsYourScreen1() {
-        // Open Drawer to click on navigation.
-        onView(withId(R.id.drawer_layout))
-                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open()); // Open Drawer
+        opendrawer();
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.nav_about));
 
@@ -73,20 +71,14 @@ public class DropletActivityTest {
 
     @Test
     public void clickOnYourNavigationItemShowsYourScreen2() {
-        // Open Drawer to click on navigation.
-        onView(withId(R.id.drawer_layout))
-                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open()); // Open Drawer
+        opendrawer();
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.nav_billing));
     }
 
     @Test
     public void clickOnYourNavigationItemShowsYourScreen3() {
-        // Open Drawer to click on navigation.
-        onView(withId(R.id.drawer_layout))
-                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open()); // Open Drawer
+        opendrawer();
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.nav_profile));
 
@@ -94,10 +86,7 @@ public class DropletActivityTest {
 
     @Test
     public void clickOnYourNavigationItemShowsYourScreen4() {
-        // Open Drawer to click on navigation.
-        onView(withId(R.id.drawer_layout))
-                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open()); // Open Drawer
+        opendrawer();
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.nav_manage));
 
@@ -106,10 +95,7 @@ public class DropletActivityTest {
 
     @Test
     public void clickOnYourNavigationItemShowsYourScreen6() {
-        // Open Drawer to click on navigation.
-        onView(withId(R.id.drawer_layout))
-                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open()); // Open Drawer
+        opendrawer();
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.nav_share));
 
@@ -117,10 +103,7 @@ public class DropletActivityTest {
 
     @Test
     public void clickOnYourNavigationItemShowsYourScreen5() {
-        // Open Drawer to click on navigation.
-        onView(withId(R.id.drawer_layout))
-                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open()); // Open Drawer
+        opendrawer();
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.nav_logout));
 
@@ -129,6 +112,12 @@ public class DropletActivityTest {
     @After
     public void tearDown() {
         dropletActivity.finish();
+    }
+
+    public void opendrawer(){
+        assertNotNull(onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()));
     }
 
 }

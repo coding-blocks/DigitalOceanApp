@@ -4,11 +4,14 @@ import org.junit.Rule;
 import org.junit.Test;
 
 
+import in.tosc.digitaloceanapp.R;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.junit.Assert.assertNotNull;
 
 public class AdditionDetailFragmentTest {
 
@@ -20,6 +23,7 @@ public class AdditionDetailFragmentTest {
 
         // Launch the activity to make the fragment visible
         mFragmentTestRule.launchActivity(null);
+        assertNotNull(onView(withText("Create Droplet")).check(matches(isDisplayed())).perform(click()));
 
         // Then use Espresso to test the Fragment
 //        onView(withId(R.id.btnCreateDroplet)).check(matches(isDisplayed())).perform(click());
