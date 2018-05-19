@@ -26,7 +26,7 @@ public class AboutActivityTest {
 
     @Rule
     public ActivityTestRule<AboutActivity> activityRule =
-            new ActivityTestRule<AboutActivity>(AboutActivity.class);
+            new ActivityTestRule<>(AboutActivity.class);
 
     @Before
     public void setUp() {
