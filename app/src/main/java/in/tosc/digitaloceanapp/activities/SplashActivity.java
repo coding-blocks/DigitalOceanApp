@@ -23,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
 
     public static final String TAG = "Splash";
 
+
     Button loginButton, signupButton;
 
     @Override

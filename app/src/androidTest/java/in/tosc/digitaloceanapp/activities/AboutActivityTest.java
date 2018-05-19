@@ -1,11 +1,10 @@
 package in.tosc.digitaloceanapp.activities;
 
+
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
 import android.view.WindowManager;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -13,11 +12,11 @@ import org.junit.runner.RunWith;
 
 import in.tosc.digitaloceanapp.R;
 
-import static android.support.test.espresso.Espresso.*;
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-
 
 /**
  * Created by championswimmer on 15/07/17.
@@ -30,10 +29,10 @@ public class AboutActivityTest {
 
     @Rule
     public ActivityTestRule<AboutActivity> activityRule =
-            new ActivityTestRule<AboutActivity>(AboutActivity.class);
+            new ActivityTestRule<>(AboutActivity.class);
 
     @Before
-    public void setup () {
+    public void setUp() {
         aboutActivity = activityRule.getActivity();
         Runnable wakeUpDevice = new Runnable() {
             public void run() {
@@ -46,9 +45,11 @@ public class AboutActivityTest {
     }
 
     @Test
-    public void verifyContributors () {
+    public void verifyContributors() {
         onView(withId(R.id.text_view_contributor_1_title))
                 .check(matches(withText("Arnav Gupta")));
+        onView(withId(R.id.relative_layout_github)).perform(click());
+
     }
 
 }
