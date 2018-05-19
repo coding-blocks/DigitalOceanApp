@@ -85,7 +85,6 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
         switchIPv6 = (SwitchCompat) findViewById(R.id.switch_ipv6);
         switchPrivateNet = (SwitchCompat) findViewById(R.id.switch_private_network);
         switchBackup = (SwitchCompat) findViewById(R.id.switch_backup);
-
         setData(droplet);
         setIndividualFeatures(droplet);
         setSwitches();

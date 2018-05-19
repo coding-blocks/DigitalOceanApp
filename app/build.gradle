@@ -45,16 +45,16 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.1.0'
     compile project(path: ':doandroidlib')
     testCompile 'junit:junit:4.12'
-    androidTestCompile ('com.android.support.test:runner:0.5') {
-        exclude group:'com.android.support', module:'support-annotations'
+    androidTestCompile('com.android.support.test:runner:0.5') {
+        exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile ('com.android.support.test:rules:0.5') {
-        exclude group:'com.android.support', module:'support-annotations'
+    androidTestCompile('com.android.support.test:rules:0.5') {
+        exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.2.2') {
-        exclude group:'com.android.support', module:'support-annotations'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
+        exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2.2') {
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.2') {
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
         exclude module: 'support-v13'

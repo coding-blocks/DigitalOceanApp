@@ -73,6 +73,7 @@ public class DropletActivity extends AppCompatActivity
         dropletsAdapter = new DropletsAdapter(droplets, DropletActivity.this);
         dropletRecyclerView.setAdapter(dropletsAdapter);
         doClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken", null));
+        Log.i("TAG", "onCreate: "+DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken", null)));
         refreshData();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
