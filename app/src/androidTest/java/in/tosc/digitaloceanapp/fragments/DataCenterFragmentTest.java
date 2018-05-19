@@ -13,7 +13,8 @@ import static junit.framework.Assert.assertNotNull;
 
 public class DataCenterFragmentTest {
 
-    public FragmentTestRule<DataCenterFragment> mFragmentTestRule = new FragmentTestRule<>(DataCenterFragment.class);
+    public FragmentTestRule<DataCenterFragment> mFragmentTestRule =
+            new FragmentTestRule<>(DataCenterFragment.class);
 
     @Test
     public void fragmentcanbeinstantiated() {
@@ -22,7 +23,9 @@ public class DataCenterFragmentTest {
         mFragmentTestRule.launchActivity(null);
 
         // Then use Espresso to test the Fragment
-        assertNotNull(onView(withRecyclerView(R.id.datacenter_recycler).atPosition(0)).check(matches(isDisplayed())));
+        assertNotNull(onView(withRecyclerView(R.id.datacenter_recycler)
+                .atPosition(0))
+                .check(matches(isDisplayed())));
         onView(withRecyclerView(R.id.datacenter_recycler).atPosition(0)).perform(click());
 
 

@@ -13,7 +13,8 @@ import static junit.framework.Assert.assertNotNull;
 
 public class SelectSizeFragmentTest {
 
-    public FragmentTestRule<SelectSizeFragment> mFragmentTestRule = new FragmentTestRule<>(SelectSizeFragment.class);
+    public FragmentTestRule<SelectSizeFragment> mFragmentTestRule =
+            new FragmentTestRule<>(SelectSizeFragment.class);
 
     @Test
     public void fragmentcanbeinstantiated() {
@@ -22,7 +23,9 @@ public class SelectSizeFragmentTest {
         mFragmentTestRule.launchActivity(null);
 
         // Then use Espresso to test the Fragment
-        assertNotNull(onView(withRecyclerView(R.id.recyclerView_size).atPosition(0)).check(matches(isDisplayed())));
+        assertNotNull(onView(withRecyclerView(R.id.recyclerView_size)
+                .atPosition(0))
+                .check(matches(isDisplayed())));
         onView(withRecyclerView(R.id.recyclerView_size).atPosition(0)).perform(click());
 
 

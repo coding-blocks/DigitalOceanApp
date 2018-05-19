@@ -2,10 +2,6 @@ package in.tosc.digitaloceanapp.fragments;
 
 import org.junit.Rule;
 import org.junit.Test;
-
-
-import in.tosc.digitaloceanapp.R;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -16,17 +12,18 @@ import static org.junit.Assert.assertNotNull;
 public class AdditionDetailFragmentTest {
 
     @Rule
-    public FragmentTestRule<AdditionalDetailsFragment> mFragmentTestRule = new FragmentTestRule<>(AdditionalDetailsFragment.class);
+    public FragmentTestRule<AdditionalDetailsFragment> mFragmentTestRule =
+            new FragmentTestRule<>(AdditionalDetailsFragment.class);
 
     @Test
     public void fragmentcanbeinstantiated() {
 
         // Launch the activity to make the fragment visible
         mFragmentTestRule.launchActivity(null);
-        assertNotNull(onView(withText("Create Droplet")).check(matches(isDisplayed())).perform(click()));
+        assertNotNull(onView(withText("Create Droplet"))
+                .check(matches(isDisplayed()))
+                .perform(click()));
 
-        // Then use Espresso to test the Fragment
-//        onView(withId(R.id.btnCreateDroplet)).check(matches(isDisplayed())).perform(click());
         onView(withText("Create Droplet")).check(matches(isDisplayed())).perform(click());
         onView(withText("Private Networking")).check(matches(isDisplayed())).perform(click());
         onView(withText("Backups")).check(matches(isDisplayed())).perform(click());

@@ -13,13 +13,16 @@ import static junit.framework.Assert.assertNotNull;
 
 public class SelectImageFragmentTest {
 
-    public FragmentTestRule<SelectImageFragment> mFragmentTestRule = new FragmentTestRule<>(SelectImageFragment.class);
+    public FragmentTestRule<SelectImageFragment> mFragmentTestRule =
+            new FragmentTestRule<>(SelectImageFragment.class);
 
     @Test
     public void fragmentcanbeinstantiated() {
 
         mFragmentTestRule.launchActivity(null);
-        assertNotNull(onView(withRecyclerView(R.id.imageRecyclerVIew).atPosition(0)).check(matches(isDisplayed())));
+        assertNotNull(onView(withRecyclerView(R.id.imageRecyclerVIew)
+                .atPosition(0))
+                .check(matches(isDisplayed())));
         onView(withRecyclerView(R.id.imageRecyclerVIew).atPosition(0)).perform(click());
 
 

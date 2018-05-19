@@ -43,7 +43,7 @@ public class FragmentTestRule<F extends Fragment> extends ActivityTestRule<TestA
         }));
     }
 
-        public F getFragment () {
+        public F getFragment() {
             return mFragment;
         }
     }

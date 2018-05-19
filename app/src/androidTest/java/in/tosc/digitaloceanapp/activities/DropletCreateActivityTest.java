@@ -27,8 +27,10 @@ public class DropletCreateActivityTest {
         dropletCreateActivity = actRule.getActivity();
         Runnable wakeUpDevice = new Runnable() {
             public void run() {
-                dropletCreateActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                dropletCreateActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+                        |
+                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                        |
                         WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }
         };
@@ -36,7 +38,7 @@ public class DropletCreateActivityTest {
     }
 
     @Test
-    public void testDropletCreateInfo () {
+    public void testDropletCreateInfo() {
         assertNotNull(dropletCreateActivity.findViewById(R.id.buttonNext));
         onView(withId(R.id.buttonNext))
                 .perform(click());
@@ -46,7 +48,7 @@ public class DropletCreateActivityTest {
     }
 
     @After
-    public void tearDown () {
+    public void tearDown() {
         dropletCreateActivity.finish();
     }
 }
