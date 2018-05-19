@@ -4,10 +4,10 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import junit.framework.Assert;
-
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.activities.TestActivity;
+import junit.framework.Assert;
+
 
 public class FragmentTestRule<F extends Fragment> extends ActivityTestRule<TestActivity> {
 

@@ -3,17 +3,22 @@ package in.tosc.digitaloceanapp.activities;
 
 import android.support.test.rule.ActivityTestRule;
 
+import in.tosc.digitaloceanapp.R;
+
+import static junit.framework.Assert.assertNotNull;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import in.tosc.digitaloceanapp.R;
-import static org.junit.Assert.*;
+
+
 
 public class SplashActivityTest {
 
     @Rule
-    public ActivityTestRule<SplashActivity> splashActivityActivityTestRule = new ActivityTestRule<>(SplashActivity.class);
+    public ActivityTestRule<SplashActivity> splashActivityActivityTestRule =
+            new ActivityTestRule<>(SplashActivity.class);
 
     private SplashActivity splashActivity = null;
 
