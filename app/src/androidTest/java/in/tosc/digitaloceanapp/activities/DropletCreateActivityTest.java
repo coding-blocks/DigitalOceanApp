@@ -1,11 +1,10 @@
 package in.tosc.digitaloceanapp.activities;
 
-import android.support.test.rule.ActivityTestRule;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
+import android.support.test.rule.ActivityTestRule;
 
 import android.view.WindowManager;
 
@@ -35,7 +34,8 @@ public class DropletCreateActivityTest {
         dropletCreateActivity = actRule.getActivity();
         Runnable wakeUpDevice = new Runnable() {
             public void run() {
-                dropletCreateActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+                dropletCreateActivity.getWindow()
+                        .addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
                         |
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
                         |
