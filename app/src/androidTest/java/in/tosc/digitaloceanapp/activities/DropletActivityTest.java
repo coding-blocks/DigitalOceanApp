@@ -1,16 +1,9 @@
 package in.tosc.digitaloceanapp.activities;
 
-import android.app.Instrumentation;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.contrib.DrawerActions;
 import android.support.test.espresso.contrib.NavigationViewActions;
-import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
-import android.support.test.internal.runner.listener.InstrumentationRunListener;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.WindowManager;
 
@@ -21,7 +14,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import in.tosc.digitaloceanapp.R;
-import in.tosc.doandroidlib.DigitalOcean;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.*;
@@ -44,7 +36,7 @@ public class DropletActivityTest {
 
 
     @Before
-    public void setup() {
+    public void setUp() {
         dropletActivity = actRule.getActivity();
         Runnable wakeUpDevice = new Runnable() {
             public void run() {
@@ -59,18 +51,17 @@ public class DropletActivityTest {
 
     @Test
     public void testDropletInfo() {
-        onView(withRecyclerView(R.id.dropletsRv).atPosition(0))
-                .check(matches(hasDescendant(withText("example.com"))));
+        onView(withRecyclerView(R.id.dropletsRv).atPosition(0)).check(matches(isDisplayed()));
+
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
         onView(withText("Settings")).perform(click());
-
 
 
     }
 
 
     @Test
-    public void clickOnYourNavigationItem_ShowsYourScreen1() {
+    public void clickOnYourNavigationItemShowsYourScreen1() {
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
@@ -81,7 +72,7 @@ public class DropletActivityTest {
     }
 
     @Test
-    public void clickOnYourNavigationItem_ShowsYourScreen2() {
+    public void clickOnYourNavigationItemShowsYourScreen2() {
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
@@ -91,7 +82,7 @@ public class DropletActivityTest {
     }
 
     @Test
-    public void clickOnYourNavigationItem_ShowsYourScreen3() {
+    public void clickOnYourNavigationItemShowsYourScreen3() {
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
@@ -102,7 +93,7 @@ public class DropletActivityTest {
     }
 
     @Test
-    public void clickOnYourNavigationItem_ShowsYourScreen4() {
+    public void clickOnYourNavigationItemShowsYourScreen4() {
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
@@ -114,7 +105,7 @@ public class DropletActivityTest {
 
 
     @Test
-    public void clickOnYourNavigationItem_ShowsYourScreen6() {
+    public void clickOnYourNavigationItemShowsYourScreen6() {
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
@@ -125,7 +116,7 @@ public class DropletActivityTest {
     }
 
     @Test
-    public void clickOnYourNavigationItem_ShowsYourScreen5() {
+    public void clickOnYourNavigationItemShowsYourScreen5() {
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.

@@ -1,19 +1,13 @@
 package in.tosc.digitaloceanapp.fragments;
 
-import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 
-import in.tosc.digitaloceanapp.R;
 
-import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class AdditionDetailFragmentTest {
@@ -22,7 +16,7 @@ public class AdditionDetailFragmentTest {
     public FragmentTestRule<AdditionalDetailsFragment> mFragmentTestRule = new FragmentTestRule<>(AdditionalDetailsFragment.class);
 
     @Test
-    public void fragment_can_be_instantiated() {
+    public void fragmentcanbeinstantiated() {
 
         // Launch the activity to make the fragment visible
         mFragmentTestRule.launchActivity(null);

@@ -2,25 +2,17 @@ package in.tosc.digitaloceanapp.activities;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
 import android.view.WindowManager;
-
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import in.tosc.digitaloceanapp.R;
-
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.*;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.junit.Assert.assertNotNull;
 
 
 /**
@@ -37,7 +29,7 @@ public class AboutActivityTest {
             new ActivityTestRule<AboutActivity>(AboutActivity.class);
 
     @Before
-    public void setup() {
+    public void setUp() {
         aboutActivity = activityRule.getActivity();
         Runnable wakeUpDevice = new Runnable() {
             public void run() {

@@ -4,7 +4,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-
 import junit.framework.Assert;
 
 import in.tosc.digitaloceanapp.R;

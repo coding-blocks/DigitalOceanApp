@@ -25,7 +25,7 @@ public class SplashActivityTest {
     private SplashActivity splashActivity = null;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         splashActivity = splashActivityActivityTestRule.getActivity();
     }
@@ -40,17 +40,9 @@ public class SplashActivityTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
 
         splashActivity = null;
     }
 
-    @Test
-    public void onActivityResult() {
-    }
-
-    @Test
-    public void progressFurther() {
-
-    }
 }

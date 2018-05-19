@@ -7,19 +7,15 @@ import in.tosc.digitaloceanapp.R;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static in.tosc.digitaloceanapp.matchers.RecyclerViewMatcher.withRecyclerView;
-import static org.junit.Assert.*;
 
 public class SelectSizeFragmentTest {
 
     public FragmentTestRule<SelectSizeFragment> mFragmentTestRule = new FragmentTestRule<>(SelectSizeFragment.class);
 
     @Test
-    public void fragment_can_be_instantiated() {
+    public void fragmentcanbeinstantiated() {
 
         // Launch the activity to make the fragment visible
         mFragmentTestRule.launchActivity(null);

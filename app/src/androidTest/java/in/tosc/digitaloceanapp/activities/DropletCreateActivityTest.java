@@ -23,7 +23,7 @@ public class DropletCreateActivityTest {
             new ActivityTestRule<>(DropletCreateActivity.class);
 
     @Before
-    public void setup() {
+    public void setUp() {
         dropletCreateActivity = actRule.getActivity();
         Runnable wakeUpDevice = new Runnable() {
             public void run() {
