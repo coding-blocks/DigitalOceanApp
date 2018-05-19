@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'jacoco-everywhere'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 25
@@ -10,8 +10,9 @@ android {
         targetSdkVersion 25
         versionCode 20
         versionName "0.2.0"
-        testInstrumentationRunner "in.tosc.digitaloceanapp.DOAppTestRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     lintOptions {
         abortOnError false
     }
