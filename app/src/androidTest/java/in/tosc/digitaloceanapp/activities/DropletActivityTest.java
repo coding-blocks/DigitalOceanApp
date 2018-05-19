@@ -67,31 +67,31 @@ public class DropletActivityTest {
     @Test
     public void clickOnYourNavigationItemShowsYourScreen1() {
         opendrawer();
-        onView(withId(R.id.nav_view))
-                .perform(NavigationViewActions.navigateTo(R.id.nav_about));
+        assertNotNull(onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_about)));
 
     }
 
     @Test
     public void clickOnYourNavigationItemShowsYourScreen2() {
         opendrawer();
-        onView(withId(R.id.nav_view))
-                .perform(NavigationViewActions.navigateTo(R.id.nav_billing));
+        assertNotNull(onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_billing)));
     }
 
     @Test
     public void clickOnYourNavigationItemShowsYourScreen3() {
         opendrawer();
-        onView(withId(R.id.nav_view))
-                .perform(NavigationViewActions.navigateTo(R.id.nav_profile));
+        assertNotNull(onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_profile)));
 
     }
 
     @Test
     public void clickOnYourNavigationItemShowsYourScreen4() {
         opendrawer();
-        onView(withId(R.id.nav_view))
-                .perform(NavigationViewActions.navigateTo(R.id.nav_manage));
+        assertNotNull(onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_manage)));
 
     }
 
@@ -99,16 +99,16 @@ public class DropletActivityTest {
     @Test
     public void clickOnYourNavigationItemShowsYourScreen6() {
         opendrawer();
-        onView(withId(R.id.nav_view))
-                .perform(NavigationViewActions.navigateTo(R.id.nav_share));
+        assertNotNull(onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_share)));
 
     }
 
     @Test
     public void clickOnYourNavigationItemShowsYourScreen5() {
         opendrawer();
-        onView(withId(R.id.nav_view))
-                .perform(NavigationViewActions.navigateTo(R.id.nav_logout));
+        assertNotNull(onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_logout)));
 
     }
 

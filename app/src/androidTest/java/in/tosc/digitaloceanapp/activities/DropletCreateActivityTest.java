@@ -2,7 +2,10 @@ package in.tosc.digitaloceanapp.activities;
 
 import android.support.test.rule.ActivityTestRule;
 import android.view.WindowManager;
-
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -10,10 +13,6 @@ import org.junit.Test;
 
 import in.tosc.digitaloceanapp.R;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.*;
 
 public class DropletCreateActivityTest {
     public static DropletCreateActivity dropletCreateActivity;
