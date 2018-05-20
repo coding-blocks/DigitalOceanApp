@@ -6,16 +6,16 @@ jdk: oraclejdk8
 env:
   global:
     - GRADLE_OPTS="-Xmx512m"
-    - BUILD_TOOLS="25.0.2"
-    - TARGET_SDK=25
+    - BUILD_TOOLS="27.0.3"
+    - TARGET_SDK=27
   matrix:
     - EMULATOR_API=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
     - EMULATOR_API=21 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-#    - EMULATOR_API=24 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - EMULATOR_API=26 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 #    - EMULATOR_API=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 matrix:
   allow_failures:
-    - env: EMULATOR_API=24 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - env: EMULATOR_API=26 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
     - env: EMULATOR_API=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 #    - env: EMULATOR_API=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 android:
@@ -35,6 +35,7 @@ licenses:
   - android-sdk-license-.+
   - google-gdk-license-.+
 before_install:
+  - yes | sdkmanager "platforms;android-25"
   - yes | sdkmanager "platforms;android-27"
 before_script:
   - echo no | android create avd --force -n test -t android-$EMULATOR_API --abi $ANDROID_ABI
@@ -42,7 +43,7 @@ before_script:
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 script:
-   - ./gradlew connectedCheck
+   - ./gradlew jacocoTestReport
 after_success:
    - bash <(curl -s https://codecov.io/bash)
 before_cache:
