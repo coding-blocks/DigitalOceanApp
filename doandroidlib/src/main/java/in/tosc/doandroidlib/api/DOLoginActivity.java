@@ -24,6 +24,8 @@ public class DOLoginActivity extends AppCompatActivity {
     public static final String TAG = DOLoginActivity.class.getSimpleName();
 
     public static final String OAUTH_LOGIN_URL = "https://cloud.digitalocean.com/v1/oauth/authorize";
+    public static final String USER_AGENT_FAKE = "";
+
 
     WebView loginWebView;
     ProgressBar progressBar;
@@ -40,6 +42,9 @@ public class DOLoginActivity extends AppCompatActivity {
 
 
         loginWebView = (WebView) findViewById(R.id.webView);
+        loginWebView.getSettings().setUserAgentString(this.getString(R.string.USER_AGENT_FAKE)
+        );
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         if (Build.VERSION.SDK_INT >= 19) {
             loginWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);

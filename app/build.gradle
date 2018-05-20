@@ -18,7 +18,7 @@ android {
         targetSdkVersion 27
         versionCode 20
         versionName "0.2.0"
-        testInstrumentationRunner "in.tosc.digitaloceanapp.DOAppTestRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     lintOptions {
@@ -64,6 +64,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
 }
 
 dependencies {
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:support-v13:$supportLibraryVersion"
