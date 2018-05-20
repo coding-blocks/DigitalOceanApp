@@ -11,11 +11,11 @@ env:
   matrix:
     - EMULATOR_API=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
     - EMULATOR_API=21 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-    - EMULATOR_API=24 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - EMULATOR_API=24 ANDROID_ABI=x86 ANDROID_TAG=google_apis
 #    - EMULATOR_API=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 matrix:
   allow_failures:
-    - env: EMULATOR_API=24 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - env: EMULATOR_API=24 ANDROID_ABI=x86 ANDROID_TAG=google_apis
     - env: EMULATOR_API=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 #    - env: EMULATOR_API=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 android:
