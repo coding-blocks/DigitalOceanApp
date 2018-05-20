@@ -22,7 +22,7 @@ test:
   pre:
     # start the emulator
 #    - android create avd --force -n test -t android-21 --abi armeabi-v7a
-    - emulator -avd circleci-android24 -no-window:
+    - emulator -avd circleci-android22 -no-window:
         background: true
         parallel: true
   override:
