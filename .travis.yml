@@ -6,7 +6,7 @@ jdk: oraclejdk8
 env:
   global:
     - GRADLE_OPTS="-Xmx512m"
-    - BUILD_TOOLS="25.0.2"
+    - BUILD_TOOLS="27.0.3"
     - TARGET_SDK=25
   matrix:
     - EMULATOR_API=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
