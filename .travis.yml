@@ -34,6 +34,9 @@ licenses:
   - android-sdk-preview-license-.+
   - android-sdk-license-.+
   - google-gdk-license-.+
+before_install:
+  - yes | sdkmanager "platforms;android-25"
+  - yes | sdkmanager "platforms;android-27"
 before_script:
   - echo no | android create avd --force -n test -t android-$EMULATOR_API --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-window &
