@@ -37,8 +37,4 @@ public class SelectImageFragmentTest {
 
     }
 
-    @After
-    public void tearDown() throws Exception {
-
-    }
 }
