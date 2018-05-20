@@ -12,7 +12,6 @@ import static in.tosc.digitaloceanapp.matchers.RecyclerViewMatcher.withRecyclerV
 
 import static junit.framework.Assert.assertNotNull;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
