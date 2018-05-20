@@ -75,6 +75,10 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.afollestad.material-dialogs:core:0.9.1.0'
     implementation project(path: ':doandroidlib')
+
+//    Use this if you need "unit" tests in the app
+//    testImplementation 'junit:junit:4.12'
+
     androidTestImplementation 'junit:junit:4.12'
 
     androidTestImplementation('com.android.support.test:runner:1.0.2') {
