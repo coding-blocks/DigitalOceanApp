@@ -12,6 +12,9 @@ import in.tosc.digitaloceanapp.R;
 import static in.tosc.digitaloceanapp.matchers.RecyclerViewMatcher.withRecyclerView;
 
 import static junit.framework.Assert.assertNotNull;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class SelectImageFragmentTest {
@@ -22,12 +25,21 @@ public class SelectImageFragmentTest {
     @Test
     public void fragmentcanbeinstantiated() {
 
-        mFragmentTestRule.launchActivity(null);
         assertNotNull(onView(withRecyclerView(R.id.imageRecyclerVIew)
                 .atPosition(0))
-                .check(matches(isDisplayed())));
-        onView(withRecyclerView(R.id.imageRecyclerVIew).atPosition(0)).perform(click());
+                .perform(click()));
 
+
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        mFragmentTestRule.launchActivity(null);
+
+    }
+
+    @After
+    public void tearDown() throws Exception {
 
     }
 }

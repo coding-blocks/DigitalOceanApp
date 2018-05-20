@@ -12,28 +12,30 @@ import in.tosc.digitaloceanapp.R;
 
 import static junit.framework.Assert.assertNotNull;
 
+import org.junit.Before;
 import org.junit.Test;
 
 
 public class SelectSizeFragmentTest {
 
-    public FragmentTestRule<SelectSizeFragment> MFRAGGMENT =
+    public FragmentTestRule<SelectSizeFragment> mFragmentTestRule =
             new FragmentTestRule<>(SelectSizeFragment.class);
 
     @Test
     public void fragmentcanbeinstantiated() {
 
         // Launch the activity to make the fragment visible
-        MFRAGGMENT.launchActivity(null);
 
         // Then use Espresso to test the Fragment
         assertNotNull(onView(withRecyclerView(R.id.recyclerView_size)
                 .atPosition(0))
-                .check(matches(isDisplayed())));
-        onView(withRecyclerView(R.id.recyclerView_size).atPosition(0)).perform(click());
+                .perform(click()));
 
 
-
+    }
+    @Before
+    public void setUp() throws Exception {
+        mFragmentTestRule.launchActivity(null);
 
     }
 

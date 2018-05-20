@@ -9,6 +9,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.junit.Assert.assertNotNull;
+
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -22,8 +24,10 @@ public class AdditionDetailFragmentTest {
     public void fragmentcanbeinstantiated() {
 
         // Launch the activity to make the fragment visible
-        mFragmentTestRule.launchActivity(null);
+
+
         assertNotNull(onView(withText("Create Droplet"))
+
                 .check(matches(isDisplayed()))
                 .perform(click()));
 
@@ -32,6 +36,11 @@ public class AdditionDetailFragmentTest {
         onView(withText("Backups")).check(matches(isDisplayed())).perform(click());
         onView(withText("IPv6")).check(matches(isDisplayed())).perform(click());
 
+
+    }
+    @Before
+    public void setUp() throws Exception {
+        mFragmentTestRule.launchActivity(null);
 
     }
 
