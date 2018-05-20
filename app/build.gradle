@@ -10,12 +10,12 @@ tasks.withType(Test) {
 }
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 27
     buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "in.tosc.digitaloceanapp"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 20
         versionName "0.2.0"
         testInstrumentationRunner "in.tosc.digitaloceanapp.DOAppTestRunner"
@@ -25,14 +25,14 @@ android {
         abortOnError false
     }
 
-    testOptions {
-        execution 'ANDROID_TEST_ORCHESTRATOR'
-        animationsDisabled true
-
-        unitTests {
-            includeAndroidResources = true
-        }
-    }
+//    testOptions {
+//        execution 'ANDROID_TEST_ORCHESTRATOR'
+//        animationsDisabled true
+//
+//        unitTests {
+//            includeAndroidResources = true
+//        }
+//    }
 
     useLibrary 'org.apache.http.legacy'
 
@@ -51,7 +51,7 @@ android {
 }
 
 ext {
-    supportLibraryVersion = '25.4.0'
+    supportLibraryVersion = '27.1.1'
 }
 
 task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
@@ -84,21 +84,21 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.afollestad.material-dialogs:core:0.9.1.0'
     implementation project(path: ':doandroidlib')
-    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'junit:junit:4.12'
 
-    androidTestImplementation('com.android.support.test:runner:0.5') {
+    androidTestImplementation('com.android.support.test:runner:1.0.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 
-    androidTestImplementation('com.android.support.test:rules:0.5') {
+    androidTestImplementation('com.android.support.test:rules:1.0.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2') {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 
-    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:2.2.2') {
+    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:3.0.2') {
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
         exclude module: 'support-v13'
