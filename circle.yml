@@ -32,8 +32,8 @@ test:
     # run tests  against the emulator after waiting.
 #    - "adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'"
     - circle-android wait-for-boot:
-      timeout: 720
-    - ./gradlew connectedCheck
+      timeout: 900
+    - ./gradlew jacocoTestReport
     # run lint checker
     #- lint app --html app/build/outputs/result.html
 
