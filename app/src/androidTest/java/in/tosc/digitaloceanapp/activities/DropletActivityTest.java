@@ -64,8 +64,9 @@ public class DropletActivityTest {
     public void testDropletInfo() {
         onView(withRecyclerView(R.id.dropletsRv).atPosition(0)).check(matches(isDisplayed()));
 
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-        onView(withText("Settings")).perform(click());
+        //to open options menu
+//        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+//        onView(withText("Settings")).perform(click());
 
 
     }
@@ -126,9 +127,9 @@ public class DropletActivityTest {
 
     //for opening drawer of navigation bar
     public void opendrawer(){
-        assertNotNull(onView(withId(R.id.drawer_layout))
+       onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open()));
+                .perform(DrawerActions.open());
     }
 
 }
