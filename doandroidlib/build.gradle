@@ -1,22 +1,46 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'jacoco-everywhere'
+apply plugin: 'jacoco'
 
-group='com.coding-blocks'
+group = 'com.coding-blocks'
+
+jacoco {
+    toolVersion = '0.8.0'
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/classes/debug", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+    ])
+}
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 11
         versionName "0.1.1"
 
         consumerProguardFiles 'proguard-rules.pro'
-
-
     }
     lintOptions {
         abortOnError false
@@ -33,12 +57,12 @@ ext {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'org.apache.commons:commons-lang3:3.4'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'me.panavtec:wizard:1.2'
-    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    testCompile 'junit:junit:4.12'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.android.support:appcompat-v7:27.1.1'
+    api 'org.apache.commons:commons-lang3:3.4'
+    api 'com.google.code.gson:gson:2.8.2'
+    api 'me.panavtec:wizard:1.2'
+    api "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    api "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    testImplementation 'junit:junit:4.12'
 }
