@@ -66,8 +66,6 @@ public class DropletActivityTest {
 
         //to open options menu
 //        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-//        onView(withText("Settings")).perform(click());
-
 
     }
 
