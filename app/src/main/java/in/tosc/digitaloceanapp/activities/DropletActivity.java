@@ -11,7 +11,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,10 +19,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
@@ -35,6 +31,12 @@ import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.AccountInfo;
 import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.objects.Droplets;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,14 +60,16 @@ public class DropletActivity extends AppCompatActivity
         FontsOverride.applyFontForToolbarTitle(this, FontsOverride.FONT_PROXIMA_NOVA);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_droplet);
         setSupportActionBar(binding.appBarDroplet.toolbar);
-        binding.appBarDroplet.contentDroplet.dropletsRv.setLayoutManager(new LinearLayoutManager(DropletActivity.this, LinearLayoutManager.VERTICAL, false));
+        binding.appBarDroplet.contentDroplet.dropletsRv.setLayoutManager
+                (new LinearLayoutManager(DropletActivity.this, LinearLayoutManager.VERTICAL, false));
         droplets = new ArrayList<>();
         dropletsAdapter = new DropletsAdapter(droplets, DropletActivity.this);
         binding.appBarDroplet.contentDroplet.dropletsRv.setAdapter(dropletsAdapter);
         doClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken", null));
         refreshData();
 
-        binding.appBarDroplet.contentDroplet.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        binding.appBarDroplet.contentDroplet.swipeRefresh.setOnRefreshListener
+                (new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshData();
@@ -81,7 +85,11 @@ public class DropletActivity extends AppCompatActivity
             }
         });
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, binding.drawerLayout, binding.appBarDroplet.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this,
+                binding.drawerLayout,
+                binding.appBarDroplet.toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
         binding.drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         doClient.getAccount().enqueue(new Callback<AccountInfo>() {
@@ -89,7 +97,8 @@ public class DropletActivity extends AppCompatActivity
             public void onResponse(Call<AccountInfo> call, Response<AccountInfo> response) {
                 String email = response.body().getAccount().getEmail();
                 if (binding.drawerLayout.findViewById(R.id.accountEmail) != null) {
-                    ((TextView) binding.drawerLayout.findViewById(R.id.accountEmail)).setText(email);
+                    ((TextView) binding.drawerLayout.findViewById(R.id.accountEmail))
+                            .setText(email);
                 }
                 ImageView profilePic = binding.drawerLayout.findViewById(R.id.accountPic);
                 if (profilePic != null && email != null && !email.isEmpty()) {
