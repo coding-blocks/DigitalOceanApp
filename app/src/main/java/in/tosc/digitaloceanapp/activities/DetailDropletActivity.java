@@ -46,7 +46,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
     public static final String TAG = "DetailDropletActivity";
     Gson gson;
 
-    ActivityDetailDropletBinding binding;
+    private ActivityDetailDropletBinding binding;
 
 
     @Override

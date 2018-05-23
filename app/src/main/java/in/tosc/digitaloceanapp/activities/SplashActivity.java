@@ -25,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
     public static final String TAG = "Splash";
 
 
-    ActivitySplashBinding binding;
+    private ActivitySplashBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
