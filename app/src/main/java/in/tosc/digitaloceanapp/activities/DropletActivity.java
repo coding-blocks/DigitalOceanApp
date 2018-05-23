@@ -51,7 +51,7 @@ public class DropletActivity extends AppCompatActivity
     static List<Droplet> droplets;
     static DropletsAdapter dropletsAdapter;
     static DigitalOceanClient doClient;
-    ActivityDropletBinding binding;
+    private ActivityDropletBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,16 +60,17 @@ public class DropletActivity extends AppCompatActivity
         FontsOverride.applyFontForToolbarTitle(this, FontsOverride.FONT_PROXIMA_NOVA);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_droplet);
         setSupportActionBar(binding.appBarDroplet.toolbar);
-        binding.appBarDroplet.contentDroplet.dropletsRv.setLayoutManager
-                (new LinearLayoutManager(DropletActivity.this, LinearLayoutManager.VERTICAL, false));
+        binding.appBarDroplet.contentDroplet.dropletsRv.setLayoutManager(
+                new LinearLayoutManager(DropletActivity.this,
+                        LinearLayoutManager.VERTICAL, false));
         droplets = new ArrayList<>();
         dropletsAdapter = new DropletsAdapter(droplets, DropletActivity.this);
         binding.appBarDroplet.contentDroplet.dropletsRv.setAdapter(dropletsAdapter);
         doClient = DigitalOcean.getDOClient(getSharedPreferences("DO", MODE_PRIVATE).getString("authToken", null));
         refreshData();
 
-        binding.appBarDroplet.contentDroplet.swipeRefresh.setOnRefreshListener
-                (new SwipeRefreshLayout.OnRefreshListener() {
+        binding.appBarDroplet.contentDroplet.swipeRefresh.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshData();
