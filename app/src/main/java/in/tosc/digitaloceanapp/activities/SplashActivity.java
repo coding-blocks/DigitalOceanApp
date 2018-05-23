@@ -10,8 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-
 import in.tosc.digitaloceanapp.R;
+
 import in.tosc.digitaloceanapp.databinding.ActivitySplashBinding;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;

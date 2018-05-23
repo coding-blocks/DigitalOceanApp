@@ -13,24 +13,26 @@ import android.view.MenuItem;
 
 import android.widget.CompoundButton;
 
-
 import com.afollestad.materialdialogs.DialogAction;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 
-import java.util.List;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
 
-
 import in.tosc.digitaloceanapp.databinding.ActivityDetailDropletBinding;
+
 import in.tosc.digitaloceanapp.interfaces.OnDropletNameChange;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.common.ActionType;
 import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -87,7 +89,10 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                     .positiveText(R.string.dialog_confirm).onPositive(new MaterialDialog.SingleButtonCallback() {
                 @Override
                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                    Snackbar.make(binding.coordinatorLayout, getString(R.string.delete_droplet_msg), Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(binding.coordinatorLayout,
+                            getString(R.string.delete_droplet_msg),
+                            Snackbar.LENGTH_INDEFINITE)
+                            .show();
                     doaClient.performAction(droplet.getId(), ActionType.DESTROY, null).enqueue(new Callback<Action>() {
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
@@ -202,12 +207,18 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.code() >= 200 && response.code() <= 299) {
-                                Snackbar.make(binding.coordinatorLayout, getString(R.string.ipv6_enabled), Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(binding.coordinatorLayout,
+                                        getString(R.string.ipv6_enabled),
+                                        Snackbar.LENGTH_SHORT).
+                                        show();
                                 DropletActivity.refreshData();
                             } else {
                                 Log.d("IPv6", response.code() + "");
                                 setSwitchWithoutTriggering(binding.switchIpv6, false);
-                                Snackbar.make(binding.coordinatorLayout, getString(R.string.ipv6_couldnt_be_enabled), Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(binding.coordinatorLayout,
+                                        getString(R.string.ipv6_couldnt_be_enabled),
+                                        Snackbar.LENGTH_SHORT)
+                                        .show();
 
                             }
                         }
@@ -215,12 +226,18 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
                             setSwitchWithoutTriggering(binding.switchIpv6, false);
-                            Snackbar.make(binding.coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.coordinatorLayout,
+                                    getString(R.string.network_error),
+                                    Snackbar.LENGTH_SHORT)
+                                    .show();
                         }
                     });
                 } else {
                     setSwitchWithoutTriggering(binding.switchIpv6, true);
-                    Snackbar.make(binding.coordinatorLayout, getString(R.string.ipv6_cannot_be_disabled), Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(binding.coordinatorLayout,
+                            getString(R.string.ipv6_cannot_be_disabled),
+                            Snackbar.LENGTH_SHORT)
+                            .show();
                 }
                 break;
 
@@ -230,24 +247,36 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.code() >= 200 && response.code() <= 299) {
-                                Snackbar.make(binding.coordinatorLayout, getString(R.string.private_network_enabled), Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(binding.coordinatorLayout,
+                                        getString(R.string.private_network_enabled),
+                                        Snackbar.LENGTH_SHORT)
+                                        .show();
                                 DropletActivity.refreshData();
                             } else {
                                 Log.d("SPN", response.code() + "");
                                 setSwitchWithoutTriggering(binding.switchPrivateNetwork, false);
-                                Snackbar.make(binding.coordinatorLayout, getString(R.string.private_network_couldnt_be_enabled), Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(binding.coordinatorLayout,
+                                        getString(R.string.private_network_couldnt_be_enabled),
+                                        Snackbar.LENGTH_SHORT)
+                                        .show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
                             setSwitchWithoutTriggering(binding.switchPrivateNetwork, false);
-                            Snackbar.make(binding.coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.coordinatorLayout,
+                                    getString(R.string.network_error),
+                                    Snackbar.LENGTH_SHORT)
+                                    .show();
                         }
                     });
                 } else {
                     setSwitchWithoutTriggering(binding.switchPrivateNetwork, true);
-                    Snackbar.make(binding.coordinatorLayout, getString(R.string.private_network_cannot_be_disabled), Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(binding.coordinatorLayout,
+                            getString(R.string.private_network_cannot_be_disabled),
+                            Snackbar.LENGTH_SHORT)
+                            .show();
                 }
                 break;
 
@@ -257,11 +286,17 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.code() >= 200 && response.code() <= 299) {
-                                Snackbar.make(binding.coordinatorLayout, getString(R.string.backup_enabled), Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(binding.coordinatorLayout,
+                                        getString(R.string.backup_enabled),
+                                        Snackbar.LENGTH_SHORT)
+                                        .show();
                                 DropletActivity.refreshData();
                             } else {
                                 setSwitchWithoutTriggering(binding.switchBackup, false);
-                                Snackbar.make(binding.coordinatorLayout, getString(R.string.backup_couldnt_be_enabled), Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(binding.coordinatorLayout,
+                                        getString(R.string.backup_couldnt_be_enabled),
+                                        Snackbar.LENGTH_SHORT)
+                                        .show();
                                 Log.d("SBE", response.code() + "");
                             }
                         }
@@ -269,7 +304,10 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
                             setSwitchWithoutTriggering(binding.switchBackup, false);
-                            Snackbar.make(binding.coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.coordinatorLayout,
+                                    getString(R.string.network_error),
+                                    Snackbar.LENGTH_SHORT)
+                                    .show();
                         }
                     });
                 } else {
@@ -277,12 +315,18 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         @Override
                         public void onResponse(Call<Action> call, Response<Action> response) {
                             if (response.code() >= 200 && response.code() <= 299) {
-                                Snackbar.make(binding.coordinatorLayout, getString(R.string.backup_disabled), Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(binding.coordinatorLayout,
+                                        getString(R.string.backup_disabled),
+                                        Snackbar.LENGTH_SHORT)
+                                        .show();
                                 DropletActivity.refreshData();
                             } else {
                                 Log.d("SBD", response.code() + "");
                                 setSwitchWithoutTriggering(binding.switchBackup, true);
-                                Snackbar.make(binding.coordinatorLayout, getString(R.string.backup_couldnt_be_disabled), Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(binding.coordinatorLayout,
+                                        getString(R.string.backup_couldnt_be_disabled),
+                                        Snackbar.LENGTH_SHORT)
+                                        .show();
 
                             }
                         }
@@ -290,7 +334,10 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                         @Override
                         public void onFailure(Call<Action> call, Throwable t) {
                             setSwitchWithoutTriggering(binding.switchBackup, true);
-                            Snackbar.make(binding.coordinatorLayout, getString(R.string.network_error), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.coordinatorLayout,
+                                    getString(R.string.network_error),
+                                    Snackbar.LENGTH_SHORT)
+                                    .show();
                         }
                     });
                 }
@@ -303,9 +350,14 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
 
     private void setData(Droplet droplet) {
         binding.dropletName.setText(droplet.getName());
-        binding.ipAddress.setText(droplet.getNetworks().getVersion4Networks().get(0).getIpAddress());
-        binding.dropletMemory.setText(String.format(getResources().getString(R.string.droplet_memory), String.valueOf(droplet.getMemorySizeInMb())));
-        binding.dropletSize.setText(String.format(getResources().getString(R.string.droplet_disk_size), String.valueOf(droplet.getDiskSize())));
+        binding.ipAddress.setText(droplet.getNetworks()
+                .getVersion4Networks()
+                .get(0)
+                .getIpAddress());
+        binding.dropletMemory.setText(String.format(getResources().getString(R.string.droplet_memory),
+                String.valueOf(droplet.getMemorySizeInMb())));
+        binding.dropletSize.setText(String.format(getResources().getString(R.string.droplet_disk_size),
+                String.valueOf(droplet.getDiskSize())));
         binding.dropletRegion.setText(droplet.getRegion().getName());
         binding.dropletOs.setText(droplet.getImage().getName());
     }
