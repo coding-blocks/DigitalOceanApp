@@ -25,7 +25,7 @@ public class DropletCreateActivity extends AppCompatActivity {
     static Droplet droplet;
     int count = 1;
     private static final String TAG = "DropletCreateActivity";
-    ActivityDropletCreateBinding binding;
+    private ActivityDropletCreateBinding binding;
 
 
     public static Droplet getDroplet() {

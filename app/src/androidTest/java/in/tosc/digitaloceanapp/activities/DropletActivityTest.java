@@ -10,12 +10,13 @@ import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
-import android.view.Gravity;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import android.view.Gravity;
 import android.view.WindowManager;
+
 
 import static in.tosc.digitaloceanapp.matchers.RecyclerViewMatcher.withRecyclerView;
 

@@ -209,8 +209,8 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                             if (response.code() >= 200 && response.code() <= 299) {
                                 Snackbar.make(binding.coordinatorLayout,
                                         getString(R.string.ipv6_enabled),
-                                        Snackbar.LENGTH_SHORT).
-                                        show();
+                                        Snackbar.LENGTH_SHORT)
+                                        .show();
                                 DropletActivity.refreshData();
                             } else {
                                 Log.d("IPv6", response.code() + "");
@@ -354,9 +354,11 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                 .getVersion4Networks()
                 .get(0)
                 .getIpAddress());
-        binding.dropletMemory.setText(String.format(getResources().getString(R.string.droplet_memory),
+        binding.dropletMemory.setText(String.format(
+                getResources().getString(R.string.droplet_memory),
                 String.valueOf(droplet.getMemorySizeInMb())));
-        binding.dropletSize.setText(String.format(getResources().getString(R.string.droplet_disk_size),
+        binding.dropletSize.setText(String.format(getResources().getString(
+                R.string.droplet_disk_size),
                 String.valueOf(droplet.getDiskSize())));
         binding.dropletRegion.setText(droplet.getRegion().getName());
         binding.dropletOs.setText(droplet.getImage().getName());
