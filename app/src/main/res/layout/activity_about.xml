@@ -1,277 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardElevation="4dp">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="16dp"
-            >
+            android:layout_margin="@dimen/cardview_default_margin"
+            app:cardElevation="@dimen/cardview_default_elevation">
 
-            <!-- title -->
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:paddingLeft="16dp"
-                >
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/default_padding">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/support_development"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    />
-            </RelativeLayout>
+                <!-- title -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/about_contributor_height"
+                    android:paddingEnd="@dimen/default_padding"
+                    android:paddingLeft="@dimen/default_padding"
+                    android:paddingRight="@dimen/default_padding"
+                    android:paddingStart="@dimen/default_padding">
 
-            <RelativeLayout
-                android:id="@+id/relative_layout_github"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:onClick="openPage"
-                android:gravity="center_vertical"
-                >
-
-                <ImageView
-                    android:id="@+id/image_github"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="32dp"
-                    android:src="@drawable/ic_github"
-                    android:layout_centerVertical="true"
-                    />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/support_development"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+                </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_toRightOf="@+id/image_github"
+                    android:id="@+id/relative_layout_github"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/about_contributor_height"
+                    android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical"
-                    >
-                    <TextView
-                        android:id="@+id/text_view_github"
+                    android:onClick="openPage">
+
+                    <ImageView
+                        android:id="@+id/image_github"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/github"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textSize="16sp"
-                        />
-                    <TextView
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/default_margin_2x"
+                        android:layout_marginLeft="@dimen/default_margin"
+                        android:layout_marginRight="@dimen/default_margin_2x"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:contentDescription="@string/image_github_desc"
+                        android:src="@drawable/ic_github" />
+
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/text_view_github"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:text="@string/github_summary"
-                        android:textSize="12sp"
-                        />
+                        android:layout_height="match_parent"
+                        android:layout_toEndOf="@+id/image_github"
+                        android:layout_toRightOf="@+id/image_github"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/text_view_github"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/github"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                            android:textSize="@dimen/text_default_size_large" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/text_view_github"
+                            android:text="@string/github_summary"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textSize="@dimen/text_default_size_small" />
+                    </RelativeLayout>
                 </RelativeLayout>
-            </RelativeLayout>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardElevation="4dp"
-        >
-
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="16dp"
-            >
+            android:layout_margin="@dimen/default_margin"
+            app:cardElevation="@dimen/cardview_default_elevation">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:paddingLeft="16dp"
-                >
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/default_padding">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:text="@string/contributors"
-                    />
-            </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/about_contributor_height"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:layout_marginStart="@dimen/default_margin">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:layout_marginLeft="16dp"
-                android:gravity="center_vertical"
-                >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/contributors"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+                </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/text_view_contributor_1_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/contributor1_name"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:textSize="16sp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/text_view_contributor_1_title"
-                    android:text="@string/contributor1_username"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textSize="12sp"
-                    />
-            </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/about_contributor_height"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:layout_marginLeft="16dp"
-                android:gravity="center_vertical"
-                >
+                    <TextView
+                        android:id="@+id/text_view_contributor_1_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contributor1_name"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textSize="@dimen/text_default_size_large" />
 
-                <TextView
-                    android:id="@+id/text_view_contributor_2_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/contributor2_name"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:textSize="16sp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/text_view_contributor_2_title"
-                    android:text="@string/contributor2_username"                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textSize="12sp"
-                    />
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contributor1_username"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textSize="@dimen/text_default_size_small" />
+                </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:layout_marginLeft="16dp"
-                android:gravity="center_vertical"
-                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/about_contributor_height"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/text_view_contributor_3_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/contributor3_name"                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:textSize="16sp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/text_view_contributor_3_title"
-                    android:text="@string/contributor3_username"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textSize="12sp"
-                    />
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/text_view_contributor_2_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contributor2_name"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textSize="@dimen/text_default_size_large" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:layout_marginLeft="16dp"
-                android:gravity="center_vertical"
-                >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contributor2_username"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textSize="@dimen/text_default_size_small" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/text_view_contributor_4_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/contributor4_name"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:textSize="16sp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/text_view_contributor_4_title"
-                    android:text="@string/contributor4_username"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textSize="12sp"
-                    />
-            </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/about_contributor_height"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:layout_marginLeft="16dp"
-                android:gravity="center_vertical"
-                >
+                    <TextView
+                        android:id="@+id/text_view_contributor_3_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contributor3_name"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textSize="@dimen/text_default_size_large" />
 
-                <TextView
-                    android:id="@+id/text_view_contributor_5_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/contributor5_name"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:textSize="16sp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/text_view_contributor_5_title"
-                    android:text="@string/contributor5_username"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textSize="12sp"
-                    />
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contributor3_username"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textSize="@dimen/text_default_size_small" />
+                </LinearLayout>
 
-            <RelativeLayout
-                android:id="@+id/relative_layout_see_all_contributors"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:onClick="openPage"
-                android:paddingLeft="16dp"
-                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/about_contributor_height"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textSize="16sp"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:text="@string/see_all_contributors"
-                    />
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/text_view_contributor_4_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contributor4_name"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textSize="@dimen/text_default_size_large" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contributor4_username"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textSize="@dimen/text_default_size_small" />
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/about_contributor_height"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/text_view_contributor_5_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contributor5_name"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textSize="@dimen/text_default_size_large" />
 
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contributor5_username"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:textSize="@dimen/text_default_size_small" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relative_layout_see_all_contributors"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/about_contributor_height"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:onClick="openPage">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/see_all_contributors"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textSize="@dimen/text_default_size_large" />
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+</ScrollView>

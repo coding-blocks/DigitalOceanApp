@@ -23,7 +23,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="ip_address">IP Address</string>
+    <string name="ip_address">IP Address:</string>
 
     <string name="droplet_name">Droplet Name</string>
     <string name="droplet_memory">%1$s MB</string>
@@ -91,7 +91,6 @@
 
     <string name="please_choose_option">Please choose an option</string>
 
-
     <string name="about">About</string>
     <string name="support_development">Support Development</string>
     <string name="github">GitHub</string>
@@ -114,4 +113,7 @@
     <string name="checking_token">Checking token...</string>
     <string name="this_token_is_invalid">This token is invalid</string>
 
+    <string name="image_github_desc">Github logo</string>
+    <string name="btn_create_droplet">Create Droplet</string>
+    <string name="image_digitalocean_desc">DigitalOcean Logo</string>
 </resources>
