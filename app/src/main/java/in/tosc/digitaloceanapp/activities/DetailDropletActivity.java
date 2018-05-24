@@ -68,7 +68,6 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
 
         coordinatorLayout = binding.coordinatorLayout;
 
-
         setData(droplet);
         setIndividualFeatures(droplet);
         setSwitches();
