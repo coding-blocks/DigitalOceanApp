@@ -67,9 +67,9 @@ public final class FontsOverride {
         private Typeface mTypeface;
 
         /**
-         * 
-         * @param context
-         * @param typefaceName
+         *
+         * @param context       The context should not be null.
+         * @param typefaceName  The typefaceName should not be null.
          */
         public TypefaceSpan(Context context, String typefaceName) {
             mTypeface = sTypefaceCache.get(typefaceName);
