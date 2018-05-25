@@ -23,13 +23,6 @@ package in.tosc.doandroidlib.common;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Enumeration of DigitalOcean Action Status
- * 
- * @author Jeevanandam M. (jeeva@myjeeva.com)
- * 
- * @since v2.0
- */
 public enum ActionStatus {
 
   @SerializedName("completed")

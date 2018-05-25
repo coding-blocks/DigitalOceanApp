@@ -2,9 +2,6 @@ package in.tosc.doandroidlib.common;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by championswimmer on 27/11/16.
- */
 
 public enum StatisticsType {
 

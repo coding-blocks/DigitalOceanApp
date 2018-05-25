@@ -17,15 +17,12 @@ import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.activities.DetailDropletActivity;
 import in.tosc.doandroidlib.objects.Droplet;
 
-/**
- * Created by the-dagger on 11/26/2016.
- */
 
-public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHolder>{
+public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHolder> {
 
+    public static final String DROPLET_CLICKED_POSITION = "position";
     public List<Droplet> dropletList;
     private Context context;
-    public static final String DROPLET_CLICKED_POSITION = "position";
 
     public DropletsAdapter(List<Droplet> droplets, Context context) {
         dropletList = droplets;
@@ -76,6 +73,7 @@ public class DropletsAdapter extends RecyclerView.Adapter<DropletsAdapter.ViewHo
             ipAddress = (TextView) itemView.findViewById(R.id.ipAddress);
             region = (TextView) itemView.findViewById(R.id.dropletRegion);
         }
+
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(context, DetailDropletActivity.class);

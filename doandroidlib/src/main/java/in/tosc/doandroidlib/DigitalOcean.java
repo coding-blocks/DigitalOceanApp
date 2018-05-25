@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import java.io.IOException;
 
@@ -27,11 +26,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * (The clientId and callbackUrl are what you get when you register an app on Digital Oceal
  * developer dashboard)
  *
+ *<p>
  * You should use one of the following -
  * <ul>
- *  <li>Use the static {@link #doLogin(Activity)} to login the user and get token</li>
- *  <li>Use the static {@link #getDOClient(String)} to get a client</li>
+ * <li>Use the static {@link #doLogin(Activity)} to login the user and get token</li>
+ * <li>Use the static {@link #getDOClient(String)} to get a client</li>
  * </ul>
+ *</p>
+ *
  * @author championswimmer
  * @since 0.1.0
  */
@@ -41,9 +43,6 @@ public class DigitalOcean {
     public static final String TAG = "DO";
     public static final int LOGIN_ACT_INTENT_CODE = 3245;
     public static final String EXTRA_AUTH_TOKEN = "authToken";
-
-    private static boolean USE_MOCK_API = false;
-
     /**
      * The status code for successful login
      */
@@ -52,27 +51,26 @@ public class DigitalOcean {
      * The status code for failed login
      */
     public static final int LOGIN_FAIL = 902;
-
     public static final String BASE_URL = "https://api.digitalocean.com/v2/";
     public static final String BASE_URL_V1 = "https://cloud.digitalocean.com/api/v1/";
-
-    public static String getClientId() {
-        return clientId;
-    }
-
+    private static boolean USE_MOCK_API = false;
     private static String clientId;
-
-    public static String getCallbackUrl() {
-        return callbackUrl;
-    }
-
     private static String callbackUrl;
     private static String authToken = "";
     private static Retrofit r, r2;
     private static OkHttpClient okHttpClient;
 
+    public static String getClientId() {
+        return clientId;
+    }
+
+    public static String getCallbackUrl() {
+        return callbackUrl;
+    }
+
     /**
      * Static initialiser to initialise usage of Digital Ocean in your app
+     *
      * @param clientId
      * @param callbackUrl
      */
@@ -83,6 +81,7 @@ public class DigitalOcean {
 
     /**
      * Initialise Digital Ocean, optionally with mock api
+     *
      * @param clientId
      * @param callbackUrl
      * @param useMockApi
@@ -96,7 +95,6 @@ public class DigitalOcean {
      * This starts the login process (in a Chrome custom tab).
      * We use {@link #LOGIN_ACT_INTENT_CODE} to do a {@link Activity#startActivityForResult(Intent, int)}
      *
-     *
      * @param act An activity object, usually <code>this</code> if doing this from
      *            {@link Activity#onCreate(Bundle)}
      */
@@ -108,9 +106,10 @@ public class DigitalOcean {
     /**
      * Method to set your custom HttpClient. Use this if you want custom interceptors
      * You need to do this before calling {@link #getDOClient(String)}
+     *
      * @param customClient
      */
-    public static void setHttpClient (OkHttpClient customClient) {
+    public static void setHttpClient(OkHttpClient customClient) {
         okHttpClient = customClient;
     }
 
@@ -146,8 +145,6 @@ public class DigitalOcean {
         }
 
 
-
-
         r = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -162,6 +159,7 @@ public class DigitalOcean {
 
     /**
      * Get a Digital Ocean v2 API client. For available methods, see {@link DigitalOceanClient}
+     *
      * @param authToken The auth token (which you probably should have saved in SharedPreferences)
      * @return
      */
@@ -181,6 +179,7 @@ public class DigitalOcean {
     /**
      * Get a DigitalOcean statistics API client
      * FIXME: This is not yet implemented
+     *
      * @param authToken
      * @return A client you can use to get statistics from DigitalOcean
      */
@@ -188,7 +187,7 @@ public class DigitalOcean {
 
         if (clientId == null || callbackUrl == null) {
             (new ClientInitializationException("DigitalOcean.init() and/or DigitalOcean.onLoggedIn() wasn't called. " +
-                "You need to initialize before getting access to client")).printStackTrace();
+                    "You need to initialize before getting access to client")).printStackTrace();
             return null;
         }
         onLoggedIn(authToken);

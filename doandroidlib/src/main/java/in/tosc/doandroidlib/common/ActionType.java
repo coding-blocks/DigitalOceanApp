@@ -23,13 +23,6 @@ package in.tosc.doandroidlib.common;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Enumeration of DigitalOcean Droplet &amp; Image Action Type
- * 
- * @author Jeevanandam M. (jeeva@myjeeva.com)
- * 
- * @since v2.0
- */
 public enum ActionType {
   
   @SerializedName("create")

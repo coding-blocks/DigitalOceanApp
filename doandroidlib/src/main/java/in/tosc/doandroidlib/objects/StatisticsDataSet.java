@@ -2,9 +2,7 @@ package in.tosc.doandroidlib.objects;
 
 import java.util.List;
 
-/**
- * Created by championswimmer on 27/11/16.
- */
+
 
 public class StatisticsDataSet {
 
