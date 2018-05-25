@@ -49,13 +49,6 @@ import in.tosc.doandroidlib.objects.Tags;
 import in.tosc.doandroidlib.objects.Volume;
 import in.tosc.doandroidlib.objects.Volumes;
 
-/**
- * Enumeration of DigitalOcean RESTful resource information.
- * 
- * @author Jeevanandam M. (jeeva@myjeeva.com)
- * 
- * @since v2.0
- */
 public enum ApiAction {
 
   // Droplet

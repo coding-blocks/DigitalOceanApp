@@ -4,9 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by championswimmer on 27/11/16.
- */
+
 
 public class Statistics {
 

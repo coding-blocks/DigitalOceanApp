@@ -23,14 +23,7 @@ package in.tosc.doandroidlib.common;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Enumeration of DigitalOcean droplet states.
- * 
- * @author Robert Gründler (robert@dubture.com)
- * @author Jeevanandam M. (jeeva@myjeeva.com)
- * 
- * @since v1.5
- */
+
 public enum DropletStatus {
 
   @SerializedName("new")

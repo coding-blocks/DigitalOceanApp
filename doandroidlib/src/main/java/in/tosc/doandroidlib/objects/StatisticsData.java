@@ -1,8 +1,6 @@
 package in.tosc.doandroidlib.objects;
 
-/**
- * Created by championswimmer on 27/11/16.
- */
+
 
 public class StatisticsData {
 

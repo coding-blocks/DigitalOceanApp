@@ -1,8 +1,6 @@
 package in.tosc.doandroidlib.objects;
 
-/**
- * Created by championswimmer on 14/07/17.
- */
+
 import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;

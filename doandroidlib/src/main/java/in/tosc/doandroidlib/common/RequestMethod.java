@@ -21,13 +21,7 @@
 
 package in.tosc.doandroidlib.common;
 
-/**
- * Enumeration of HTTP Methods
- * 
- * @author Jeevanandam M. (jeeva@myjeeva.com)
- * 
- * @since v2.0
- */
+
 public enum RequestMethod {
   GET, POST, PUT, DELETE;
 }

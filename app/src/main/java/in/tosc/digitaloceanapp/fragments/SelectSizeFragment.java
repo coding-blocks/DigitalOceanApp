@@ -24,11 +24,8 @@ import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
-/**
- * Created by the-dagger on 11/26/2016.
- */
 
-public class SelectSizeFragment extends Fragment{
+public class SelectSizeFragment extends Fragment {
 
     private List<Size> sizeList;
     private RecyclerView recyclerView;
@@ -39,9 +36,9 @@ public class SelectSizeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_size, container, false);
 
-        DigitalOceanClient doClient = DigitalOcean.getDOClient(getContext().getSharedPreferences("DO", MODE_PRIVATE).getString("authToken",null));
+        DigitalOceanClient doClient = DigitalOcean.getDOClient(getContext().getSharedPreferences("DO", MODE_PRIVATE).getString("authToken", null));
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_size);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
         recyclerView.setAdapter(selectSizeAdapter);
         doClient.getSizes().enqueue(new Callback<Sizes>() {
             @Override
@@ -54,7 +51,7 @@ public class SelectSizeFragment extends Fragment{
 
             @Override
             public void onFailure(Call<Sizes> call, Throwable t) {
-                Log.e("Failed getting sizes",t.getLocalizedMessage());
+                Log.e("Failed getting sizes", t.getLocalizedMessage());
             }
         });
         return view;
