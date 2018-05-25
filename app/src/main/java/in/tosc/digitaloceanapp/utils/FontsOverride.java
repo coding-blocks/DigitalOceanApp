@@ -67,7 +67,7 @@ public final class FontsOverride {
         private Typeface mTypeface;
 
         /**
-         *
+         * The paramaters required for Typeface Constructor.
          * @param context       The context should not be null.
          * @param typefaceName  The typefaceName should not be null.
          */
