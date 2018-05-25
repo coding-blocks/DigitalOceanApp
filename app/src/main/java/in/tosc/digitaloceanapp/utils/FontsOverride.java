@@ -66,6 +66,11 @@ public final class FontsOverride {
 
         private Typeface mTypeface;
 
+        /**
+         * 
+         * @param context
+         * @param typefaceName
+         */
         public TypefaceSpan(Context context, String typefaceName) {
             mTypeface = sTypefaceCache.get(typefaceName);
 
