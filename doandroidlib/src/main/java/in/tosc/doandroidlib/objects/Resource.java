@@ -23,9 +23,10 @@ package in.tosc.doandroidlib.objects;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import in.tosc.doandroidlib.common.ResourceType;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
+import in.tosc.doandroidlib.common.ResourceType;
 
 /**
  * Resource represent a single resource for associating/disassociating with tag on DigitalOcean.

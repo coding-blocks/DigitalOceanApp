@@ -21,13 +21,12 @@ import in.tosc.doandroidlib.objects.Droplet;
  */
 public class DropletCreateActivity extends AppCompatActivity {
 
+    private static final String TAG = "DropletCreateActivity";
     static Droplet droplet;
     int count = 1;
     Button btnNext;
     Button btnPrev;
     Button btnCreateDropet;
-    private static final String TAG = "DropletCreateActivity";
-
 
     public static Droplet getDroplet() {
         return droplet;
@@ -126,17 +125,15 @@ public class DropletCreateActivity extends AppCompatActivity {
 
     public void next(View view) {
 
-        int setCount =  (droplet.getImage()!=null?1:0) +
-                        (droplet.getRegion()!=null?1:0) +
-                        (droplet.getSize()!=null?1:0);
+        int setCount = (droplet.getImage() != null ? 1 : 0) +
+                (droplet.getRegion() != null ? 1 : 0) +
+                (droplet.getSize() != null ? 1 : 0);
 
-        if(setCount == count) {
+        if (setCount == count) {
             count++;
             addFragment(count);
             Log.e("Decreased count", String.valueOf(count));
-        }
-        else
-        {
+        } else {
             Toast.makeText(this, R.string.please_choose_option, Toast.LENGTH_SHORT).show();
         }
     }

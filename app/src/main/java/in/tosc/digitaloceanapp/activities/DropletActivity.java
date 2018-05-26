@@ -40,18 +40,61 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by the-dagger on 11/26/2016.
- */
 
 public class DropletActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     static List<Droplet> droplets;
     static DropletsAdapter dropletsAdapter;
+    static DigitalOceanClient doClient;
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView dropletRecyclerView;
-    static DigitalOceanClient doClient;
+
+    public static void refreshData() {
+
+        doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
+            @Override
+            public void onResponse(Call<Droplets> call, Response<Droplets> response) {
+                droplets.clear();
+                List<Droplet> dropletsDownloaded = response.body().getDroplets();
+                for (Droplet droplet : dropletsDownloaded) {
+                    if (droplet.isLocked()) {
+                        dropletsDownloaded.remove(droplet);  //A locked droplet prevents any user actions
+                    }
+                }
+                droplets.addAll(dropletsDownloaded);
+                dropletsAdapter.notifyDataSetChanged();
+                Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
+            }
+
+            @Override
+            public void onFailure(Call<Droplets> call, Throwable t) {
+                droplets = null;
+                Log.e("Failed to get Droplets", t.getMessage());
+            }
+        });
+    }
+
+    public static void refreshModifiedData(final OnDropletNameChange onDropletNameChange) {
+
+        doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
+            @Override
+            public void onResponse(Call<Droplets> call, Response<Droplets> response) {
+                droplets.clear();
+                droplets.addAll(response.body().getDroplets());
+                dropletsAdapter.notifyDataSetChanged();
+                Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
+                onDropletNameChange.onSuccess(droplets);
+            }
+
+            @Override
+            public void onFailure(Call<Droplets> call, Throwable t) {
+                droplets = null;
+                Log.e("Failed to get Droplets", t.getMessage());
+                onDropletNameChange.onError(t.getMessage());
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,55 +157,6 @@ public class DropletActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-
-    public static void refreshData() {
-
-        doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
-            @Override
-            public void onResponse(Call<Droplets> call, Response<Droplets> response) {
-                droplets.clear();
-                List<Droplet> dropletsDownloaded = response.body().getDroplets();
-                for(Droplet droplet: dropletsDownloaded)
-                {
-                    if(droplet.isLocked())
-                    {
-                        dropletsDownloaded.remove(droplet);  //A locked droplet prevents any user actions
-                    }
-                }
-                droplets.addAll(dropletsDownloaded);
-                dropletsAdapter.notifyDataSetChanged();
-                Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
-            }
-
-            @Override
-            public void onFailure(Call<Droplets> call, Throwable t) {
-                droplets = null;
-                Log.e("Failed to get Droplets", t.getMessage());
-            }
-        });
-    }
-
-    public static void refreshModifiedData(final OnDropletNameChange onDropletNameChange) {
-
-        doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
-            @Override
-            public void onResponse(Call<Droplets> call, Response<Droplets> response) {
-                droplets.clear();
-                droplets.addAll(response.body().getDroplets());
-                dropletsAdapter.notifyDataSetChanged();
-                Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
-                onDropletNameChange.onSuccess(droplets);
-            }
-
-            @Override
-            public void onFailure(Call<Droplets> call, Throwable t) {
-                droplets = null;
-                Log.e("Failed to get Droplets", t.getMessage());
-                onDropletNameChange.onError(t.getMessage());
-            }
-        });
-    }
-
     public String md5(String s) {
         try {
             // Create MD5 Hash
@@ -212,7 +206,7 @@ public class DropletActivity extends AppCompatActivity
             startActivity(i);
         } else if (id == R.id.nav_logout) {
             getSharedPreferences("DO", MODE_PRIVATE).edit().clear().commit();
-            Intent i=new Intent(this,SplashActivity.class);
+            Intent i = new Intent(this, SplashActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
             finish();
@@ -226,7 +220,7 @@ public class DropletActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_about) {
-            Intent i = new Intent(this,AboutActivity.class);
+            Intent i = new Intent(this, AboutActivity.class);
             startActivity(i);
         }
 

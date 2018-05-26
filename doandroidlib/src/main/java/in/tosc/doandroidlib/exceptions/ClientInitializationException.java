@@ -1,7 +1,5 @@
 package in.tosc.doandroidlib.exceptions;
 
-import java.io.IOException;
-
 /**
  * Created by championswimmer on 15/07/17.
  */

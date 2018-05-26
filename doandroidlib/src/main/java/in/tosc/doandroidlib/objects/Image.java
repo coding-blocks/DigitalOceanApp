@@ -23,12 +23,13 @@ package in.tosc.doandroidlib.objects;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import in.tosc.doandroidlib.common.ImageType;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.util.Date;
 import java.util.List;
+
+import in.tosc.doandroidlib.common.ImageType;
 
 /**
  * Represents Droplet Image (also public images aka Distribution) attributes of DigitalOcean

@@ -2,9 +2,6 @@ package in.tosc.doandroidlib.common;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by championswimmer on 27/11/16.
- */
 
 public enum StatisticsType {
 
@@ -22,7 +19,6 @@ public enum StatisticsType {
     StatisticsType(String val) {
         this.value = val;
     }
-
 
 
     public static StatisticsType fromValue(String value) {

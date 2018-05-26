@@ -3,7 +3,6 @@ package in.tosc.digitaloceanapp.utils;
 /**
  * Created by championswimmer on 26/11/16.
  */
-import java.lang.reflect.Field;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -11,14 +10,13 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.support.v4.util.LruCache;
-import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 public final class FontsOverride {
 
@@ -26,7 +24,7 @@ public final class FontsOverride {
 
     public static final String FONT_PROXIMA_NOVA = "ProximaNova.ttf";
 
-    public static void applyFontForToolbarTitle(Activity act, String fontName){
+    public static void applyFontForToolbarTitle(Activity act, String fontName) {
 
         ActionBar ab = act.getActionBar();
         if (ab == null) {
@@ -71,7 +69,9 @@ public final class FontsOverride {
      * @author Tristan Waddington
      */
     public static class TypefaceSpan extends MetricAffectingSpan {
-        /** An <code>LruCache</code> for previously loaded typefaces. */
+        /**
+         * An <code>LruCache</code> for previously loaded typefaces.
+         */
         private static LruCache<String, Typeface> sTypefaceCache =
                 new LruCache<String, Typeface>(12);
 

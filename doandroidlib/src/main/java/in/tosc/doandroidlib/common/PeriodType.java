@@ -2,10 +2,6 @@ package in.tosc.doandroidlib.common;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by championswimmer on 27/11/16.
- */
-
 public enum PeriodType {
 
     @SerializedName("hour")
@@ -25,7 +21,6 @@ public enum PeriodType {
     PeriodType(String val) {
         this.value = val;
     }
-
 
 
     public static PeriodType fromValue(String value) {

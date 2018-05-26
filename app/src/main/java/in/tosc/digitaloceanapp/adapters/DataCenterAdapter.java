@@ -18,11 +18,6 @@ import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
 import in.tosc.doandroidlib.objects.Regions;
 
-
-/**
- * Created by rishabhkhanna on 27/11/16.
- */
-
 public class DataCenterAdapter extends RecyclerView.Adapter<DataCenterAdapter.DataCenterViewHolder> {
 
     public static final String TAG = "DataCenterAdapter";

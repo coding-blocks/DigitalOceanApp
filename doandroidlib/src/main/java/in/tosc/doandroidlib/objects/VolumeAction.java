@@ -9,9 +9,10 @@ package in.tosc.doandroidlib.objects;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import in.tosc.doandroidlib.common.ActionType;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
+import in.tosc.doandroidlib.common.ActionType;
 
 /**
  * Volume action is to create new volume.
