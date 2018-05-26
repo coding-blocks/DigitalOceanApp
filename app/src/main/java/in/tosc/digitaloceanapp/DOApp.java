@@ -5,8 +5,6 @@ import android.app.Application;
 import in.tosc.digitaloceanapp.utils.FontsOverride;
 import in.tosc.doandroidlib.DigitalOcean;
 
-
-
 public class DOApp extends Application {
     @Override
     public void onCreate() {
