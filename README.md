@@ -9,7 +9,7 @@
 
 <a href='https://play.google.com/store/apps/details?id=in.tosc.digitaloceanapp&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img height=80 alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
-Android App and Android Library for accessing the DigitalOcean API.
+[Unofficial] Android App and Android Library for accessing the DigitalOcean API.
 Originally made as a part of DigitalOcean CloudHackathon.
 
 The library provides easy to use Java methods to make API calls to DigitalOcean.
