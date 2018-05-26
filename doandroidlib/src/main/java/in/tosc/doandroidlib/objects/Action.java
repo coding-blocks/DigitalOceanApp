@@ -22,13 +22,14 @@
 package in.tosc.doandroidlib.objects;
 
 import com.google.gson.annotations.SerializedName;
-import in.tosc.doandroidlib.common.ActionStatus;
-import in.tosc.doandroidlib.common.ActionType;
-import in.tosc.doandroidlib.common.ResourceType;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.util.Date;
+
+import in.tosc.doandroidlib.common.ActionStatus;
+import in.tosc.doandroidlib.common.ActionType;
+import in.tosc.doandroidlib.common.ResourceType;
 
 /**
  * Represents Action attributes

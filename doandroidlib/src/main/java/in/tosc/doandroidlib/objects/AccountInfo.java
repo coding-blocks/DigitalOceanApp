@@ -1,5 +1,9 @@
 package in.tosc.doandroidlib.objects;
 
+/**
+ * Created by championswimmer on 14/07/17.
+ */
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 /**
@@ -13,6 +17,7 @@ public class AccountInfo extends RateLimitBase {
     private Account account;
 
     /**
+     *
      * @return account object
      */
     public Account getAccount() {

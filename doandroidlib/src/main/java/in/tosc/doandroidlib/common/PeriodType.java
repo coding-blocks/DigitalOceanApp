@@ -23,7 +23,6 @@ public enum PeriodType {
     }
 
 
-
     public static PeriodType fromValue(String value) {
         if (null == value || "".equals(value)) {
             throw new IllegalArgumentException("Value cannot be null or empty!");

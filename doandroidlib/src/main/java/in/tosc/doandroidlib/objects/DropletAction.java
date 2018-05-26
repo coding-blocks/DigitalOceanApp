@@ -22,9 +22,10 @@
 package in.tosc.doandroidlib.objects;
 
 import com.google.gson.annotations.Expose;
-import in.tosc.doandroidlib.common.ActionType;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
+import in.tosc.doandroidlib.common.ActionType;
 
 /**
  * Represents Droplet Actions like reboot, powercycle, power on , power off, etc.

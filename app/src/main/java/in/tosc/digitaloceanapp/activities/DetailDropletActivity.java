@@ -36,6 +36,8 @@ import retrofit2.Response;
 
 public class DetailDropletActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
+    public static final String TAG = "DetailDropletActivity";
+    Gson gson;
     private CoordinatorLayout coordinatorLayout;
     private TextView name, memory, size, region, osName, ipAddress;
     private Button resize, snapshot;
@@ -44,9 +46,6 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
     private Droplet droplet;
     private DigitalOceanClient doaClient;
     private int position;
-    public static final String TAG = "DetailDropletActivity";
-    Gson gson;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

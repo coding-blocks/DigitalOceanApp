@@ -1,5 +1,9 @@
 package in.tosc.digitaloceanapp.utils;
 
+/**
+ * Created by championswimmer on 26/11/16.
+ */
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -59,17 +63,22 @@ public final class FontsOverride {
         }
     }
 
+    /**
+     * Style a {@link Spannable} with a custom {@link Typeface}.
+     *
+     * @author Tristan Waddington
+     */
     public static class TypefaceSpan extends MetricAffectingSpan {
-
+        /**
+         * An <code>LruCache</code> for previously loaded typefaces.
+         */
         private static LruCache<String, Typeface> sTypefaceCache =
                 new LruCache<String, Typeface>(12);
 
         private Typeface mTypeface;
 
         /**
-         * The paramaters required for Typeface Constructor.
-         * @param context       The context should not be null.
-         * @param typefaceName  The typefaceName should not be null.
+         * Load the {@link Typeface} and apply to a {@link Spannable}.
          */
         public TypefaceSpan(Context context, String typefaceName) {
             mTypeface = sTypefaceCache.get(typefaceName);

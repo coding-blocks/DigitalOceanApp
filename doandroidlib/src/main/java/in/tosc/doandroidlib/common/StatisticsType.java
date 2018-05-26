@@ -21,7 +21,6 @@ public enum StatisticsType {
     }
 
 
-
     public static StatisticsType fromValue(String value) {
         if (null == value || "".equals(value)) {
             throw new IllegalArgumentException("Value cannot be null or empty!");

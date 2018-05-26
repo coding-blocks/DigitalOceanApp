@@ -25,14 +25,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * First you need to initialise it using {@link #init(String clientId, String callbackUrl)}
  * (The clientId and callbackUrl are what you get when you register an app on Digital Oceal
  * developer dashboard)
- *
- *<p>
+ * <p>
  * You should use one of the following -
  * <ul>
  * <li>Use the static {@link #doLogin(Activity)} to login the user and get token</li>
  * <li>Use the static {@link #getDOClient(String)} to get a client</li>
  * </ul>
- *</p>
  *
  * @author championswimmer
  * @since 0.1.0
