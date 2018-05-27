@@ -3,22 +3,19 @@ package in.tosc.digitaloceanapp.utils;
 /**
  * Created by championswimmer on 26/11/16.
  */
-import java.lang.reflect.Field;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.support.v4.util.LruCache;
-import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 public final class FontsOverride {
 

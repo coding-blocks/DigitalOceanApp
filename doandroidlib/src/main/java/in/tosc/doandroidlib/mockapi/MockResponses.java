@@ -1,7 +1,6 @@
 package in.tosc.doandroidlib.mockapi;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by championswimmer on 15/07/17.

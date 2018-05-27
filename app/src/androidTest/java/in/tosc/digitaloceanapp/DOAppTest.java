@@ -3,9 +3,6 @@ package in.tosc.digitaloceanapp;
 import android.app.Instrumentation;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.test.runner.lifecycle.ApplicationLifecycleCallback;
-import android.support.test.runner.lifecycle.ApplicationLifecycleMonitor;
-
 
 import org.junit.Before;
 import org.junit.Test;
