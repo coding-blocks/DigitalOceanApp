@@ -1,17 +1,12 @@
 package in.tosc.doandroidlib.api;
 
-import java.util.List;
-
 import in.tosc.doandroidlib.common.ActionType;
-import in.tosc.doandroidlib.objects.Account;
 import in.tosc.doandroidlib.objects.AccountInfo;
 import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
 import in.tosc.doandroidlib.objects.Droplets;
-import in.tosc.doandroidlib.objects.Image;
 import in.tosc.doandroidlib.objects.Images;
 import in.tosc.doandroidlib.objects.Regions;
-import in.tosc.doandroidlib.objects.Size;
 import in.tosc.doandroidlib.objects.Sizes;
 import retrofit2.Call;
 import retrofit2.http.Field;

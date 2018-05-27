@@ -3,17 +3,12 @@ package in.tosc.doandroidlib;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import in.tosc.doandroidlib.api.DigitalOceanClient;
-import in.tosc.doandroidlib.mockapi.MockResponses;
-import in.tosc.doandroidlib.mockapi.MockUtils;
 import in.tosc.doandroidlib.objects.AccountInfo;
-import okhttp3.Interceptor;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by championswimmer on 15/07/17.
