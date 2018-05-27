@@ -5,6 +5,7 @@ import android.view.WindowManager;
 
 import in.tosc.digitaloceanapp.R;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static junit.framework.Assert.assertNotNull;
 import static android.support.test.espresso.Espresso.onView;
 

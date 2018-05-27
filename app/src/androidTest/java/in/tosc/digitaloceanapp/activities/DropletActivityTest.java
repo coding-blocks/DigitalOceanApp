@@ -7,9 +7,6 @@ import android.support.test.runner.AndroidJUnit4;
 import android.view.Gravity;
 import android.view.WindowManager;
 
-import static in.tosc.digitaloceanapp.matchers.RecyclerViewMatcher.withRecyclerView;
-import static junit.framework.Assert.assertNotNull;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -22,6 +19,9 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static in.tosc.digitaloceanapp.matchers.RecyclerViewMatcher.withRecyclerView;
+import static junit.framework.Assert.assertNotNull;
 
 
 
