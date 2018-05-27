@@ -2,6 +2,7 @@ package in.tosc.digitaloceanapp.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import in.tosc.digitaloceanapp.R;
+import in.tosc.digitaloceanapp.databinding.ActivitySplashBinding;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.AccountInfo;
@@ -23,9 +25,6 @@ public class SplashActivity extends AppCompatActivity {
 
     public static final String TAG = "Splash";
 
-
-    Button loginButton, signupButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +35,9 @@ public class SplashActivity extends AppCompatActivity {
             progressFurther();
         }
 
-        setContentView(R.layout.activity_splash);
+        ActivitySplashBinding binding
+                = DataBindingUtil.setContentView(this, R.layout.activity_splash);
+
 
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -46,11 +47,8 @@ public class SplashActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-        loginButton = (Button) findViewById(R.id.btnLogin);
-        signupButton = (Button) findViewById(R.id.btnSignup);
-
         final EditText tokenEditText = (EditText) findViewById(R.id.etToken);
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String token = tokenEditText.getText().toString();
@@ -62,7 +60,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
 
-        signupButton.setOnClickListener(new View.OnClickListener() {
+        binding.btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
