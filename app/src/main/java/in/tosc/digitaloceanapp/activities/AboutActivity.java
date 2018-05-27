@@ -2,51 +2,48 @@ package in.tosc.digitaloceanapp.activities;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import in.tosc.digitaloceanapp.R;
 
 public class AboutActivity extends AppCompatActivity {
 
-
-    private Toolbar mToolbar;
-    private AppBarLayout mAppBarLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.about));
-
-
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {    // Avoid null errors
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(getString(R.string.about));
+        }
     }
 
-    public void openPage(View view)
-    {
-        String url = "";
-        switch (view.getId())
-        {
-            case R.id.relative_layout_github:
-                        url = "https://github.com/coding-blocks/DigitalOceanApp";
-                        break;
-            case R.id.relative_layout_see_all_contributors:
-                        url = "https://github.com/coding-blocks/DigitalOceanApp/graphs/contributors?from=2016-11-20&to=2017-06-30&type=c";
-                        break;
-        }
+    /**
+     * Called by the {@link View} objects in the About Activity when they're pressed/clicked and
+     * will launch the default browser to either the GitHub repo for the app or the Contributors
+     * page for the repo depending on which button was pressed.
+     *
+     * @param view View object that was pressed
+     */
+    public void openPage(View view) {
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
+
+        switch (view.getId()) {
+            case R.id.relative_layout_github:
+                // Send the user to the GitHub repo
+                i.setData(Uri.parse("https://github.com/coding-blocks/DigitalOceanApp"));
+                break;
+            case R.id.relative_layout_see_all_contributors:
+                // Send the user to the GitHub Contributors page
+                i.setData(Uri.parse("https://github.com/coding-blocks/DigitalOceanApp/graphs/contributors"));
+                break;
+        }
+
         startActivity(i);
     }
-
-
-
-
-
 }
