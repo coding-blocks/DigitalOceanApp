@@ -1,12 +1,13 @@
 package in.tosc.digitaloceanapp.activities;
 
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+
 import android.support.test.rule.ActivityTestRule;
 import android.view.WindowManager;
 
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import in.tosc.digitaloceanapp.R;
 import static android.support.test.espresso.Espresso.onView;
+import in.tosc.digitaloceanapp.R;
 import static junit.framework.Assert.assertNotNull;
 
 import org.junit.After;
