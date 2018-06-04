@@ -1,11 +1,8 @@
 package in.tosc.doandroidlib.mockapi;
 
-import android.text.TextUtils;
-
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,8 +12,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Protocol;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-
-import static android.R.attr.path;
 
 /**
  * Created by championswimmer on 15/07/17.
