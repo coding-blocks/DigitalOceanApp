@@ -205,7 +205,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                 if (isChecked) {
                     doaClient.performAction(droplet.getId(), ActionType.ENABLE_IPV6, null).enqueue(new Callback<Action>() {
                         @Override
-                        public void onResponse(Call<Action> call, Response<Action> response) {
+                        public void onResponse(@NonNull Call<Action> call, @NonNull Response<Action> response) {
                             if (response.code() >= 200 && response.code() <= 299) {
                                 Snackbar.make(binding.coordinatorLayout,
                                         getString(R.string.ipv6_enabled),
