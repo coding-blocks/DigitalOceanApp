@@ -78,12 +78,17 @@ public class AdditionalDetailsFragment extends Fragment {
                     Log.d(TAG, "onClick: " + newDroplet.getEnablePrivateNetworking());
 
 
-                    doaClient.createDroplet(newDroplet.getName(), newDroplet.getRegion().getSlug(),
-                            newDroplet.getSize(), newDroplet.getImage().getSlug(), newDroplet.getEnableBackup(),
-                            newDroplet.getEnableIpv6(), newDroplet.getEnablePrivateNetworking()).enqueue(new Callback<Droplet>() {
+                    doaClient.createDroplet(newDroplet.getName(),
+                            newDroplet.getRegion().getSlug(),
+                            newDroplet.getSize(),
+                            newDroplet.getImage().getSlug(),
+                            newDroplet.getEnableBackup(),
+                            newDroplet.getEnableIpv6(),
+                            newDroplet.getEnablePrivateNetworking())
+                            .enqueue(new Callback<Droplet>() {
                         @Override
                         public void onResponse(Call<Droplet> call, Response<Droplet> response) {
-                            Log.d(TAG, "onResponse: " + response.body());
+                            Log.d(TAG, "onResponse: " + response.body()+response);
                             dialog.dismiss();
                             getActivity().finish();
                         }

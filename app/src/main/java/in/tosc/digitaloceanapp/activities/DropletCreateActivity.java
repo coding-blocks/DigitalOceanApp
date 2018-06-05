@@ -1,14 +1,15 @@
 package in.tosc.digitaloceanapp.activities;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import in.tosc.digitaloceanapp.R;
+import in.tosc.digitaloceanapp.databinding.ActivityDropletCreateBinding;
 import in.tosc.digitaloceanapp.fragments.AdditionalDetailsFragment;
 import in.tosc.digitaloceanapp.fragments.DataCenterFragment;
 import in.tosc.digitaloceanapp.fragments.SelectImageFragment;
@@ -23,10 +24,8 @@ public class DropletCreateActivity extends AppCompatActivity {
 
     static Droplet droplet;
     int count = 1;
-    Button btnNext;
-    Button btnPrev;
-    Button btnCreateDropet;
     private static final String TAG = "DropletCreateActivity";
+    private ActivityDropletCreateBinding binding;
 
 
     public static Droplet getDroplet() {
@@ -37,10 +36,7 @@ public class DropletCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         droplet = new Droplet();
-        setContentView(R.layout.activity_droplet_create);
-        btnNext = (Button) findViewById(R.id.buttonNext);
-        btnPrev = (Button) findViewById(R.id.buttonPrev);
-        btnCreateDropet = (Button) findViewById(R.id.btnCreateDroplet);
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_droplet_create);
     }
 
     private void removeFragment(int count) {
@@ -52,7 +48,7 @@ public class DropletCreateActivity extends AppCompatActivity {
                 break;
             case 3:
                 fragmentManager.popBackStack("selectSizeFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                btnNext.setVisibility(View.VISIBLE);
+                binding.buttonNext.setVisibility(View.VISIBLE);
                 break;
             case 2:
                 fragmentManager.popBackStack("DataCenterFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -89,7 +85,7 @@ public class DropletCreateActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.fragmentHolder, additionalDetailsFragment, "ADDITIONAL_DETAILS");
                 fragmentTransaction.addToBackStack("additionalDetailsFragment");
                 fragmentTransaction.commit();
-                btnNext.setVisibility(View.GONE);
+                binding.buttonNext.setVisibility(View.GONE);
                 break;
 //            case 5:
 //                createDroplet(droplet);
@@ -126,17 +122,15 @@ public class DropletCreateActivity extends AppCompatActivity {
 
     public void next(View view) {
 
-        int setCount =  (droplet.getImage()!=null?1:0) +
-                        (droplet.getRegion()!=null?1:0) +
-                        (droplet.getSize()!=null?1:0);
+        int setCount = (droplet.getImage() != null ? 1 : 0) +
+                (droplet.getRegion() != null ? 1 : 0) +
+                (droplet.getSize() != null ? 1 : 0);
 
-        if(setCount == count) {
+        if (setCount == count) {
             count++;
             addFragment(count);
             Log.e("Decreased count", String.valueOf(count));
-        }
-        else
-        {
+        } else {
             Toast.makeText(this, R.string.please_choose_option, Toast.LENGTH_SHORT).show();
         }
     }
