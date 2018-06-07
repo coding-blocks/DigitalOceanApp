@@ -121,7 +121,6 @@ public class DropletActivity extends AppCompatActivity
 
 
     public static void refreshData() {
-
         doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
             @Override
             public void onResponse(@NonNull Call<Droplets> call,
@@ -130,10 +129,8 @@ public class DropletActivity extends AppCompatActivity
                 List<Droplet> dropletsDownloaded = null;
                 if (response.isSuccessful() && response.body() != null) {
                     dropletsDownloaded = response.body().getDroplets();
-                    for(Droplet droplet: dropletsDownloaded)
-                    {
-                        if(droplet.isLocked())
-                        {
+                    for(Droplet droplet: dropletsDownloaded) {
+                        if(droplet.isLocked()) {
                             dropletsDownloaded.remove(droplet);  //A locked droplet prevents any user actions
                         }
                     }
@@ -143,6 +140,7 @@ public class DropletActivity extends AppCompatActivity
                 }
                 dropletsAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onFailure(Call<Droplets> call, Throwable t) {
                 droplets = null;
