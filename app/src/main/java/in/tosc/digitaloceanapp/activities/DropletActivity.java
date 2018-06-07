@@ -94,7 +94,8 @@ public class DropletActivity extends AppCompatActivity
         toggle.syncState();
         doClient.getAccount().enqueue(new Callback<AccountInfo>() {
             @Override
-            public void onResponse(@NonNull Call<AccountInfo> call, @NonNull Response<AccountInfo> response) {
+            public void onResponse(@NonNull Call<AccountInfo> call,
+                                   @NonNull Response<AccountInfo> response) {
                 String email = null;
                 if (response.isSuccessful() && response.body() != null) {
                     email = response.body().getAccount().getEmail();
@@ -123,7 +124,8 @@ public class DropletActivity extends AppCompatActivity
 
         doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
             @Override
-            public void onResponse(@NonNull Call<Droplets> call, @NonNull Response<Droplets> response) {
+            public void onResponse(@NonNull Call<Droplets> call,
+                                   @NonNull Response<Droplets> response) {
                 droplets.clear();
                 List<Droplet> dropletsDownloaded = null;
                 if (response.isSuccessful() && response.body() != null) {
@@ -141,7 +143,6 @@ public class DropletActivity extends AppCompatActivity
                 }
                 dropletsAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onFailure(Call<Droplets> call, Throwable t) {
                 droplets = null;
@@ -154,7 +155,8 @@ public class DropletActivity extends AppCompatActivity
 
         doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
             @Override
-            public void onResponse(@NonNull Call<Droplets> call, @NonNull Response<Droplets> response) {
+            public void onResponse(@NonNull Call<Droplets> call,
+                                   @NonNull Response<Droplets> response) {
                 droplets.clear();
                 if (response.isSuccessful() && response.body() != null) {
                     droplets.addAll(response.body().getDroplets());
