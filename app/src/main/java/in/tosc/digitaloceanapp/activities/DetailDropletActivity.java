@@ -16,8 +16,6 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 
-import java.util.List;
-
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.adapters.DropletsAdapter;
 import in.tosc.digitaloceanapp.databinding.ActivityDetailDropletBinding;
@@ -27,6 +25,9 @@ import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.common.ActionType;
 import in.tosc.doandroidlib.objects.Action;
 import in.tosc.doandroidlib.objects.Droplet;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,7 +44,7 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
     public static final String TAG = "DetailDropletActivity";
     Gson gson;
 
-    ActivityDetailDropletBinding binding;
+    private ActivityDetailDropletBinding binding;
 
 
     @Override
@@ -200,35 +201,35 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
                 if (isChecked) {
                     doaClient.performAction(droplet.getId(), ActionType.ENABLE_IPV6, null)
                             .enqueue(new Callback<Action>() {
-                        @Override
-                        public void onResponse(@NonNull Call<Action> call,
-                                               @NonNull Response<Action> response) {
-                            if (response.code() >= 200 && response.code() <= 299) {
-                                Snackbar.make(binding.coordinatorLayout,
-                                        getString(R.string.ipv6_enabled),
-                                        Snackbar.LENGTH_SHORT)
-                                        .show();
-                                DropletActivity.refreshData();
-                            } else {
-                                Log.d("IPv6", response.code() + "");
-                                setSwitchWithoutTriggering(binding.switchIpv6, false);
-                                Snackbar.make(binding.coordinatorLayout,
-                                        getString(R.string.ipv6_couldnt_be_enabled),
-                                        Snackbar.LENGTH_SHORT)
-                                        .show();
+                                @Override
+                                public void onResponse(@NonNull Call<Action> call,
+                                                       @NonNull Response<Action> response) {
+                                    if (response.code() >= 200 && response.code() <= 299) {
+                                        Snackbar.make(binding.coordinatorLayout,
+                                                getString(R.string.ipv6_enabled),
+                                                Snackbar.LENGTH_SHORT)
+                                                .show();
+                                        DropletActivity.refreshData();
+                                    } else {
+                                        Log.d("IPv6", response.code() + "");
+                                        setSwitchWithoutTriggering(binding.switchIpv6, false);
+                                        Snackbar.make(binding.coordinatorLayout,
+                                                getString(R.string.ipv6_couldnt_be_enabled),
+                                                Snackbar.LENGTH_SHORT)
+                                                .show();
 
-                            }
-                        }
+                                    }
+                                }
 
-                        @Override
-                        public void onFailure(Call<Action> call, Throwable t) {
-                            setSwitchWithoutTriggering(binding.switchIpv6, false);
-                            Snackbar.make(binding.coordinatorLayout,
-                                    getString(R.string.network_error),
-                                    Snackbar.LENGTH_SHORT)
-                                    .show();
-                        }
-                    });
+                                @Override
+                                public void onFailure(Call<Action> call, Throwable t) {
+                                    setSwitchWithoutTriggering(binding.switchIpv6, false);
+                                    Snackbar.make(binding.coordinatorLayout,
+                                            getString(R.string.network_error),
+                                            Snackbar.LENGTH_SHORT)
+                                            .show();
+                                }
+                            });
                 } else {
                     setSwitchWithoutTriggering(binding.switchIpv6, true);
                     Snackbar.make(binding.coordinatorLayout,
@@ -240,35 +241,37 @@ public class DetailDropletActivity extends AppCompatActivity implements Compound
 
             case R.id.switch_private_network:
                 if (isChecked) {
-                    doaClient.performAction(droplet.getId(), ActionType.ENABLE_PRIVATE_NETWORKING, null)
+                    doaClient.performAction(droplet.getId(),
+                            ActionType.ENABLE_PRIVATE_NETWORKING,
+                            null)
                             .enqueue(new Callback<Action>() {
-                        @Override
-                        public void onResponse(Call<Action> call, Response<Action> response) {
-                            if (response.code() >= 200 && response.code() <= 299) {
-                                Snackbar.make(binding.coordinatorLayout,
-                                        getString(R.string.private_network_enabled),
-                                        Snackbar.LENGTH_SHORT)
-                                        .show();
-                                DropletActivity.refreshData();
-                            } else {
-                                Log.d("SPN", response.code() + "");
-                                setSwitchWithoutTriggering(binding.switchPrivateNetwork, false);
-                                Snackbar.make(binding.coordinatorLayout,
-                                        getString(R.string.private_network_couldnt_be_enabled),
-                                        Snackbar.LENGTH_SHORT)
-                                        .show();
-                            }
-                        }
+                                @Override
+                                public void onResponse(Call<Action> call, Response<Action> response) {
+                                    if (response.code() >= 200 && response.code() <= 299) {
+                                        Snackbar.make(binding.coordinatorLayout,
+                                                getString(R.string.private_network_enabled),
+                                                Snackbar.LENGTH_SHORT)
+                                                .show();
+                                        DropletActivity.refreshData();
+                                    } else {
+                                        Log.d("SPN", response.code() + "");
+                                        setSwitchWithoutTriggering(binding.switchPrivateNetwork, false);
+                                        Snackbar.make(binding.coordinatorLayout,
+                                                getString(R.string.private_network_couldnt_be_enabled),
+                                                Snackbar.LENGTH_SHORT)
+                                                .show();
+                                    }
+                                }
 
-                        @Override
-                        public void onFailure(Call<Action> call, Throwable t) {
-                            setSwitchWithoutTriggering(binding.switchPrivateNetwork, false);
-                            Snackbar.make(binding.coordinatorLayout,
-                                    getString(R.string.network_error),
-                                    Snackbar.LENGTH_SHORT)
-                                    .show();
-                        }
-                    });
+                                @Override
+                                public void onFailure(Call<Action> call, Throwable t) {
+                                    setSwitchWithoutTriggering(binding.switchPrivateNetwork, false);
+                                    Snackbar.make(binding.coordinatorLayout,
+                                            getString(R.string.network_error),
+                                            Snackbar.LENGTH_SHORT)
+                                            .show();
+                                }
+                            });
                 } else {
                     setSwitchWithoutTriggering(binding.switchPrivateNetwork, true);
                     Snackbar.make(binding.coordinatorLayout,
