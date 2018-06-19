@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -94,17 +95,20 @@ public class DropletActivity extends AppCompatActivity
         toggle.syncState();
         doClient.getAccount().enqueue(new Callback<AccountInfo>() {
             @Override
-            public void onResponse(Call<AccountInfo> call, Response<AccountInfo> response) {
-                String email = response.body().getAccount().getEmail();
-                if (binding.drawerLayout.findViewById(R.id.accountEmail) != null) {
-                    ((TextView) binding.drawerLayout.findViewById(R.id.accountEmail))
-                            .setText(email);
+            public void onResponse(@NonNull Call<AccountInfo> call,
+                                   @NonNull Response<AccountInfo> response) {
+                String email = null;
+                if (response.isSuccessful() && response.body() != null) {
+                    email = response.body().getAccount().getEmail();
+                    if (binding.drawerLayout.findViewById(R.id.accountEmail) != null) {
+                        ((TextView) binding.drawerLayout.findViewById(R.id.accountEmail))
+                                .setText(email);
+                    }
+                    ImageView profilePic = binding.drawerLayout.findViewById(R.id.accountPic);
+                    if (profilePic != null && email != null && !email.isEmpty()) {
+                        Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/" + md5(email)).into(profilePic);
+                    }
                 }
-                ImageView profilePic = binding.drawerLayout.findViewById(R.id.accountPic);
-                if (profilePic != null && email != null && !email.isEmpty()) {
-                    Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/" + md5(email)).into(profilePic);
-                }
-
             }
 
             @Override
@@ -120,17 +124,21 @@ public class DropletActivity extends AppCompatActivity
 
         doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
             @Override
-            public void onResponse(Call<Droplets> call, Response<Droplets> response) {
+            public void onResponse(@NonNull Call<Droplets> call,
+                                   @NonNull Response<Droplets> response) {
                 droplets.clear();
-                List<Droplet> dropletsDownloaded = response.body().getDroplets();
-                for (Droplet droplet : dropletsDownloaded) {
-                    if (droplet.isLocked()) {
-                        dropletsDownloaded.remove(droplet);  //A locked droplet prevents any user actions
+                List<Droplet> dropletsDownloaded = null;
+                if (response.isSuccessful() && response.body() != null) {
+                    dropletsDownloaded = response.body().getDroplets();
+                    for (Droplet droplet : dropletsDownloaded) {
+                        if (droplet.isLocked()) {
+                            dropletsDownloaded.remove(droplet);  //A locked droplet prevents any user actions
+                        }
                     }
+                    droplets.addAll(dropletsDownloaded);
+                    dropletsAdapter.notifyDataSetChanged();
+                    Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
                 }
-                droplets.addAll(dropletsDownloaded);
-                dropletsAdapter.notifyDataSetChanged();
-                Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
             }
 
             @Override
@@ -145,12 +153,15 @@ public class DropletActivity extends AppCompatActivity
 
         doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
             @Override
-            public void onResponse(Call<Droplets> call, Response<Droplets> response) {
+            public void onResponse(@NonNull Call<Droplets> call,
+                                   @NonNull Response<Droplets> response) {
                 droplets.clear();
-                droplets.addAll(response.body().getDroplets());
-                dropletsAdapter.notifyDataSetChanged();
-                Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
-                onDropletNameChange.onSuccess(droplets);
+                if (response.isSuccessful() && response.body() != null) {
+                    droplets.addAll(response.body().getDroplets());
+                    dropletsAdapter.notifyDataSetChanged();
+                    Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
+                    onDropletNameChange.onSuccess(droplets);
+                }
             }
 
             @Override
