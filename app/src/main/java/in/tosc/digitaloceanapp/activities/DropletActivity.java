@@ -96,12 +96,16 @@ public class DropletActivity extends AppCompatActivity
             @Override
             public void onResponse(@NonNull Call<AccountInfo> call,
                                    @NonNull Response<AccountInfo> response) {
+                String email = null;
                 if (response.isSuccessful() && response.body() != null) {
-                    String email = response.body().getAccount().getEmail();
-                    if (((TextView) drawer.findViewById(R.id.accountEmail)) != null) {
-                        ((TextView) drawer.findViewById(R.id.accountEmail)).setText(email);
+                    email = response.body().getAccount().getEmail();
+
+                    TextView accountEmailTv = (TextView) drawer.findViewById(R.id.accountEmail);
+
+                    if (accountEmailTv != null) {
+                        accountEmailTv.setText(email);
                     }
-                    ImageView profilePic = ((ImageView) drawer.findViewById(R.id.accountPic));
+                    ImageView profilePic = (ImageView) drawer.findViewById(R.id.accountPic);
                     if (profilePic != null && email != null && !email.isEmpty()) {
                         Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/" + md5(email)).into(profilePic);
                     }
@@ -120,16 +124,16 @@ public class DropletActivity extends AppCompatActivity
 
 
     public static void refreshData() {
-
         doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
             @Override
             public void onResponse(@NonNull Call<Droplets> call,
                                    @NonNull Response<Droplets> response) {
+                droplets.clear();
+                List<Droplet> dropletsDownloaded = null;
                 if (response.isSuccessful() && response.body() != null) {
-                    droplets.clear();
-                    List<Droplet> dropletsDownloaded = response.body().getDroplets();
-                    for (Droplet droplet : dropletsDownloaded) {
-                        if (droplet.isLocked()) {
+                    dropletsDownloaded = response.body().getDroplets();
+                    for(Droplet droplet: dropletsDownloaded) {
+                        if(droplet.isLocked()) {
                             dropletsDownloaded.remove(droplet);  //A locked droplet prevents any user actions
                         }
                     }
@@ -137,6 +141,7 @@ public class DropletActivity extends AppCompatActivity
                     dropletsAdapter.notifyDataSetChanged();
                     Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
                 }
+                dropletsAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -154,10 +159,12 @@ public class DropletActivity extends AppCompatActivity
             public void onResponse(@NonNull Call<Droplets> call,
                                    @NonNull Response<Droplets> response) {
                 droplets.clear();
-                droplets.addAll(response.body().getDroplets());
-                dropletsAdapter.notifyDataSetChanged();
-                Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
-                onDropletNameChange.onSuccess(droplets);
+                if (response.isSuccessful() && response.body() != null) {
+                    droplets.addAll(response.body().getDroplets());
+                    dropletsAdapter.notifyDataSetChanged();
+                    Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
+                    onDropletNameChange.onSuccess(droplets);
+                }
             }
 
             @Override
