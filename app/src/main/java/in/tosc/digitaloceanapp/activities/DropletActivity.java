@@ -112,6 +112,7 @@ public class DropletActivity extends AppCompatActivity
                 }
             }
 
+
             @Override
             public void onFailure(Call<AccountInfo> call, Throwable t) {
                 Log.e("Failed to get email", t.getLocalizedMessage());
