@@ -1,50 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_splash"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="in.tosc.digitaloceanapp.activities.SplashActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="in.tosc.digitaloceanapp.activities.SplashActivity">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tint="@color/white"
-            android:src="@drawable/ic_digitalocean" />
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etToken"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/token"
-            android:ems="10"
-            android:inputType="textPersonName"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_digitalocean"
+                android:tint="@color/white" />
 
-        <Button
-            android:id="@+id/btnLogin"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/login" />
-        <Button
-            android:id="@+id/btnSignup"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:text="@string/signup"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/etToken"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/token"
+                android:inputType="textPersonName" />
 
-</FrameLayout>
+            <Button
+                android:id="@+id/btnLogin"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="@string/login" />
+
+            <Button
+                android:id="@+id/btnSignup"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:text="@string/signup"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>

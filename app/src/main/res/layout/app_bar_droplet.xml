@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="in.tosc.digitaloceanapp.activities.DropletActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="in.tosc.digitaloceanapp.activities.DropletActivity">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:layout_margin="@dimen/toolbar_margin_else"
-            android:layout_marginLeft="@dimen/toolbar_margin_start"
-            android:layout_marginStart="@dimen/toolbar_margin_start"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            android:weightSum="1">
-        <ImageView
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:tint="@color/white"
-            android:src="@drawable/ic_digitalocean" />
-        </android.support.v7.widget.Toolbar>
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-    </android.support.design.widget.AppBarLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_margin="@dimen/toolbar_margin_else"
+                android:layout_marginLeft="@dimen/toolbar_margin_start"
+                android:layout_marginStart="@dimen/toolbar_margin_start"
+                android:background="?attr/colorPrimary"
+                android:weightSum="1"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
 
-    <include layout="@layout/content_droplet"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_marginTop="138dp"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_digitalocean"
+                    android:tint="@color/white" />
+            </android.support.v7.widget.Toolbar>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_white_24dp" />
-</android.support.design.widget.CoordinatorLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <include xmlns:android="http://schemas.android.com/apk/res/android"
+            layout="@layout/content_droplet"
+            android:id="@+id/content_droplet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="138dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/ic_add_white_24dp" />
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
