@@ -22,15 +22,12 @@ android {
         versionName "0.2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-
     dataBinding {
         enabled = true
     }
-
     lintOptions {
         abortOnError false
     }
-
     useLibrary 'org.apache.http.legacy'
 
     buildTypes {
