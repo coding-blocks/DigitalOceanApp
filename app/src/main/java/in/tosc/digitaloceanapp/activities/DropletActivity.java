@@ -105,6 +105,7 @@ public class DropletActivity extends AppCompatActivity
                                 .setText(email);
                     }
                     ImageView profilePic = binding.drawerLayout.findViewById(R.id.accountPic);
+
                     if (profilePic != null && email != null && !email.isEmpty()) {
                         Picasso.with(DropletActivity.this).load("https://www.gravatar.com/avatar/" + md5(email)).into(profilePic);
                     }
@@ -121,7 +122,6 @@ public class DropletActivity extends AppCompatActivity
 
 
     public static void refreshData() {
-
         doClient.getDroplets(1, 10).enqueue(new Callback<Droplets>() {
             @Override
             public void onResponse(@NonNull Call<Droplets> call,
@@ -139,6 +139,7 @@ public class DropletActivity extends AppCompatActivity
                     dropletsAdapter.notifyDataSetChanged();
                     Log.e("Droplets fetched", String.valueOf(response.body().getDroplets().size()));
                 }
+                dropletsAdapter.notifyDataSetChanged();
             }
 
             @Override
