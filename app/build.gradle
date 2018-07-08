@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
+apply plugin: 'com.github.triplet.play'
+
 
 jacoco {
     toolVersion = '0.8.0'
@@ -107,3 +109,8 @@ dependencies {
         exclude module: 'design'
     }
 }
+play {
+    jsonFile = file('your-key.json')
+    track = 'beta'
+}
+
