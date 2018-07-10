@@ -34,12 +34,12 @@ It has features such as -
     -Once done download your PKCS12 key or json key somewhere and the location of key in the build.gradle file in the play block
     -Then run one of the following commands:
 
-                                | Command  | Description |
-                                | ------------- | ------------- |
-                                | 'publishApkRelease'  | Uploads the APK and the summary of recent changes.  |
-                                | 'publishListingRelease'  | Uploads the descriptions and images for the Play Store listing.  |
-                                | 'publishRelease'   | Uploads everything.  |
-                                | 'bootstrapReleasePlayResources'     | Fetch data from the Play Store & bootstrap the required files/folders. |
+   | Command | Description |
+   | ------------- | ------------- |
+   | 'publishApkRelease'| Uploads the APK and the summary of recent changes. |
+   | 'publishListingRelease'| Uploads the descriptions and images for the Play Store listing.|
+   | 'publishRelease'| Uploads everything.|
+   | 'bootstrapReleasePlayResources'| Fetch data from the Play Store & bootstrap the required files/folders.|
 
                                 
 You can now type the following gradle commands such as the following:
