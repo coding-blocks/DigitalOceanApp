@@ -124,6 +124,7 @@ dependencies {
     }
 }
 play {
+    //track can be set to production,alpha or beta
     jsonFile = file('your-key.json')
     track = 'beta'
 }
