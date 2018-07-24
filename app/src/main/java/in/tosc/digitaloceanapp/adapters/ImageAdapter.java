@@ -43,6 +43,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+
         holder.imageName.setText(imageList.get(position).getName());
         this.position = holder.getAdapterPosition();
         holder.imageDistribution.setText(imageList.get(position).getDistribution());
@@ -99,6 +100,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             case "Fedora":
                 selectorImage = R.drawable.fedora_selected;
                 break;
+            case "Fedora Atomic":
+                selectorImage = R.drawable.fedora_selected;
+                break;
             case "Debian":
                 selectorImage = R.drawable.debian_selected;
                 break;
@@ -124,6 +128,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 holder.imageImage.setBackground(ContextCompat.getDrawable(context, R.drawable.freebsd));
                 break;
             case "Fedora":
+                holder.imageImage.setBackground(ContextCompat.getDrawable(context, R.drawable.fedora));
+                break;
+            case "Fedora Atomic":
                 holder.imageImage.setBackground(ContextCompat.getDrawable(context, R.drawable.fedora));
                 break;
             case "Debian":
