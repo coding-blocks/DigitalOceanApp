@@ -47,6 +47,11 @@ android {
     }
     useLibrary 'org.apache.http.legacy'
 
+    signingConfigs {
+        release {
+        }
+    }
+
     buildTypes {
         debug {
             testCoverageEnabled true
@@ -56,6 +61,7 @@ android {
 
         release {
             minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -123,10 +129,19 @@ dependencies {
         exclude module: 'design'
     }
 }
-play {
 
+play {
     //track can be set to production,alpha or beta
-    jsonFile = file('your-key.json')
-    track = 'beta'
+    jsonFile = file('../keys/api-keys.json')
+    track = 'production'
 }
+
+def props = new Properties()
+
+props.load(new FileInputStream(rootProject.file("keys/release.properties")))
+
+android.signingConfigs.release.storeFile rootProject.file(props.keyStore)
+android.signingConfigs.release.storePassword props.keyStorePassword
+android.signingConfigs.release.keyAlias props.keyAlias
+android.signingConfigs.release.keyPassword props.keyAliasPassword
 
