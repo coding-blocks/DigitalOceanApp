@@ -37,6 +37,8 @@ licenses:
 before_install:
   - yes | sdkmanager "platforms;android-25"
   - yes | sdkmanager "platforms;android-27"
+deploy:
+    skip_cleanup: true
 before_script:
   - echo no | android create avd --force -n test -t android-$EMULATOR_API --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-window &
