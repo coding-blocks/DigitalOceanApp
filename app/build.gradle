@@ -138,11 +138,12 @@ play {
 }
 
 def props = new Properties()
+if (System.getenv('CI') != 'true') {
+    props.load(new FileInputStream(rootProject.file("keys/release.properties")))
 
-props.load(new FileInputStream(rootProject.file("keys/release.properties")))
-
-android.signingConfigs.release.storeFile rootProject.file(props.keyStore)
-android.signingConfigs.release.storePassword props.keyStorePassword
-android.signingConfigs.release.keyAlias props.keyAlias
-android.signingConfigs.release.keyPassword props.keyAliasPassword
+    android.signingConfigs.release.storeFile rootProject.file(props.keyStore)
+    android.signingConfigs.release.storePassword props.keyStorePassword
+    android.signingConfigs.release.keyAlias props.keyAlias
+    android.signingConfigs.release.keyPassword props.keyAliasPassword
+}
 
