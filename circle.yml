@@ -33,6 +33,8 @@ test:
 #    - "adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'"
     - circle-android wait-for-boot:
       timeout: 720
+      # wait for it to have booted
+    - adb shell input keyevent 82
     - ./gradlew connectedCheck
     # run lint checker
     #- lint app --html app/build/outputs/result.html
@@ -42,3 +44,4 @@ test:
     - cp -r */build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
   post:
     - bash <(curl -s https://codecov.io/bash)
+
