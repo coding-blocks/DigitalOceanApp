@@ -15,7 +15,7 @@ env:
 matrix:
   allow_failures:
     - env: EMULATOR_API=26 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-    - env: EMULATOR_API=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - env: EMULATOR_API=24 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 #    - env: EMULATOR_API=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
 android:
  components:
