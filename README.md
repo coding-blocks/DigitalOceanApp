@@ -25,7 +25,7 @@ It has features such as -
 
  ## Preview
 
- ![preview](docs/preview.gif)
+ ![preview](https://docs.google.com/document/d/1LH1cJZP_LjkzUK7dqkQq7_AuF2UZcQh-bLbHFEv_Szc/edit?usp=sharing)
  
  ### Automating Publishing to the Play Store
  
