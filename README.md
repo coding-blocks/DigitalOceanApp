@@ -25,7 +25,7 @@ It has features such as -
 
  ## Preview
 
- ![preview](docs/preview.gif)
+ ![preview](docs/preview2.gif)
  
  ### Automating Publishing to the Play Store
  
