@@ -1,62 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
 <android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sizeCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:id="@+id/sizeCardView"
-    >
+    android:elevation="10dp"
+    android:layout_margin="4dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
-        <TextView
-            android:id="@+id/monthly_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/monthly_price"
-            android:textSize="30sp"
-            android:padding="4dp"
-            />
+        app:cardCornerRadius="20dp">
 
-        <TextView
-            android:id="@+id/hourly_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hourly_price"
-            android:textSize="25sp"
-            android:padding="4dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/monthly_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/monthly_price"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/hourly_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:text="@string/hourly_price"
+                    android:textSize="25sp"/>
+            </LinearLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:padding="4dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_width="1dp"
+            android:layout_height="120dp"
+            android:background="@android:color/darker_gray" />
 
-        <TextView
-            android:id="@+id/memory_space"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/memory"
-            android:textSize="25sp"
-            android:padding="4dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/disk_space"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/disk_space"
-            android:textSize="25sp"
-            android:padding="4dp"/>
+            <TextView
+                android:id="@+id/memory_space"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="@string/memory"
+                android:textSize="25sp"/>
 
-        <TextView
-            android:id="@+id/transfer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/transfer"
-            android:textSize="25sp"
-            android:padding="4dp"/>
+            <TextView
+                android:id="@+id/disk_space"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="@string/disk_space"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/transfer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="@string/transfer"
+                android:textSize="25sp" />
+        </LinearLayout>
     </LinearLayout>
+    </android.support.v7.widget.CardView>
 </android.support.v7.widget.CardView>
+</LinearLayout>
