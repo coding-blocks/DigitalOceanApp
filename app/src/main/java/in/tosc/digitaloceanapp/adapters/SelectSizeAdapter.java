@@ -44,7 +44,7 @@ public class SelectSizeAdapter extends RecyclerView.Adapter<SelectSizeAdapter.Vi
 
         holder.monthlyPrice.setText(String.format(context.getString(R.string.monthly_price), sizeList.get(position).getPriceMonthly().toString()));
         holder.hourlyPrice.setText(String.format(context.getString(R.string.hourly_price),
-                                                 sizeList.get(position).getPriceHourly().toString()).substring(0, 8));
+                     sizeList.get(position).getPriceHourly().toString()).substring(0, 8));
         holder.memory.setText(String.format(context.getString(R.string.memory), sizeList.get(position).getMemorySizeInMb().toString(), sizeList.get(position).getVirutalCpuCount().toString()));
         holder.diskSpace.setText(String.format(context.getString(R.string.disk_space), sizeList.get(position).getDiskSize().toString()));
         holder.transfer.setText(String.format(context.getString(R.string.transfer), sizeList.get(position).getTransfer().toString()));
