@@ -1,23 +1,16 @@
 language: android
 sudo: required
+dist: trusty
 group: stable
-dist: precise
 jdk: oraclejdk8
 env:
   global:
     - GRADLE_OPTS="-Xmx512m"
-    - BUILD_TOOLS="27.0.3"
+    - BUILD_TOOLS="23.0.3"
     - TARGET_SDK=27
-  matrix:
-    - EMULATOR_API=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-    - EMULATOR_API=21 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-    - EMULATOR_API=26 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-#    - EMULATOR_API=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-matrix:
-  allow_failures:
-    - env: EMULATOR_API=26 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-    - env: EMULATOR_API=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
-#    - env: EMULATOR_API=25 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - EMULATOR_API=23
+    - ANDROID_ABI=armeabi-v7a
+    - ANDROID_TAG=google_apis
 android:
  components:
  - tools
@@ -29,14 +22,11 @@ android:
  - extra-google-m2repository
  - extra-android-m2repository # for design library
  - addon-google_apis-google-$TARGET_SDK # google play services
- - sys-img-$ANDROID_ABI-addon-google_apis-google-$EMULATOR_API
+ - sys-img-armeabi-v7a-android-$EMULATOR_API
 licenses:
   - android-sdk-preview-license-.+
   - android-sdk-license-.+
   - google-gdk-license-.+
-before_install:
-  - yes | sdkmanager "platforms;android-25"
-  - yes | sdkmanager "platforms;android-27"
 before_script:
   - echo no | android create avd --force -n test -t android-$EMULATOR_API --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-window &
@@ -44,7 +34,7 @@ before_script:
   - adb shell settings put global window_animation_scale 0 &
   - adb shell settings put global transition_animation_scale 0 &
   - adb shell settings put global animator_duration_scale 0 &
-  - adb shell input keyevent 82 &
+  - adb shell input keyevent 82
 script:
    - ./gradlew jacocoTestReport
 after_success:
