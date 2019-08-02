@@ -2,6 +2,7 @@ package in.tosc.digitaloceanapp.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,7 +43,8 @@ public class SelectSizeAdapter extends RecyclerView.Adapter<SelectSizeAdapter.Vi
     public void onBindViewHolder(final SelectSizeAdapter.ViewHolder holder, final int position) {
 
         holder.monthlyPrice.setText(String.format(context.getString(R.string.monthly_price), sizeList.get(position).getPriceMonthly().toString()));
-        holder.hourlyPrice.setText(String.format(context.getString(R.string.hourly_price), sizeList.get(position).getPriceHourly().toString()));
+        holder.hourlyPrice.setText(String.format(context.getString(R.string.hourly_price),
+                     sizeList.get(position).getPriceHourly().toString()).substring(0, 8));
         holder.memory.setText(String.format(context.getString(R.string.memory), sizeList.get(position).getMemorySizeInMb().toString(), sizeList.get(position).getVirutalCpuCount().toString()));
         holder.diskSpace.setText(String.format(context.getString(R.string.disk_space), sizeList.get(position).getDiskSize().toString()));
         holder.transfer.setText(String.format(context.getString(R.string.transfer), sizeList.get(position).getTransfer().toString()));
@@ -84,7 +86,10 @@ public class SelectSizeAdapter extends RecyclerView.Adapter<SelectSizeAdapter.Vi
     }
 
     private void deselectSize(ViewHolder holder, int position) {
-        holder.sizeCV.setBackgroundColor(Color.WHITE);
+        holder.sizeCV.setBackgroundColor(Color.TRANSPARENT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            holder.sizeCV.setElevation(15.0f);
+        }
         holder.sizeCV.setTag(false);
     }
 
