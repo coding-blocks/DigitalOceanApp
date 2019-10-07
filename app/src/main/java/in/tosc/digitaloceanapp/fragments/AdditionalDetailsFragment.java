@@ -7,14 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
+import android.databinding.DataBindingUtil;
 import android.widget.Toast;
 
 import in.tosc.digitaloceanapp.R;
 import in.tosc.digitaloceanapp.activities.DropletCreateActivity;
+import in.tosc.digitaloceanapp.databinding.FragmentAdditionalDetailsBinding;
 import in.tosc.doandroidlib.DigitalOcean;
 import in.tosc.doandroidlib.api.DigitalOceanClient;
 import in.tosc.doandroidlib.objects.Droplet;
@@ -31,11 +30,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class AdditionalDetailsFragment extends Fragment {
 
     public static final String TAG = "AdditionalFragment";
-    CheckBox cbPrivateNetworking;
-    CheckBox cbBackups;
-    CheckBox cbIpv6;
-    EditText etDropletName;
-    Button btnCreateDroplet;
+    private FragmentAdditionalDetailsBinding binding;
 
     public AdditionalDetailsFragment() {
         // Required empty public constructor
@@ -46,17 +41,14 @@ public class AdditionalDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_additional_details, container, false);
-        cbPrivateNetworking = (CheckBox) view.findViewById(R.id.networkingCheckBox);
-        cbBackups = (CheckBox) view.findViewById(R.id.backupsCheckBox);
-        cbIpv6 = (CheckBox) view.findViewById(R.id.ipv6CheckBox);
-        etDropletName = (EditText) view.findViewById(R.id.etDropletName);
-        btnCreateDroplet = (Button) view.findViewById(R.id.btnCreateDroplet);
+        binding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_additional_details, container, false);
+
         setAdditionalOptions();
-        btnCreateDroplet.setOnClickListener(new View.OnClickListener() {
+        binding.btnCreateDroplet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String dropletName = etDropletName.getText().toString();
+                String dropletName = binding.etDropletName.getText().toString();
                 if (dropletName.equals("")) {
                     Toast.makeText(getContext(), "Droplet Name is Required", Toast.LENGTH_SHORT).show();
                 } else {
@@ -96,12 +88,14 @@ public class AdditionalDetailsFragment extends Fragment {
                 }
             }
         });
-        return view;
+
+        return binding.getRoot();
     }
 
 
     public void setAdditionalOptions() {
-        cbPrivateNetworking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        binding.networkingCheckBox.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -112,7 +106,8 @@ public class AdditionalDetailsFragment extends Fragment {
                 }
             }
         });
-        cbIpv6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        binding.ipv6CheckBox.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -123,7 +118,8 @@ public class AdditionalDetailsFragment extends Fragment {
                 }
             }
         });
-        cbBackups.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        binding.backupsCheckBox.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
