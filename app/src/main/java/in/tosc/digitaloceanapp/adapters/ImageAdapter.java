@@ -109,6 +109,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             case "CentOS":
                 selectorImage = R.drawable.centos_selected;
                 break;
+            case "RancherOS":
+                selectorImage =R.drawable.rancheros_selected;
+                break;
             case "Ubuntu":
                 selectorImage = R.drawable.ubuntu_selected;
                 break;
@@ -138,6 +141,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 break;
             case "CentOS":
                 holder.imageImage.setBackground(ContextCompat.getDrawable(context, R.drawable.centos));
+                break;
+            case "RancherOS":
+                holder.imageImage.setBackground(ContextCompat.getDrawable(context, R.drawable.rancheros));
                 break;
             case "Ubuntu":
                 holder.imageImage.setBackground(ContextCompat.getDrawable(context, R.drawable.ubuntu));
