@@ -31,7 +31,7 @@ It has features such as -
  
 - The first APK or App Bundle needs to be uploaded via the Google Play Console because registering the app with the Play Store cannot be done using the Play Developer API.
 - To use this plugin, you must create a service account with access to the Play Developer API. Once that's done, you'll need to grant the following permissions to your service account for this plugin to work (go to Settings -> Developer account -> API access -> Service Accounts).
-- Once done download your PKCS12 key or json key somewhere and the location of key in the build.gradle file in the play block
+- Once that's done, download your PKCS12 key or json key somewhere and the location of key in the build.gradle file in the play block.
 - Then run one of the following commands:
 
    | Command | Description |
