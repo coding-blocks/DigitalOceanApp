@@ -44,7 +44,7 @@ It has features such as -
                                 
 You can now type the following gradle commands such as the following:
 
-bash
+```bash
 ./gradlew publishApkRelease
-                                
+```                                
 
