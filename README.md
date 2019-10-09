@@ -15,11 +15,11 @@ Originally made as a part of DigitalOcean CloudHackathon.
 The library provides easy to use Java methods to make API calls to DigitalOcean.
 
 The Android App lets people sign in with their Digital Ocean account. 
-Once signed in, you can see your droplets, and their status. 
+Once signed in, you can see your droplets and their status. 
 It has features such as - 
  - powering off / rebooting your droplet
  - turning backups on/off
- - taking snapshot of droplet
+ - taking a snapshot of the droplet
  - resizing droplet
  - creating a droplet
 
@@ -31,7 +31,7 @@ It has features such as -
  
 - The first APK or App Bundle needs to be uploaded via the Google Play Console because registering the app with the Play Store cannot be done using the Play Developer API.
 - To use this plugin, you must create a service account with access to the Play Developer API. Once that's done, you'll need to grant the following permissions to your service account for this plugin to work (go to Settings -> Developer account -> API access -> Service Accounts).
-- Once done download your PKCS12 key or json key somewhere and the location of key in the build.gradle file in the play block
+- Once done download your PKCS12 key or JSON key somewhere and the location of the key in the build.gradle file in the play block
 - Then run one of the following commands:
 
    | Command | Description |
