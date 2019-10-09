@@ -47,4 +47,6 @@ You can now type the following gradle commands such as the following:
 bash
 ./gradlew publishApkRelease
                                 
+  ## License
 
+This project is GPL 3.0 licensed. For the full license, see [LICENSE](License).
