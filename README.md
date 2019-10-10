@@ -47,4 +47,6 @@ You can now type the following gradle commands such as the following:
 bash
 ./gradlew publishApkRelease
                                 
+  ## License
 
+This project is licensed under the GNU General Public License v3.0. A copy of [LICENSE](LICENSE) is to be present along with the source code. To obtain the software under a different license, please contact Coding Blocks.
