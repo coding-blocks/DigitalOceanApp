@@ -49,4 +49,4 @@ bash
                                 
   ## License
 
-This project is GPL 3.0 licensed. For the full license, see [LICENSE](License).
+This project is licensed under the GNU General Public License v3.0. A copy of [LICENSE](LICENSE) is to be present along with the source code. To obtain the software under a different license, please contact Coding Blocks.
