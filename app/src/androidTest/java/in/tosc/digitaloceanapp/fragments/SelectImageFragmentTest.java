@@ -1,19 +1,15 @@
 package in.tosc.digitaloceanapp.fragments;
 
 
+import org.junit.Before;
+import org.junit.Test;
 
+import in.tosc.digitaloceanapp.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-
-
-import in.tosc.digitaloceanapp.R;
 import static in.tosc.digitaloceanapp.matchers.RecyclerViewMatcher.withRecyclerView;
-
 import static junit.framework.Assert.assertNotNull;
-
-import org.junit.Before;
-import org.junit.Test;
 
 public class SelectImageFragmentTest {
 
