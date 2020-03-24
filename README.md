@@ -48,3 +48,7 @@ bash
 ./gradlew publishApkRelease
                                 
 
+## License
+> DigitalOceanApp is licensed under `GNU General Public License v3.0`
+
+This project is licensed under the GNU General Public License v3.0. A copy of [LICENSE](LICENSE) is to be present along with the source code. To obtain the software under a different license, contact `Coding Blocks`.
