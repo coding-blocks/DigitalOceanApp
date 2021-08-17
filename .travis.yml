@@ -9,6 +9,7 @@ env:
     - BUILD_TOOLS="27.0.3"
     - TARGET_SDK=27
   matrix:
+  fast_finish: true
     - EMULATOR_API=19 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
     - EMULATOR_API=21 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
     - EMULATOR_API=26 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
